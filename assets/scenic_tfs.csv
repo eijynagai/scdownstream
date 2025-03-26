@@ -1,0 +1,6 @@
+genome,url
+hg38,https://resources.aertslab.org/cistarget/tf_lists/allTFs_hg38.txt
+hg19,https://resources.aertslab.org/cistarget/tf_lists/allTFs_hg38.txt
+mm9,https://resources.aertslab.org/cistarget/tf_lists/allTFs_mm.txt
+mm10,https://resources.aertslab.org/cistarget/tf_lists/allTFs_mm.txt
+dm6,https://resources.aertslab.org/cistarget/tf_lists/allTFs_dmel.txt

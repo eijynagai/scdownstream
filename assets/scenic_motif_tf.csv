@@ -1,0 +1,13 @@
+organism,genome,motif_collection,motif_source,url
+fly,dm6,v8,mc8nr,https://resources.aertslab.org/cistarget/motif2tf/motifs-v8-nr.flybase-m0.001-o0.0.tbl
+fly,dm6,v9,mc9nr, https://resources.aertslab.org/cistarget/motif2tf/motifs-v9-nr.flybase-m0.001-o0.0.tbl
+human,hg19,v9,mc9nr,https://resources.aertslab.org/cistarget/motif2tf/motifs-v9-nr.hgnc-m0.001-o0.0.tbl
+human,hg38,v9,mc9nr,https://resources.aertslab.org/cistarget/motif2tf/motifs-v9-nr.hgnc-m0.001-o0.0.tbl
+mouse,mm10,v9,mc9nr,https://resources.aertslab.org/cistarget/motif2tf/motifs-v9-nr.mgi-m0.001-o0.0.tbl
+mouse,mm9,v9,mc9nr,https://resources.aertslab.org/cistarget/motif2tf/motifs-v9-nr.mgi-m0.001-o0.0.tbl
+chicken,galGal6,v10,mc_v10_clust,https://resources.aertslab.org/cistarget/motif2tf/motifs-v10nr_clust-nr.chicken-m0.001-o0.0.tbl
+fly,dm6,v10,mc_v10_clust,https://resources.aertslab.org/cistarget/motif2tf/motifs-v10nr_clust-nr.flybase-m0.001-o0.0.tbl
+human,hg19,v10,mc_v10_clust,https://resources.aertslab.org/cistarget/motif2tf/motifs-v10nr_clust-nr.hgnc-m0.001-o0.0.tbl
+human,hg38,v10,mc_v10_clust,https://resources.aertslab.org/cistarget/motif2tf/motifs-v10nr_clust-nr.hgnc-m0.001-o0.0.tbl
+mouse,mm10,v10,mc_v10_clust,https://resources.aertslab.org/cistarget/motif2tf/motifs-v10nr_clust-nr.mgi-m0.001-o0.0.tbl
+mouse,mm9,v10,mc_v10_clust,https://resources.aertslab.org/cistarget/motif2tf/motifs-v10nr_clust-nr.mgi-m0.001-o0.0.tbl
