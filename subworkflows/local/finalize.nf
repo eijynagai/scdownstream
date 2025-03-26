@@ -14,6 +14,7 @@ workflow FINALIZE {
 
     main:
     ch_versions = Channel.empty()
+    ch_obs = Channel.empty()
 
     ADATA_EXTEND(ch_h5ad,
         ch_obs.flatten().collect().ifEmpty([]),

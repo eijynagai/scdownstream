@@ -2,15 +2,15 @@
 
 import os
 import platform
+
+os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
+os.environ["MPLCONFIGDIR"] = "./tmp/matplotlib"
+
 import pickle
 import scanpy as sc
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-
-os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
-os.environ["MPLCONFIGDIR"] = "./tmp/matplotlib"
-
 from pyscenic.aucell import aucell
 from threadpoolctl import threadpool_limits
 threadpool_limits(int("${task.cpus}"))

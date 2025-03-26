@@ -2,13 +2,13 @@
 
 import os
 import platform
-import pickle
-import scanpy as sc
-import pandas as pd
 
 os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 os.environ["MPLCONFIGDIR"] = "./tmp/matplotlib"
 
+import pickle
+import scanpy as sc
+import pandas as pd
 from arboreto.utils import load_tf_names
 from arboreto.algo import grnboost2
 from pyscenic.utils import modules_from_adjacencies

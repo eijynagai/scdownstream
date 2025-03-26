@@ -4,8 +4,8 @@ process PYSCENIC_REG_ACT {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/scanpy:1.10.4--c2d474f46255931c':
-        'community.wave.seqera.io/library/scanpy:1.10.4--f905699eb17b6536' }"
+'oras://community.wave.seqera.io/library/pyscenic_python_scanpy_seaborn:b21cfb7c2f6485bb':
+'community.wave.seqera.io/library/pyscenic_python_scanpy_seaborn:6d42591d8f323124' }"
 
     input:
     tuple val(meta), path(h5ad)

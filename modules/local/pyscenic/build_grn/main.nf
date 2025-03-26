@@ -3,9 +3,9 @@ process PYSCENIC_GRN {
     label 'process_high'
 
     conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/pyscenic_multicore-tsne_python_scanpy_seaborn:dd8689fb27b6135b':
-        'community.wave.seqera.io/library/pyscenic_multicore-tsne_python_scanpy_seaborn:196ca9be7b659658'}"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ? 
+'oras://community.wave.seqera.io/library/pyscenic_python_scanpy_seaborn:b21cfb7c2f6485bb': 
+'community.wave.seqera.io/library/pyscenic_python_scanpy_seaborn:6d42591d8f323124'}"
 
     input:
     tuple val(meta), path(h5ad)

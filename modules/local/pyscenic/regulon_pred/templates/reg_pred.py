@@ -2,13 +2,13 @@
 
 import os
 import platform
-import glob
-import pickle
-import pandas as pd
 
 os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 os.environ["MPLCONFIGDIR"] = "./tmp/matplotlib"
 
+import glob
+import pickle
+import pandas as pd
 from ctxcore.rnkdb import FeatherRankingDatabase as RankingDatabase
 from pyscenic.prune import prune2df, df2regulons
 from pyscenic.utils import load_motifs
