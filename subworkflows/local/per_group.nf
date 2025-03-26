@@ -1,6 +1,7 @@
 include { SCANPY_PAGA            } from '../../modules/local/scanpy/paga'
 include { SCANPY_RANKGENESGROUPS } from '../../modules/local/scanpy/rankgenesgroups'
 include { LIANA_RANKAGGREGATE    } from '../../modules/local/liana/rankaggregate'
+include { PYSCENIC               } from './pyscenic.nf'
 
 workflow PER_GROUP {
     take:
@@ -33,6 +34,10 @@ workflow PER_GROUP {
         ch_versions      = ch_versions.mix(SCANPY_RANKGENESGROUPS.out.versions)
         ch_uns           = ch_uns.mix(SCANPY_RANKGENESGROUPS.out.uns)
         ch_multiqc_files = ch_multiqc_files.mix(SCANPY_RANKGENESGROUPS.out.multiqc_files)
+    }
+
+    if (params.refgenome) {
+        PYSCENIC(ch_no_neighbors, params.refgenome, params.motifsource)
     }
 
     emit:
