@@ -7,4 +7,3 @@ dependencies:
   - conda-forge::scanpy=1.10.0
   - conda-forge::seaborn=0.13.2
   - bioconda::pyscenic=0.12.1
-  - conda-forge::multicore-tsne=0.1_d4ff4aab
