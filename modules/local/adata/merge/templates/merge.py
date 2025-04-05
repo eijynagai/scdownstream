@@ -64,7 +64,7 @@ for column, dtypes in column_dtypes.items():
                 adata.obs[column] = adata.obs[column].astype("object")
         column_defaults[column] = "unknown"
     else:
-        column_defaults[column] = np.nan if dtypes.pop() == "number" else "unknown"
+        column_defaults[column] = np.nan if dtypes.copy().pop() == "number" else "unknown"
 
 for adata in adatas:
     for col in set(obs_col_intersection).difference(adata.obs.columns):
