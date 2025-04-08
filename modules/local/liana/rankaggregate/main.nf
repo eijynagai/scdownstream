@@ -16,7 +16,7 @@ process LIANA_RANKAGGREGATE {
     path "versions.yml"            , emit: versions
 
     when:
-    task.ext.when == null || task.ext.when
+    params.run_LIANA_RANKAGGREGATE
 
     script:
     obs_key = meta.obs_key ?: "leiden"
