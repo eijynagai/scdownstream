@@ -12,6 +12,8 @@ import pandas as pd
 from arboreto.utils import load_tf_names
 from arboreto.algo import grnboost2
 from pyscenic.utils import modules_from_adjacencies
+from dask.distributed import Client
+client = Client(n_workers=int("${task.cpus}"))
 
 from threadpoolctl import threadpool_limits
 threadpool_limits(int("${task.cpus}"))
@@ -47,7 +49,7 @@ ex_matrix = adata.to_df()
 
 tf_names = load_tf_names(TF_FILE)
 
-adjacencies = grnboost2(ex_matrix, tf_names=tf_names, verbose=True)
+adjacencies = grnboost2(ex_matrix, tf_names=tf_names, client_or_address=client, verbose=True)
 
 modules = list(modules_from_adjacencies(adjacencies, ex_matrix))
 

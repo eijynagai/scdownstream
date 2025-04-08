@@ -42,7 +42,7 @@ with open(regulons_file, "rb") as f:
     regulons = pickle.load(f)
 print(f"Loaded {len(regulons)} regulons from {regulons_file}")
 
-auc_mtx = aucell(ex_matrix, regulons, num_workers=int("${task.cpus}"))
+auc_mtx = aucell(ex_matrix, regulons, num_workers=sc.settings.n_jobs))
 print(f"AUCell matrix shape: {auc_mtx.shape}")
 
 auc_mtx.to_csv(auc_output)
