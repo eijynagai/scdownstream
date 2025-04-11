@@ -1,5 +1,5 @@
 include { UNIFY_GENES                           } from './unify_genes'
-include { EMPTY_DROPLET_REMOVAL                 } from './empty_droplet_removal'
+include { H5AD_REMOVEBACKGROUND_BARCODES_CELLBENDER_ANNDATA as EMPTY_DROPLET_REMOVAL } from '../nf-core/h5ad_removebackground_barcodes_cellbender_anndata'
 include { ADATA_GETSIZE as GET_UNFILTERED_SIZE  } from '../../modules/local/adata/getsize'
 include { ADATA_GETSIZE as GET_FILTERED_SIZE    } from '../../modules/local/adata/getsize'
 include { ADATA_GETSIZE as GET_THRESHOLDED_SIZE } from '../../modules/local/adata/getsize'

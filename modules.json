@@ -8,7 +8,7 @@
                     "anndata/barcodes": {
                         "branch": "master",
                         "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
-                        "installed_by": ["modules"]
+                        "installed_by": ["h5ad_removebackground_barcodes_cellbender_anndata", "modules"]
                     },
                     "cellbender/merge": {
                         "branch": "master",
@@ -18,7 +18,7 @@
                     "cellbender/removebackground": {
                         "branch": "master",
                         "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
-                        "installed_by": ["modules"]
+                        "installed_by": ["h5ad_removebackground_barcodes_cellbender_anndata", "modules"]
                     },
                     "doubletdetection": {
                         "branch": "master",
@@ -49,6 +49,11 @@
             },
             "subworkflows": {
                 "nf-core": {
+                    "h5ad_removebackground_barcodes_cellbender_anndata": {
+                        "branch": "master",
+                        "git_sha": "23600f6cd1c7fc4da79709bb531e5ba3cd5e840e",
+                        "installed_by": ["subworkflows"]
+                    },
                     "utils_nextflow_pipeline": {
                         "branch": "master",
                         "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
