@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process SCANPY_READH5"
-    script "../main.nf"
-    process "SCANPY_READH5"
+    name "Test Process ADATA_TORDS"
+    script "modules/local/adata/tords/main.nf"
+    process "ADATA_TORDS"
     tag "anndata"
     tag "modules_nfcore"
     tag "modules"
@@ -16,8 +16,8 @@ nextflow_process {
             process {
                 """
                 input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'misc/filtered_feature_bc_matrix.h5', checkIfExists: true)
+                        [id: 'test'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
                     ]
                 )
                 """
@@ -45,7 +45,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'misc/filtered_feature_bc_matrix.h5', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
                     ]
                 )
                 """
@@ -72,8 +72,8 @@ nextflow_process {
             process {
                 """
                 input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'misc/filtered_feature_bc_matrix.h5', checkIfExists: true)
+                        [id: 'test'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
                     ]
                 )
                 """
@@ -102,7 +102,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'misc/filtered_feature_bc_matrix.h5', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
                     ]
                 )
                 """

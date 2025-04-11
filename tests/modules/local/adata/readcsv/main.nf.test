@@ -1,7 +1,7 @@
 nextflow_process {
 
     name "Test Process ADATA_READCSV"
-    script "../main.nf"
+    script "modules/local/adata/readcsv/main.nf"
     process "ADATA_READCSV"
     tag "anndata"
     tag "modules_nfcore"

@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process ADATA_TORDS"
-    script "../main.nf"
-    process "ADATA_TORDS"
+    name "Test Process ADATA_READRDS"
+    script "modules/local/adata/readrds/main.nf"
+    process "ADATA_READRDS"
     tag "anndata"
     tag "modules_nfcore"
     tag "modules"
@@ -17,7 +17,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [id: 'test'],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed_seurat.rds', checkIfExists: true)
                     ]
                 )
                 """
@@ -45,7 +45,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed_seurat.rds', checkIfExists: true)
                     ]
                 )
                 """
@@ -73,7 +73,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [id: 'test'],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed_seurat.rds', checkIfExists: true)
                     ]
                 )
                 """
@@ -102,7 +102,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed_seurat.rds', checkIfExists: true)
                     ]
                 )
                 """
