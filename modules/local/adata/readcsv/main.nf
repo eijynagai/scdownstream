@@ -20,4 +20,11 @@ process ADATA_READCSV {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'readcsv.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch versions.yml
+    """
 }
