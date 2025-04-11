@@ -1,0 +1,68 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,06c284d3f757b15c02f47f3ff06dc275"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a788274dd6230ca1abcde73e4d965e9b"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,06c284d3f757b15c02f47f3ff06dc275"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a788274dd6230ca1abcde73e4d965e9b"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-11T22:59:19.424437495"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,06c284d3f757b15c02f47f3ff06dc275"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a788274dd6230ca1abcde73e4d965e9b"
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,06c284d3f757b15c02f47f3ff06dc275"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a788274dd6230ca1abcde73e4d965e9b"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-11T22:58:06.20346192"
+    }
+}
