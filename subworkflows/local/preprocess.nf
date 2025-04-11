@@ -1,6 +1,4 @@
-include { SCANPY_READH5                         } from '../../modules/local/scanpy/readh5'
-include { ADATA_READRDS                         } from '../../modules/local/adata/readrds'
-include { ADATA_READCSV                         } from '../../modules/local/adata/readcsv'
+include { LOAD_H5AD                             } from './load_h5ad'
 include { EMPTY_DROPLET_REMOVAL                 } from './empty_droplet_removal'
 include { ADATA_UNIFY                           } from '../../modules/local/adata/unify'
 include { ADATA_GETSIZE as GET_UNFILTERED_SIZE  } from '../../modules/local/adata/getsize'
@@ -23,47 +21,13 @@ workflow PREPROCESS {
 
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
-    ch_h5ad = Channel.empty()
-    ch_files = Channel.empty()
     ch_sizes = Channel.empty()
 
-    ch_files = ch_files.mix(ch_samples
-        .map { meta, filtered, _unfiltered -> [meta + [type: 'filtered'], filtered] }
-        .filter { _meta, filtered -> filtered }
-    )
-    ch_files = ch_files.mix(ch_samples
-        .map { meta, _filtered, unfiltered -> [meta + [type: 'unfiltered'], unfiltered] }
-        .filter { _meta, unfiltered -> unfiltered }
-    )
     ch_metas = ch_samples.map{ meta, _filtered, _unfiltered -> meta }
 
-    ch_files = ch_files.map { meta, file -> [meta, file, file.extension.toLowerCase()] }
-        .branch { meta, file, ext ->
-            unified: ext == "h5ad" && meta.unified == true
-                return [meta, file]
-            h5ad: ext == "h5ad"
-                return [meta, file]
-            h5: ext == "h5"
-                return [meta, file]
-            rds: ext == "rds"
-                return [meta, file]
-            csv: ext == "csv"
-                return [meta, file]
-        }
-
-    ch_h5ad = ch_h5ad.mix(ch_files.h5ad)
-
-    SCANPY_READH5(ch_files.h5)
-    ch_h5ad = ch_h5ad.mix(SCANPY_READH5.out.h5ad)
-    ch_versions = ch_versions.mix(SCANPY_READH5.out.versions)
-
-    ADATA_READRDS(ch_files.rds)
-    ch_h5ad = ch_h5ad.mix(ADATA_READRDS.out.h5ad)
-    ch_versions = ch_versions.mix(ADATA_READRDS.out.versions)
-
-    ADATA_READCSV(ch_files.csv)
-    ch_h5ad = ch_h5ad.mix(ADATA_READCSV.out.h5ad)
-    ch_versions = ch_versions.mix(ADATA_READCSV.out.versions)
+    LOAD_H5AD(ch_samples)
+    ch_h5ad = LOAD_H5AD.out.h5ad
+    ch_versions = ch_versions.mix(LOAD_H5AD.out.versions)
 
     ADATA_UNIFY(ch_h5ad)
     ch_h5ad = ADATA_UNIFY.out.h5ad
@@ -74,7 +38,7 @@ workflow PREPROCESS {
     ch_sizes = ch_sizes.mix(GET_UNFILTERED_SIZE.out.txt
         .map{ meta, txt -> [meta.id, 'unfiltered', txt.text.toInteger()] })
 
-    ch_h5ad = ch_h5ad.mix(ch_files.unified)
+    ch_h5ad = ch_h5ad.mix(LOAD_H5AD.unified)
 
     ch_samples = ch_metas.map{ meta -> [meta.id, meta]}
             .join(
