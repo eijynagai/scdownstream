@@ -1,0 +1,243 @@
+nextflow_process {
+
+    name "Test Process CELDA_DECONTX"
+    script "modules/local/celda/decontx/main.nf"
+    process "CELDA_DECONTX"
+
+    test("Should run without failures without raw") {
+
+        config './batch_col.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures without raw - prefix") {
+
+        config './prefix.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures without raw - stub") {
+
+        options '-stub'
+        config './batch_col.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures without raw - prefix - stub") {
+
+        options '-stub'
+        config './prefix.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures with raw") {
+
+        config './batch_col.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures with raw - prefix") {
+
+        config './prefix.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures with raw - stub") {
+
+        options '-stub'
+        config './batch_col.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures with raw - prefix - stub") {
+
+        options '-stub'
+        config './prefix.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
