@@ -23,4 +23,14 @@ process SCANPY_PLOTQC {
     section_name = task.ext.section_name ?: "QC Plots"
     description = task.ext.description ?: "Quality control plots"
     template 'plotqc.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    section_name = task.ext.section_name ?: "QC Plots"
+    description = task.ext.description ?: "Quality control plots"
+    """
+    touch ${prefix}_total_counts_vs_n_genes_by_counts.png
+    touch ${prefix}_mqc.json
+    touch versions.yml
+    """
 }
