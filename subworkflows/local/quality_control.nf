@@ -1,4 +1,3 @@
-include { UNIFY_GENES                           } from './unify_genes'
 include { H5AD_REMOVEBACKGROUND_BARCODES_CELLBENDER_ANNDATA as EMPTY_DROPLET_REMOVAL } from '../nf-core/h5ad_removebackground_barcodes_cellbender_anndata'
 include { ADATA_GETSIZE as GET_UNFILTERED_SIZE  } from '../../modules/local/adata/getsize'
 include { ADATA_GETSIZE as GET_FILTERED_SIZE    } from '../../modules/local/adata/getsize'
@@ -22,10 +21,10 @@ workflow QUALITY_CONTROL {
     ch_multiqc_files = Channel.empty()
     ch_sizes = Channel.empty()
 
-    GET_UNFILTERED_SIZE(ch_h5ad.filter{ meta, _h5ad -> meta.type == 'unfiltered' })
+    GET_UNFILTERED_SIZE(ch_h5ad.filter{ meta, filtered, unfiltered -> [meta, unfiltered ?: filtered] })
     ch_versions = ch_versions.mix(GET_UNFILTERED_SIZE.out.versions)
     ch_sizes = ch_sizes.mix(GET_UNFILTERED_SIZE.out.txt
-        .map{ meta, txt -> [meta.id, 'unfiltered', txt.text.toInteger()] })
+        .map{ meta, txt -> [meta.id, 'unfiltered', (txt.text ?: "0").toInteger()] })
 
     ch_h5ad = ch_h5ad
             .branch{ meta, filtered, unfiltered ->
@@ -51,7 +50,7 @@ workflow QUALITY_CONTROL {
     GET_FILTERED_SIZE(ch_complete.map{ meta, filtered, _unfiltered -> [meta, filtered] })
     ch_versions = ch_versions.mix(GET_FILTERED_SIZE.out.versions)
     ch_sizes = ch_sizes.mix(GET_FILTERED_SIZE.out.txt
-        .map{ meta, txt -> [meta.id, 'filtered', txt.text.toInteger()] })
+        .map{ meta, txt -> [meta.id, 'filtered', (txt.text ?: "0").toInteger()] })
 
     QC_RAW(ch_complete.map{ meta, filtered, _unfiltered -> [meta, filtered] })
     ch_multiqc_files = ch_multiqc_files.mix(QC_RAW.out.multiqc_files)
@@ -68,7 +67,7 @@ workflow QUALITY_CONTROL {
     GET_THRESHOLDED_SIZE(ch_h5ad)
     ch_versions = ch_versions.mix(GET_THRESHOLDED_SIZE.out.versions)
     ch_sizes = ch_sizes.mix(GET_THRESHOLDED_SIZE.out.txt
-        .map{ meta, txt -> [meta.id, 'thresholded', txt.text.toInteger()] })
+        .map{ meta, txt -> [meta.id, 'thresholded', (txt.text ?: "0").toInteger()] })
 
     DOUBLET_DETECTION(ch_h5ad)
     ch_h5ad = DOUBLET_DETECTION.out.h5ad
@@ -78,7 +77,7 @@ workflow QUALITY_CONTROL {
     GET_DEDOUBLETED_SIZE(ch_h5ad)
     ch_versions = ch_versions.mix(GET_DEDOUBLETED_SIZE.out.versions)
     ch_sizes = ch_sizes.mix(GET_DEDOUBLETED_SIZE.out.txt
-        .map{ meta, txt -> [meta.id, 'dedoubleted', txt.text.toInteger()] })
+        .map{ meta, txt -> [meta.id, 'dedoubleted', (txt.text ?: "0").toInteger()] })
 
     QC_FILTERED(ch_h5ad)
     ch_multiqc_files = ch_multiqc_files.mix(QC_FILTERED.out.multiqc_files)
@@ -94,12 +93,6 @@ workflow QUALITY_CONTROL {
     COLLECT_SIZES(ch_sizes)
     ch_versions = ch_versions.mix(COLLECT_SIZES.out.versions)
     ch_multiqc_files = ch_multiqc_files.mix(COLLECT_SIZES.out.multiqc_files)
-
-    if (params.unify_gene_symbols) {
-        UNIFY_GENES(ch_h5ad)
-        ch_h5ad = UNIFY_GENES.out.h5ad
-        ch_versions = ch_versions.mix(UNIFY_GENES.out.versions)
-    }
 
     emit:
     h5ad          = ch_h5ad

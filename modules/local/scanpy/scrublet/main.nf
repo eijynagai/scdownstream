@@ -24,4 +24,12 @@ process SCANPY_SCRUBLET {
     prefix = task.ext.prefix ?: "${meta.id}"
     batch_col = task.ext.batch_col ?: "batch"
     template 'scrublet.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch ${prefix}.pkl
+    touch versions.yml
+    """
 }

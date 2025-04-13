@@ -18,4 +18,12 @@ process CUSTOM_COLLECTSIZES {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'collectsizes.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}_sizes.tsv
+    touch ${prefix}_mqc.json
+    touch versions.yml
+    """
 }
