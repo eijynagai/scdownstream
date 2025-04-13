@@ -11,8 +11,8 @@ process SCDS {
     tuple val(meta), path(rds)
 
     output:
-    tuple val(meta), path("*.rds"), emit: rds
-    tuple val(meta), path("*.csv"), emit: predictions
+    tuple val(meta), path("${prefix}.rds"), emit: rds
+    tuple val(meta), path("${prefix}.csv"), emit: predictions
     path "versions.yml"           , emit: versions
 
     when:
@@ -21,4 +21,12 @@ process SCDS {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'scds.R'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.rds
+    touch ${prefix}.csv
+    touch versions.yml
+    """
 }
