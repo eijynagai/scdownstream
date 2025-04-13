@@ -22,4 +22,12 @@ process CELLTYPES_CELLTYPIST {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'celltypist.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch ${prefix}.pkl
+    touch versions.yml
+    """
 }
