@@ -26,4 +26,15 @@ process HUGOUNIFIER_GET {
         hugo-unifier: \$(hugo-unifier --version | grep -oP '(?<=version )[\\d.]+')
     END_VERSIONS
     """
+
+    stub:
+    """
+    mkdir -p ${meta.id}
+
+    for name in ${names.join(' ')}; do
+        touch ${meta.id}/\${name}.csv
+    done
+
+    touch versions.yml
+    """
 }
