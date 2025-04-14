@@ -1,0 +1,80 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "multiqc_files": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "plot": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-14T09:52:48.548449408"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_genes.png:md5,c308a9e7712e6c2e2e715695c6fc5f99"
+                    ]
+                ],
+                "1": [
+                    "test_mqc.json:md5,4e1a84f6937d49e10250c198276e760b"
+                ],
+                "2": [
+                    "versions.yml:md5,18da4c7acf05806412f10444f41c5926"
+                ],
+                "multiqc_files": [
+                    "test_mqc.json:md5,4e1a84f6937d49e10250c198276e760b"
+                ],
+                "plot": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_genes.png:md5,c308a9e7712e6c2e2e715695c6fc5f99"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,18da4c7acf05806412f10444f41c5926"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-14T09:52:33.645679656"
+    }
+}
