@@ -1,4 +1,5 @@
 include { ADATA_MYGENE as MYGENE              } from '../../modules/local/adata/mygene'
+include { ADATA_SETINDEX as SET_INDEX         } from '../../modules/local/adata/setindex'
 include { ADATA_UPSETGENES as UPSET_GENES_RAW } from '../../modules/local/adata/upsetgenes'
 include { UNIFY_GENES                         } from './unify_genes'
 include { ADATA_UPSETGENES as UPSET_GENES     } from '../../modules/local/adata/upsetgenes'
@@ -27,6 +28,10 @@ workflow MERGE {
     )
 
     if (params.unify_gene_symbols) {
+        SET_INDEX(ch_h5ad)
+        ch_h5ad = SET_INDEX.out.h5ad.map{meta, h5ad -> [meta + [symbol_col: 'index'], h5ad]}
+        ch_versions = ch_versions.mix(SET_INDEX.out.versions)
+
         UPSET_GENES_RAW(ch_h5ad.map { meta, h5ad -> [[id: 'upset_raw'], meta.id, h5ad] }.groupTuple())
         ch_versions = ch_versions.mix(UPSET_GENES_RAW.out.versions)
         ch_multiqc_files = ch_multiqc_files.mix(UPSET_GENES_RAW.out.multiqc_files)
@@ -36,13 +41,13 @@ workflow MERGE {
         ch_versions = ch_versions.mix(UNIFY_GENES.out.versions)
     }
 
-    UPSET_GENES(ch_h5ad.map { meta, h5ad -> [[id: 'upset'], meta.id, h5ad] }.groupTuple())
-    ch_versions = ch_versions.mix(UPSET_GENES.out.versions)
-    ch_multiqc_files = ch_multiqc_files.mix(UPSET_GENES.out.multiqc_files)
-
     ADATA_UNIFY(ch_h5ad)
     ch_h5ad = ADATA_UNIFY.out.h5ad
     ch_versions = ch_versions.mix(ADATA_UNIFY.out.versions)
+
+    UPSET_GENES(ch_h5ad.map { meta, h5ad -> [[id: 'upset'], meta.id, h5ad] }.groupTuple())
+    ch_versions = ch_versions.mix(UPSET_GENES.out.versions)
+    ch_multiqc_files = ch_multiqc_files.mix(UPSET_GENES.out.multiqc_files)
 
     ADATA_MERGE(
         ch_h5ad.map { _meta, h5ad -> [[id: "merged"], h5ad] }.groupTuple(),
