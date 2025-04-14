@@ -6,15 +6,15 @@ process SCANPY_HVGS {
     conda "${moduleDir}/environment.yml"
     container "${ task.ext.use_gpu ? 'ghcr.io/scverse/rapids_singlecell:v0.11.0' :
         workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/python-igraph_scanpy:f3ad4bc653796b1b':
-        'community.wave.seqera.io/library/python-igraph_scanpy:e3d5b4ea56e99f52' }"
+        'oras://community.wave.seqera.io/library/scanpy-cli:0.2.0--4eb2797376cf13be':
+        'community.wave.seqera.io/library/pyyaml_scanpy:61c9ab8e312bbe0a' }"
 
     input:
     tuple val(meta), path(h5ad)
     val(n_hvgs)
 
     output:
-    tuple val(meta), path("*.h5ad"), emit: h5ad
+    tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
     path "versions.yml"            , emit: versions
 
     when:
@@ -23,4 +23,11 @@ process SCANPY_HVGS {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'hvgs.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch versions.yml
+    """
 }
