@@ -1,5 +1,6 @@
 include { INTEGRATE             } from './integrate'
 include { ADATA_MERGEEMBEDDINGS } from '../../modules/local/adata/mergeembeddings'
+include { ADATA_MERGE            } from '../../modules/local/adata/merge'
 
 workflow COMBINE {
 
@@ -17,7 +18,13 @@ workflow COMBINE {
     ch_multiqc_files = Channel.empty()
 
 
-
+    ADATA_MERGE(
+        ch_h5ad.map { _meta, h5ad -> [[id: "merged"], h5ad] }.groupTuple(),
+        ch_base,
+    )
+    ch_var = ch_var.mix(ADATA_MERGE.out.intersect_genes)
+    ch_outer = ADATA_MERGE.out.outer
+    ch_versions = ch_versions.mix(ADATA_MERGE.out.versions)
 
 
     INTEGRATE( ADATA_MERGE.out.integrate )

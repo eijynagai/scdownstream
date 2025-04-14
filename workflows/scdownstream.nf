@@ -8,7 +8,6 @@ include { LOAD_H5AD              } from '../subworkflows/local/load_h5ad'
 include { QUALITY_CONTROL        } from '../subworkflows/local/quality_control'
 include { UNIFY                  } from '../subworkflows/local/unify'
 include { CELLTYPE_ASSIGNMENT    } from '../subworkflows/local/celltype_assignment'
-include { ADATA_MERGE            } from '../../modules/local/adata/merge'
 include { COMBINE                } from '../subworkflows/local/combine'
 include { ADATA_SPLITEMBEDDINGS  } from '../modules/local/adata/splitembeddings'
 include { CLUSTER                } from '../subworkflows/local/cluster'
@@ -70,18 +69,14 @@ workflow SCDOWNSTREAM {
             ch_versions = ch_versions.mix(CELLTYPE_ASSIGNMENT.out.versions)
             ch_h5ad = CELLTYPE_ASSIGNMENT.out.h5ad
 
+            //
+            // Unify samples to make them compatible for integration
+            //
+
             UNIFY(ch_h5ad)
             ch_versions = ch_versions.mix(UNIFY.out.versions)
             ch_multiqc_files = ch_multiqc_files.mix(UNIFY.out.multiqc_files)
             ch_h5ad = UNIFY.out.h5ad
-
-            ADATA_MERGE(
-                ch_h5ad.map { _meta, h5ad -> [[id: "merged"], h5ad] }.groupTuple(),
-                ch_base,
-            )
-            ch_var = ch_var.mix(ADATA_MERGE.out.intersect_genes)
-            ch_outer = ADATA_MERGE.out.outer
-            ch_versions = ch_versions.mix(ADATA_MERGE.out.versions)
 
             //
             // Combine samples and perform integration
