@@ -16,7 +16,7 @@ process HUGOUNIFIER_GET {
 
 
     script:
-    def namedFiles = [names, h5ads].transpose()
+    def namedFiles = [[names].flatten(), [h5ads].flatten()].transpose()
     def input = namedFiles.collect { name, h5ad -> "-i ${name}:${h5ad}" }.join(' ')
     """
     hugo-unifier get -o ${meta.id} ${input}

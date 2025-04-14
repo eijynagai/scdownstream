@@ -14,7 +14,7 @@ workflow UNIFY_GENES {
     ch_versions = ch_versions.mix(HUGOUNIFIER_GET.out.versions)
 
     ch_changes = HUGOUNIFIER_GET.out.changes
-        .map { _meta, changes -> changes }
+        .map { _meta, changes -> [changes] }
         .flatten()
         // Extract ID from file name
         .map { changes -> [changes.baseName, changes] }

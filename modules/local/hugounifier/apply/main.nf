@@ -25,4 +25,11 @@ process HUGOUNIFIER_APPLY {
         hugo-unifier: \$(hugo-unifier --version | grep -oP '(?<=version )[\\d.]+')
     END_VERSIONS
     """
+
+    stub:
+    prefix = task.ext.prefix ?: meta.id
+    """
+    touch ${prefix}.h5ad
+    touch versions.yml
+    """
 }
