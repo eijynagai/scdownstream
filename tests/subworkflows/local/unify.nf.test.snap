@@ -1,0 +1,265 @@
+{
+    "Should run with symbol unification - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1",
+                            "symbol_col": "index"
+                        },
+                        "test1_unified.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "symbol_col": "index"
+                        },
+                        "test2_unified.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test3",
+                            "symbol_col": "index"
+                        },
+                        "test3_unified.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "upset_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "upset_raw_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test1",
+                            "symbol_col": "index"
+                        },
+                        "test1_unified.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "symbol_col": "index"
+                        },
+                        "test2_unified.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "test3",
+                            "symbol_col": "index"
+                        },
+                        "test3_unified.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "upset_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "upset_raw_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-14T13:14:39.450048514"
+    },
+    "Should run without symbol unification": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1",
+                            "symbol_col": "symbols"
+                        },
+                        "test1_unified.h5ad:md5,645a0106daf8edd3e6759b0236f85338"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "symbol_col": "symbols"
+                        },
+                        "test2_unified.h5ad:md5,2b48c1a83b6bed0542d52732e65e72b4"
+                    ],
+                    [
+                        {
+                            "id": "test3",
+                            "symbol_col": "index"
+                        },
+                        "test3_unified.h5ad:md5,732f92557cc45507192e7054ffa4f335"
+                    ]
+                ],
+                "1": [
+                    "upset_mqc.json:md5,785667b5b96a5633c26fd53b936a67c8"
+                ],
+                "2": [
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,28f13636db3e448a09677ac7d2de39dc",
+                    "versions.yml:md5,7249d0b673d538d55bec2dd4a05d5a83"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test1",
+                            "symbol_col": "symbols"
+                        },
+                        "test1_unified.h5ad:md5,645a0106daf8edd3e6759b0236f85338"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "symbol_col": "symbols"
+                        },
+                        "test2_unified.h5ad:md5,2b48c1a83b6bed0542d52732e65e72b4"
+                    ],
+                    [
+                        {
+                            "id": "test3",
+                            "symbol_col": "index"
+                        },
+                        "test3_unified.h5ad:md5,732f92557cc45507192e7054ffa4f335"
+                    ]
+                ],
+                "multiqc_files": [
+                    "upset_mqc.json:md5,785667b5b96a5633c26fd53b936a67c8"
+                ],
+                "versions": [
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,28f13636db3e448a09677ac7d2de39dc",
+                    "versions.yml:md5,7249d0b673d538d55bec2dd4a05d5a83"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-14T13:10:38.870283108"
+    },
+    "Should run with symbol unification": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1",
+                            "symbol_col": "index"
+                        },
+                        "test1_unified.h5ad:md5,1f993a638d56eaf6639fe0b5d3a154d5"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "symbol_col": "index"
+                        },
+                        "test2_unified.h5ad:md5,e2e79f22555bf88a2be06001bbfa9157"
+                    ],
+                    [
+                        {
+                            "id": "test3",
+                            "symbol_col": "index"
+                        },
+                        "test3_unified.h5ad:md5,3e536d84771e3a23b673a16462643156"
+                    ]
+                ],
+                "1": [
+                    "upset_mqc.json:md5,eb828b70eda1e22b2cfaf929ee89f27d",
+                    "upset_raw_mqc.json:md5,27e0356701cbcb1b0cc72bef760f57d3"
+                ],
+                "2": [
+                    "versions.yml:md5,15934885670ed80689a80eda77b65342",
+                    "versions.yml:md5,15934885670ed80689a80eda77b65342",
+                    "versions.yml:md5,15934885670ed80689a80eda77b65342",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,28f13636db3e448a09677ac7d2de39dc",
+                    "versions.yml:md5,7249d0b673d538d55bec2dd4a05d5a83",
+                    "versions.yml:md5,8ba1712fb46f1a25bd6805d98a7575fc",
+                    "versions.yml:md5,c3ad1a3d5578ef529ecd3e539526c3db",
+                    "versions.yml:md5,c3ad1a3d5578ef529ecd3e539526c3db",
+                    "versions.yml:md5,e9c711a68f147215c1754f64ca792664"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test1",
+                            "symbol_col": "index"
+                        },
+                        "test1_unified.h5ad:md5,1f993a638d56eaf6639fe0b5d3a154d5"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "symbol_col": "index"
+                        },
+                        "test2_unified.h5ad:md5,e2e79f22555bf88a2be06001bbfa9157"
+                    ],
+                    [
+                        {
+                            "id": "test3",
+                            "symbol_col": "index"
+                        },
+                        "test3_unified.h5ad:md5,3e536d84771e3a23b673a16462643156"
+                    ]
+                ],
+                "multiqc_files": [
+                    "upset_mqc.json:md5,eb828b70eda1e22b2cfaf929ee89f27d",
+                    "upset_raw_mqc.json:md5,27e0356701cbcb1b0cc72bef760f57d3"
+                ],
+                "versions": [
+                    "versions.yml:md5,15934885670ed80689a80eda77b65342",
+                    "versions.yml:md5,15934885670ed80689a80eda77b65342",
+                    "versions.yml:md5,15934885670ed80689a80eda77b65342",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,27700a695e06f25bac93a16f43a00a9d",
+                    "versions.yml:md5,28f13636db3e448a09677ac7d2de39dc",
+                    "versions.yml:md5,7249d0b673d538d55bec2dd4a05d5a83",
+                    "versions.yml:md5,8ba1712fb46f1a25bd6805d98a7575fc",
+                    "versions.yml:md5,c3ad1a3d5578ef529ecd3e539526c3db",
+                    "versions.yml:md5,c3ad1a3d5578ef529ecd3e539526c3db",
+                    "versions.yml:md5,e9c711a68f147215c1754f64ca792664"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-14T13:13:57.267770439"
+    }
+}

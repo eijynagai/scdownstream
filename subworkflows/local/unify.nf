@@ -25,9 +25,16 @@ workflow UNIFY {
     )
 
     if (params.unify_gene_symbols) {
-        SET_INDEX(ch_h5ad)
-        ch_h5ad = SET_INDEX.out.h5ad.map { meta, h5ad -> [meta + [symbol_col: 'index'], h5ad] }
+        ch_h5ad = ch_h5ad.branch { meta, _h5ad ->
+            has_symbols_as_index: meta.symbol_col == "index"
+            needs_index_updating: true
+        }
+
+        SET_INDEX(ch_h5ad.needs_index_updating)
         ch_versions = ch_versions.mix(SET_INDEX.out.versions)
+        ch_h5ad = ch_h5ad.has_symbols_as_index.mix(
+            SET_INDEX.out.h5ad.map { meta, h5ad -> [meta + [symbol_col: 'index'], h5ad] }
+        )
 
         UPSET_GENES_RAW(ch_h5ad.map { meta, h5ad -> [[id: 'upset_raw'], meta.id, h5ad] }.groupTuple())
         ch_versions = ch_versions.mix(UPSET_GENES_RAW.out.versions)

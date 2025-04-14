@@ -50,7 +50,7 @@ prefix = "${prefix}"
 
 adata_genes = dict(zip(
     "${names}".split(),
-    [sc.read_h5ad(path, backed='r').var_names.to_list() for path in "${h5ads}".split()]
+    [sc.read_h5ad(path, backed='r').var.index.unique().to_list() for path in "${h5ads}".split()]
 ))
 
 if len(adata_genes) < 2:
