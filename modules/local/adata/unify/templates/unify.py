@@ -4,30 +4,27 @@ import os
 
 os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 
-import scanpy as sc
+import anndata as ad
 import scipy
 import numpy as np
 from scipy.sparse import csr_matrix
 import platform
+import yaml
 
-def format_yaml_like(data: dict, indent: int = 0) -> str:
-    """Formats a dictionary to a YAML-like string.
+# Function borrowed from https://github.com/icbi-lab/luca/blob/5ffb0a4671e9c288b10e73de18d447ee176bef1d/lib/scanpy_helper_submodule/scanpy_helpers/util.py#L122C1-L135C21
+def aggregate_duplicate_var(adata, aggr_fun=np.mean):
+    retain_var = ~adata.var_names.duplicated(keep="first")
+    duplicated_var = adata.var_names[adata.var_names.duplicated()].unique()
+    if len(duplicated_var):
+        for var in duplicated_var:
+            mask = adata.var_names == var
+            var_aggr = aggr_fun(adata.X[:, mask], axis=1)[:, np.newaxis]
+            adata.X[:, mask] = np.repeat(var_aggr, np.sum(mask), axis=1)
 
-    Args:
-        data (dict): The dictionary to format.
-        indent (int): The current indentation level.
-
-    Returns:
-        str: A string formatted as YAML.
-    """
-    yaml_str = ""
-    for key, value in data.items():
-        spaces = "  " * indent
-        if isinstance(value, dict):
-            yaml_str += f"{spaces}{key}:\\n{format_yaml_like(value, indent + 1)}"
-        else:
-            yaml_str += f"{spaces}{key}: {value}\\n"
-    return yaml_str
+        adata_dedup = adata[:, retain_var].copy()
+        return adata_dedup
+    else:
+        return adata
 
 def to_Florent_case(s: str):
     corrected = s.lower().strip()
@@ -54,25 +51,23 @@ def to_Florent_case(s: str):
 
     return corrected.capitalize()
 
-adata = sc.read_h5ad("$h5ad")
-
-# This fixes a problem that sometimes occurs in AnnData objects
-# that were converted from R-based objects
-# Reference: https://github.com/theislab/scvelo/issues/255#issuecomment-739995301
-if adata.__dict__["_raw"] and "_index" in adata.__dict__["_raw"].__dict__["_var"]:
-    adata.__dict__["_raw"].__dict__["_var"] = (
-        adata.__dict__["_raw"].__dict__["_var"].rename(columns={"_index": "features"})
-    )
+adata = ad.read_h5ad("$h5ad")
 
 # Convert to float32 CSR matrix
 adata.X = csr_matrix(adata.X.astype(np.float32))
 
+# Deal with duplicate genes
+method = "${params.var_aggr_method}"
+if method in ["mean", "sum", "max"]:
+    adata = aggregate_duplicate_var(adata, aggr_fun=getattr(np, method))
+elif method == "make_unique":
+    adata.var_names_make_unique()
+else:
+    raise ValueError(f"Invalid aggregation method: {method}")
+
 # Prevent duplicate cells
 adata.obs_names_make_unique()
 adata.obs_names = "${meta.id}_" + adata.obs_names
-
-# Prevent duplicate genes
-adata.var_names_make_unique()
 
 # Remove all obsm, varm, uns and layers
 adata.obsm = {}
@@ -141,11 +136,11 @@ adata.write_h5ad("${prefix}.h5ad")
 versions = {
     "${task.process}": {
         "python": platform.python_version(),
-        "scanpy": sc.__version__,
+        "anndata": ad.__version__,
         "scipy": scipy.__version__,
         "numpy": np.__version__
     }
 }
 
 with open("versions.yml", "w") as f:
-    f.write(format_yaml_like(versions))
+    yaml.dump(versions, f)
