@@ -33,4 +33,14 @@ process SCVITOOLS_SCVI {
     categorical_covariates = task.ext.categorical_covariates ?: ''
     continuous_covariates = task.ext.continuous_covariates ?: ''
     template 'scvi.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    mkdir -p ${prefix}_model
+    touch ${prefix}_model/model.pt
+    touch X_${prefix}.pkl
+    touch versions.yml
+    """
 }
