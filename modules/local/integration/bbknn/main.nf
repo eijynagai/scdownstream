@@ -20,4 +20,11 @@ process INTEGRATION_BBKNN {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'bbknn.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch versions.yml
+    """
 }

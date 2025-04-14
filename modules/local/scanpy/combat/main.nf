@@ -22,4 +22,13 @@ process SCANPY_COMBAT {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'combat.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch ${prefix}.pkl
+    touch ${prefix}.npy
+    touch versions.yml
+    """
 }
