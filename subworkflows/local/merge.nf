@@ -1,5 +1,6 @@
-include { UNIFY_GENES                         } from './unify_genes'
+include { ADATA_MYGENE as MYGENE              } from '../../modules/local/adata/mygene'
 include { ADATA_UPSETGENES as UPSET_GENES_RAW } from '../../modules/local/adata/upsetgenes'
+include { UNIFY_GENES                         } from './unify_genes'
 include { ADATA_UPSETGENES as UPSET_GENES     } from '../../modules/local/adata/upsetgenes'
 include { ADATA_UNIFY                         } from '../../modules/local/adata/unify'
 include { ADATA_MERGE                         } from '../../modules/local/adata/merge'
@@ -13,6 +14,17 @@ workflow MERGE {
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
     ch_var = Channel.empty()
+
+    ch_h5ad = ch_h5ad.branch { meta, _h5ad ->
+        has_symbol_col: meta.symbol_col != "none"
+        needs_symbol_conversion: true
+    }
+
+    MYGENE(ch_h5ad.needs_symbol_conversion)
+    ch_versions = ch_versions.mix(MYGENE.out.versions)
+    ch_h5ad = ch_h5ad.has_symbol_col.mix(
+        MYGENE.out.h5ad.map{meta, h5ad -> [meta + [symbol_col: 'symbols'], h5ad]}
+    )
 
     if (params.unify_gene_symbols) {
         UPSET_GENES_RAW(ch_h5ad.map { meta, h5ad -> [[id: 'upset_raw'], meta.id, h5ad] }.groupTuple())
