@@ -133,6 +133,11 @@ adata.obs["label"] = adata.obs["label"].astype("category")
 if "sample" in adata.obs and not adata.obs["sample"].equals("${meta.id}"):
     adata.obs["sample_original"] = adata.obs["sample"]
 adata.obs["sample"] = "${meta.id}"
+adata.obs["sample"] = adata.obs["sample"].astype("category")
+
+# Add sample to batch column, to avoid overlap with other samples
+adata.obs["batch"] = adata.obs["batch"].astype(str) + "_" + adata.obs["sample"].astype(str)
+adata.obs["batch"] = adata.obs["batch"].astype("category")
 
 adata.write_h5ad("${prefix}.h5ad")
 
