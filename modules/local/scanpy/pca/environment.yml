@@ -1,5 +1,5 @@
 channels:
-- conda-forge
-- bioconda
+  - conda-forge
+  - bioconda
 dependencies:
-- bioconda::scanpy-cli=0.1.6
+  - bioconda::scanpy-cli=0.1.6
