@@ -250,6 +250,10 @@
                     "type": "boolean",
                     "description": "Skip the rank_genes_groups step. For large datasets, the pipeline might fail due to high memory usage in this step. Use this option to skip it."
                 },
+                "pseudobulk": {
+                    "type": "boolean",
+                    "description": "Perform pseudobulking"
+                },
                 "prep_cellxgene": {
                     "type": "boolean",
                     "description": "Prepare the output for visualisation in cellxgene",
@@ -305,6 +309,23 @@
                     "type": "string",
                     "description": "Continuous covariates for scVI/scANVI",
                     "help_text": "If you want to use multiple covariates, separate them with a comma."
+                }
+            }
+        },
+        "pseudobulking_options": {
+            "title": "Pseudobulking options",
+            "type": "object",
+            "description": "Options for pseudobulking",
+            "fa_icon": "fas fa-users",
+            "properties": {
+                "pseudobulk_groupby_labels": {
+                    "type": "string",
+                    "description": "Group by labels for pseudobulking. If you want to use multiple labels, separate them with a comma."
+                },
+                "pseudobulk_min_num_cells": {
+                    "type": "integer",
+                    "description": "Minimum number of cells for pseudobulking",
+                    "default": 5
                 }
             }
         },
@@ -478,6 +499,9 @@
         },
         {
             "$ref": "#/$defs/scVI_options"
+        },
+        {
+            "$ref": "#/$defs/pseudobulking_options"
         },
         {
             "$ref": "#/$defs/tool_options"

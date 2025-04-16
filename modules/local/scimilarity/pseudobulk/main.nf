@@ -1,7 +1,6 @@
-process SCIMILARITY_ANNOTATE {
+process SCIMILARITY_PSEUDOBULK {
     tag "${meta.id}"
     label 'process_medium'
-    label 'process_gpu'
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
@@ -10,11 +9,9 @@ process SCIMILARITY_ANNOTATE {
 
     input:
     tuple val(meta), path(h5ad)
-    tuple val(meta2), path(model)
 
     output:
     tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
-    path ("${prefix}.pkl"), emit: obs
     path "versions.yml", emit: versions
 
     when:
@@ -22,9 +19,20 @@ process SCIMILARITY_ANNOTATE {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
+    counts_layer = task.ext.counts_layer ?: "counts"
+    groupby_labels = task.ext.groupby_labels ?: ["batch"]
+    min_num_cells = task.ext.min_num_cells ?: 1
+
     if ("${prefix}.h5ad" == "${h5ad}") {
         error("Input and output names are the same, use \"task.ext.prefix\" to disambiguate!")
     }
 
-    template('annotate.py')
+    template('pseudobulk.py')
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch versions.yml
+    """
 }
