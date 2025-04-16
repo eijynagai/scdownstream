@@ -11,6 +11,7 @@ include { CELLTYPE_ASSIGNMENT    } from '../subworkflows/local/celltype_assignme
 include { COMBINE                } from '../subworkflows/local/combine'
 include { ADATA_SPLITEMBEDDINGS  } from '../modules/local/adata/splitembeddings'
 include { CLUSTER                } from '../subworkflows/local/cluster'
+include { PSEUDOBULKING          } from '../subworkflows/local/pseudobulking'
 include { PER_GROUP              } from '../subworkflows/local/per_group'
 include { FINALIZE               } from '../subworkflows/local/finalize'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
@@ -123,6 +124,11 @@ workflow SCDOWNSTREAM {
         ch_obsp = ch_obsp.mix(CLUSTER.out.obsp)
         ch_uns = ch_uns.mix(CLUSTER.out.uns)
         ch_multiqc_files = ch_multiqc_files.mix(CLUSTER.out.multiqc_files)
+
+        if (params.pseudobulk) {
+            PSEUDOBULKING(CLUSTER.out.h5ad_clustering)
+            ch_versions = ch_versions.mix(PSEUDOBULKING.out.versions)
+        }
 
         PER_GROUP(
             CLUSTER.out.h5ad_clustering.map { meta, h5ad -> [meta + [obs_key: "${meta.id}_leiden"], h5ad] },

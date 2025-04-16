@@ -14,5 +14,5 @@ workflow PSEUDOBULKING {
 
     emit:
     h5ad_pseudobulk = ch_h5ad_pseudobulk
-    versions = ch_versions
+    versions        = ch_versions
 }
