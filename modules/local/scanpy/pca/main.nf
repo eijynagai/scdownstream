@@ -24,6 +24,7 @@ process SCANPY_PCA {
     if ("${prefix}.h5ad" == "${h5ad}")
         error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
     """
+    export MPLCONFIGDIR=./tmp/mpl
     export NUMBA_CACHE_DIR=./tmp
     scanpy-cli pp pca -i ${h5ad} -o ${prefix}.h5ad ${args}
 
