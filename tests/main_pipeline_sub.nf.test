@@ -1,0 +1,25 @@
+nextflow_pipeline {
+
+    name "Test Workflow main.nf"
+    script "main.nf"
+
+    test("Should be able to perform subclustering") {
+
+        when {
+            params {
+                outdir              = "$outputDir"
+                base_adata          = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/lupus/base/merged.h5ad'
+                base_embeddings     = 'combat,harmony,scvi'
+                cluster_global      = false
+                cluster_per_label   = true
+                base_label_col      = 'sample'
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}

@@ -31,6 +31,7 @@ workflow NFCORE_SCDOWNSTREAM {
 
     take:
     samplesheet // channel: samplesheet read in from --input
+    ch_base  // value channel: [ val(meta), path(h5ad) ]
 
     main:
 
@@ -38,7 +39,8 @@ workflow NFCORE_SCDOWNSTREAM {
     // WORKFLOW: Run pipeline
     //
     SCDOWNSTREAM (
-        samplesheet
+        samplesheet,
+        ch_base
     )
     emit:
     multiqc_report = SCDOWNSTREAM.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -68,7 +70,10 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     NFCORE_SCDOWNSTREAM (
-        PIPELINE_INITIALISATION.out.samplesheet
+        PIPELINE_INITIALISATION.out.samplesheet,
+        params.base_adata
+            ? Channel.value([[id: "base"], file(params.base_adata, checkIfExists: true)])
+            : Channel.value([[], []])
     )
     //
     // SUBWORKFLOW: Run completion tasks

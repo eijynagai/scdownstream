@@ -10,7 +10,7 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": ["input", "outdir"],
+            "required": ["outdir"],
             "properties": {
                 "input": {
                     "type": "string",
@@ -29,6 +29,11 @@
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
                     "fa_icon": "fas fa-folder-open"
                 },
+                "save_intermediates": {
+                    "type": "boolean",
+                    "description": "Save intermediate files to the output directory",
+                    "fa_icon": "fas fa-save"
+                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",
@@ -40,6 +45,287 @@
                     "type": "string",
                     "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
                     "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "unify_options": {
+            "title": "Unify options",
+            "type": "object",
+            "fa_icon": "fas fa-database",
+            "description": "Options for converting the input data to the unified format.",
+            "properties": {
+                "unify_gene_symbols": {
+                    "type": "boolean",
+                    "description": "Unify gene symbols to the latest version of the Ensembl database"
+                },
+                "duplicate_var_resolution": {
+                    "type": "string",
+                    "default": "sum",
+                    "description": "Method to aggregate gene expression values for non-unique genes",
+                    "help_text": "Method to aggregate gene expression values for non-unique genes. Available methods are: mean, sum, max, make_unique",
+                    "enum": ["mean", "sum", "max", "make_unique"]
+                },
+                "force_obs_cols": {
+                    "type": "string",
+                    "description": "Force keeping certain columns in the merged AnnData object, even if they are not present in all samples",
+                    "help_text": "If you want to keep certain columns in the merged AnnData object, even if they are not present in all samples, specify them here. Separate them with a comma.",
+                    "pattern": "^([a-zA-Z0-9_]*(,[a-zA-Z0-9_]*)*)?$"
+                }
+            }
+        },
+        "quality_conrol_options": {
+            "title": "Quality control options",
+            "type": "object",
+            "fa_icon": "fas fa-check-circle",
+            "description": "Options for quality control of the input data.",
+            "properties": {
+                "ambient_removal": {
+                    "type": "string",
+                    "default": "decontx",
+                    "enum": ["none", "decontx", "cellbender", "soupx", "scar"],
+                    "description": "Specify the tool to use for ambient RNA removal"
+                },
+                "doublet_detection": {
+                    "type": "string",
+                    "default": "scrublet",
+                    "description": "Specify the tools to use for doublet detection. Setting to 'none' will skip this step",
+                    "help_text": "If you want to use multiple tools, separate them with a comma. Available methods are: solo, scrublet, doubletdetection, scds",
+                    "pattern": "^(none|((solo|scrublet|doubletdetection|scds)?,?)*[^,]+$)"
+                },
+                "doublet_detection_threshold": {
+                    "type": "integer",
+                    "default": 1,
+                    "description": "Number of tools that need to agree on a doublet for it to be called as such"
+                },
+                "cellbender_epochs": {
+                    "type": "integer",
+                    "default": 150,
+                    "description": "Number of epochs to train the CellBender model"
+                }
+            }
+        },
+        "integration_options": {
+            "title": "Integration options",
+            "type": "object",
+            "fa_icon": "fas fa-plug",
+            "description": "Options for integration of the input data. For configuration of the scVI/scANVI models, see the `scVI_options` section.",
+            "properties": {
+                "integration_methods": {
+                    "type": "string",
+                    "default": "scvi",
+                    "description": "Specify the tool to use for integration",
+                    "help_text": "If you want to use multiple tools, separate them with a comma. Available methods are: scvi, scanvi, harmony, bbknn, combat, seurat",
+                    "pattern": "^((scvi|scanvi|harmony|bbknn|combat|seurat|scimilarity)(,(scvi|scanvi|harmony|bbknn|combat|seurat|scimilarity))*)?$"
+                },
+                "integration_hvgs": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Number of highly variable genes to use for integration. If set to 0, the number of highly variable genes will be automatically determined. If set to a negative number, all genes will be used.",
+                    "help_text": "If a reference model is provided, this does not have any effect. This is because the reference model defines the set of genes that will be used for integration."
+                },
+                "scvi_model": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to a pre-trained scVI model, only relevant if scVI is selected in `integration_methods`. If provided, the model will be used for integration. Otherwise, a new model will be trained.",
+                    "help_text": "The file should be in the .pt format.",
+                    "pattern": "^\\S+\\.pt$",
+                    "exists": true
+                },
+                "scanvi_model": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to a pre-trained scANVI model, only relevant if scANVI is selected in `integration_methods`. If provided, the model will be used for integration. Otherwise, a new model will be trained.",
+                    "help_text": "The file should be in the .pt format.",
+                    "pattern": "^\\S+\\.pt$",
+                    "exists": true
+                },
+                "scimilarity_model": {
+                    "type": "string",
+                    "default": "https://zenodo.org/records/10685499/files/model_v1.1.tar.gz",
+                    "description": "Path to a pre-trained scimilarity model, only relevant if scimilarity is selected in `integration_methods`. If provided, the model will be used for integration. Otherwise, a new model will be trained.",
+                    "help_text": "The file can be a .tar.gz file or the corresponding unzipped directory. The official models are shared via [Zenodo](https://zenodo.org/record/10685499).",
+                    "exists": true
+                }
+            }
+        },
+        "extension_options": {
+            "title": "Extension options",
+            "type": "object",
+            "fa_icon": "fas fa-layer-group",
+            "description": "If you already produced an integrated AnnData object with this pipeline and want to add new data to it, you can specify the path to the base AnnData object and some information about it here. This will allow you to project the new data onto the existing integrated object.",
+            "properties": {
+                "base_adata": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "If you want to project new data onto an already integrated object, specify the path to the base AnnData object here",
+                    "help_text": "The file should be in the .h5ad format.",
+                    "pattern": "^\\S+\\.h5ad$",
+                    "exists": true
+                },
+                "base_label_col": {
+                    "type": "string",
+                    "default": "label",
+                    "description": "The column in the base AnnData object that contains the label (e.g. cell type) information."
+                },
+                "base_embeddings": {
+                    "type": "string",
+                    "description": "The keys in the obsm of the base AnnData object that contain the embeddings (without leading `X_`). Required if `input` is not provided - otherwise it is ignored.",
+                    "help_text": "If the `input` parameter is not provided (no new data to add), integration will not be performed. In order to be able to utilize existing integration results, you need to provide the keys in the obsm of the base AnnData object that contain the embeddings (without leading `X_`).",
+                    "pattern": "^((scvi|scanvi|harmony|bbknn|combat|seurat)(,(scvi|scanvi|harmony|bbknn|combat|seurat))*)?$"
+                }
+            }
+        },
+        "clustering_options": {
+            "title": "Clustering options",
+            "type": "object",
+            "fa_icon": "fas fa-users",
+            "description": "Options for clustering the integrated data.",
+            "properties": {
+                "clustering_resolutions": {
+                    "type": "string",
+                    "default": "0.5,1.0",
+                    "description": "Specify the resolutions for clustering",
+                    "help_text": "Specify the resolutions for clustering. If you want to use multiple resolutions, separate them with a comma.",
+                    "pattern": "^\\d+(\\.\\d+)?(,\\d+(\\.\\d+)?)*$"
+                },
+                "cluster_per_label": {
+                    "type": "boolean",
+                    "description": "Create a UMAP and a clustering for each unique value in the label column (and for each integration method)"
+                },
+                "cluster_global": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Create a global UMAP and clustering (for each integration method)"
+                }
+            }
+        },
+        "tool_options": {
+            "title": "Tool options",
+            "type": "object",
+            "fa_icon": "fas fa-tools",
+            "description": "Options for various tools used in the pipeline.",
+            "properties": {
+                "celltypist_model": {
+                    "type": "string",
+                    "description": "Specify the models to use for the celltypist cell type annotation",
+                    "help_text": "If you want to use multiple models, separate them with a comma. Available models can be found [here](https://www.celltypist.org/models).",
+                    "pattern": "^([a-zA-Z0-9_]*(,[a-zA-Z0-9_]*)*)?$"
+                }
+            }
+        },
+        "resource_options": {
+            "title": "Resource options",
+            "type": "object",
+            "fa_icon": "fas fa-cogs",
+            "description": "Options for resource allocation and CPU usage.",
+            "properties": {
+                "memory_scale": {
+                    "type": "integer",
+                    "default": 1,
+                    "minimum": 1,
+                    "description": "Scale the memory requirements for each process by this factor. Should be increased if you have a large number of cells.",
+                    "fa_icon": "fas fa-memory"
+                },
+                "use_gpu": {
+                    "type": "boolean",
+                    "description": "Use GPU acceleration for tasks that support it",
+                    "hidden": true
+                }
+            }
+        },
+        "pipeline_options": {
+            "title": "Pipeline options",
+            "type": "object",
+            "description": "Options for selecting which tools should be used for certain tasks",
+            "properties": {
+                "qc_only": {
+                    "type": "boolean",
+                    "description": "Only run the preprocessing steps, skip the integration and clustering steps"
+                },
+                "skip_liana": {
+                    "type": "boolean",
+                    "description": "Skip the LIANA step. For large datasets, the pipeline might fail due to high memory usage in this step. Use this option to skip it."
+                },
+                "skip_rankgenesgroups": {
+                    "type": "boolean",
+                    "description": "Skip the rank_genes_groups step. For large datasets, the pipeline might fail due to high memory usage in this step. Use this option to skip it."
+                },
+                "pseudobulk": {
+                    "type": "boolean",
+                    "description": "Perform pseudobulking"
+                },
+                "prep_cellxgene": {
+                    "type": "boolean",
+                    "description": "Prepare the output for visualisation in cellxgene",
+                    "fa_icon": "fas fa-chart-line"
+                }
+            }
+        },
+        "scVI_options": {
+            "title": "scVI/scANVI options",
+            "type": "object",
+            "fa_icon": "fas fa-microscope",
+            "description": "Options for the scVI and scANVI integration methods",
+            "properties": {
+                "scvi_n_latent": {
+                    "type": "integer",
+                    "default": 30,
+                    "description": "Number of latent dimensions for scVI/scANVI"
+                },
+                "scvi_n_hidden": {
+                    "type": "integer",
+                    "default": 128,
+                    "description": "Number of hidden units in the neural network for scVI/scANVI"
+                },
+                "scvi_n_layers": {
+                    "type": "integer",
+                    "default": 2,
+                    "description": "Number of layers in the neural network for scVI/scANVI"
+                },
+                "scvi_dispersion": {
+                    "type": "string",
+                    "default": "gene",
+                    "enum": ["gene", "gene-batch", "gene-label", "gene-cell"],
+                    "description": "Dispersion parameter for scVI/scANVI",
+                    "help_text": "Dispersion parameter for scVI/scANVI. Can be 'gene', 'gene-batch', 'gene-label', or 'gene-cell'."
+                },
+                "scvi_gene_likelihood": {
+                    "type": "string",
+                    "default": "zinb",
+                    "enum": ["zinb", "nb", "poisson", "normal"],
+                    "description": "Gene likelihood for scVI/scANVI",
+                    "help_text": "Gene likelihood for scVI/scANVI. Can be 'zinb', 'nb', 'poisson', or 'normal'."
+                },
+                "scvi_max_epochs": {
+                    "type": "integer",
+                    "description": "Maximum number of epochs for training scVI/scANVI. If not set, a heuristic provided by scVI/scANVI will be used."
+                },
+                "scvi_categorical_covariates": {
+                    "type": "string",
+                    "description": "Categorical covariates for scVI/scANVI",
+                    "help_text": "If you want to use multiple covariates, separate them with a comma."
+                },
+                "scvi_continuous_covariates": {
+                    "type": "string",
+                    "description": "Continuous covariates for scVI/scANVI",
+                    "help_text": "If you want to use multiple covariates, separate them with a comma."
+                }
+            }
+        },
+        "pseudobulking_options": {
+            "title": "Pseudobulking options",
+            "type": "object",
+            "description": "Options for pseudobulking",
+            "fa_icon": "fas fa-users",
+            "properties": {
+                "pseudobulk_groupby_labels": {
+                    "type": "string",
+                    "description": "Group by labels for pseudobulking. If you want to use multiple labels, separate them with a comma."
+                },
+                "pseudobulk_min_num_cells": {
+                    "type": "integer",
+                    "description": "Minimum number of cells for pseudobulking",
+                    "default": 5
                 }
             }
         },
@@ -177,7 +463,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/e6462fd14224c06ab10bac424b036ed63fec349f/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
@@ -192,6 +478,36 @@
     "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/unify_options"
+        },
+        {
+            "$ref": "#/$defs/quality_conrol_options"
+        },
+        {
+            "$ref": "#/$defs/integration_options"
+        },
+        {
+            "$ref": "#/$defs/clustering_options"
+        },
+        {
+            "$ref": "#/$defs/extension_options"
+        },
+        {
+            "$ref": "#/$defs/pipeline_options"
+        },
+        {
+            "$ref": "#/$defs/scVI_options"
+        },
+        {
+            "$ref": "#/$defs/pseudobulking_options"
+        },
+        {
+            "$ref": "#/$defs/tool_options"
+        },
+        {
+            "$ref": "#/$defs/resource_options"
         },
         {
             "$ref": "#/$defs/institutional_config_options"

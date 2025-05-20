@@ -1,0 +1,105 @@
+nextflow_workflow {
+
+    name "Test Workflow UNIFY"
+    script "subworkflows/local/unify.nf"
+    workflow "UNIFY"
+
+    test("Should run without symbol unification") {
+
+        config './unify.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                unify_gene_symbols = false
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [id: 'test1', symbol_col: 'none'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                    ], [
+                        [id: 'test2', symbol_col: 'symbols'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                    ], [
+                        [id: 'test3', symbol_col: 'index'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run with symbol unification") {
+
+        config './unify.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                unify_gene_symbols = true
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [id: 'test1', symbol_col: 'none'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                    ], [
+                        [id: 'test2', symbol_col: 'symbols'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                    ], [
+                        [id: 'test3', symbol_col: 'index'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run with symbol unification - stub") {
+
+        options '-stub'
+        config './unify.config'
+        when {
+            params {
+                outdir = "$outputDir"
+                unify_gene_symbols = true
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [id: 'test1', symbol_col: 'none'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                    ], [
+                        [id: 'test2', symbol_col: 'symbols'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                    ], [
+                        [id: 'test3', symbol_col: 'index'],
+                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+}

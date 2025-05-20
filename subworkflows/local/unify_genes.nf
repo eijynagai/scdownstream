@@ -1,0 +1,37 @@
+include { HUGOUNIFIER_GET   } from '../../modules/local/hugounifier/get'
+include { HUGOUNIFIER_APPLY } from '../../modules/local/hugounifier/apply'
+
+workflow UNIFY_GENES {
+    take:
+    ch_h5ad
+
+    main:
+    ch_versions = Channel.empty()
+
+    HUGOUNIFIER_GET(
+        ch_h5ad.map { meta, h5ad -> [[id: 'hugo-unifier'], meta.id, h5ad] }.groupTuple()
+    )
+    ch_versions = ch_versions.mix(HUGOUNIFIER_GET.out.versions)
+
+    ch_changes = HUGOUNIFIER_GET.out.changes
+        .map { _meta, changes -> [changes] }
+        .flatten()
+        // Extract ID from file name
+        .map { changes -> [changes.baseName, changes] }
+        // Join with AnnData based on ID
+        .join(
+            ch_h5ad.map{ meta, h5ad -> [meta.id, meta, h5ad] }
+        )
+        // Prettify output
+        .map { _id, changes, meta, h5ad ->
+            [meta, h5ad, changes]
+        }
+
+    HUGOUNIFIER_APPLY(ch_changes)
+    ch_versions = ch_versions.mix(HUGOUNIFIER_APPLY.out.versions)
+    ch_h5ad = HUGOUNIFIER_APPLY.out.h5ad
+
+    emit:
+    h5ad     = ch_h5ad
+    versions = ch_versions
+}

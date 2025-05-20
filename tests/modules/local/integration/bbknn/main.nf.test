@@ -1,0 +1,61 @@
+nextflow_process {
+
+    name "Test Process INTEGRATION_BBKNN"
+    script "modules/local/integration/bbknn/main.nf"
+    process "INTEGRATION_BBKNN"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix_subset_with_batch.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix_subset_with_batch.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

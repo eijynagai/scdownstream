@@ -1,0 +1,174 @@
+nextflow_workflow {
+
+    name "Test Workflow AMBIENT_RNA_REMOVAL"
+    script "subworkflows/local/ambient_rna_removal.nf"
+    workflow "AMBIENT_RNA_REMOVAL"
+
+    test("Should run with 'none' ambient removal") {
+
+        config './ambient_rna_removal.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                ambient_removal = 'none'
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should fail with unknown ambient removal method") {
+
+        config './ambient_rna_removal.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                ambient_removal = 'test'
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert !workflow.success
+        }
+
+    }
+
+    test("Should run with 'decontx' ambient removal") {
+
+        config './ambient_rna_removal.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                ambient_removal = 'decontx'
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run with 'soupx' ambient removal") {
+
+        config './ambient_rna_removal.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                ambient_removal = 'soupx'
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run with 'scar' ambient removal") {
+
+        config './ambient_rna_removal.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                ambient_removal = 'scar'
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run with 'cellbender' ambient removal") {
+
+        config './ambient_rna_removal.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+                ambient_removal = 'cellbender'
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+}

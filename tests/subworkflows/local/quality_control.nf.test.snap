@@ -1,0 +1,187 @@
+{
+    "Should run without ambient RNA removal and doublet detection": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.h5ad:md5,ef4d3d01951b5bf147e70f465ad9d8b5"
+                    ]
+                ],
+                "1": [
+                    "sizes_mqc.json:md5,2e53a83a13e34f3495cb797d34f481cd",
+                    "test_preprocessed_mqc.json:md5,2ab35d906f518c74ec39dbc41564390e",
+                    "test_raw_mqc.json:md5,0c9200ede81ffdd31b3e39fffc3462cd"
+                ],
+                "2": [
+                    "versions.yml:md5,42c1abd6c5e1c373ee37d53bcdcedd13",
+                    "versions.yml:md5,5221bc9a25494bf19dfbffc1cd284f2b",
+                    "versions.yml:md5,54a68d209b5d7940bc149891d0f219b9",
+                    "versions.yml:md5,54d1be156417b290f1629a8874532a2e",
+                    "versions.yml:md5,931c90b3ed3b7ae18ca4b450780b014a",
+                    "versions.yml:md5,93254cb7ea8020ead8a711cde452236a",
+                    "versions.yml:md5,b59264a63e3020ca924bb9dbf195c49e",
+                    "versions.yml:md5,c4fa0994e912b7196f0dbce73012ae76"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.h5ad:md5,ef4d3d01951b5bf147e70f465ad9d8b5"
+                    ]
+                ],
+                "multiqc_files": [
+                    "sizes_mqc.json:md5,2e53a83a13e34f3495cb797d34f481cd",
+                    "test_preprocessed_mqc.json:md5,2ab35d906f518c74ec39dbc41564390e",
+                    "test_raw_mqc.json:md5,0c9200ede81ffdd31b3e39fffc3462cd"
+                ],
+                "versions": [
+                    "versions.yml:md5,42c1abd6c5e1c373ee37d53bcdcedd13",
+                    "versions.yml:md5,5221bc9a25494bf19dfbffc1cd284f2b",
+                    "versions.yml:md5,54a68d209b5d7940bc149891d0f219b9",
+                    "versions.yml:md5,54d1be156417b290f1629a8874532a2e",
+                    "versions.yml:md5,931c90b3ed3b7ae18ca4b450780b014a",
+                    "versions.yml:md5,93254cb7ea8020ead8a711cde452236a",
+                    "versions.yml:md5,b59264a63e3020ca924bb9dbf195c49e",
+                    "versions.yml:md5,c4fa0994e912b7196f0dbce73012ae76"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-13T21:19:12.720573584"
+    },
+    "Should run with ambient RNA removal and doublet detection - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "sizes_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "test_preprocessed_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "test_raw_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "sizes_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "test_preprocessed_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "test_raw_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-13T21:22:27.583609791"
+    },
+    "Should run with ambient RNA removal and doublet detection": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,096121d1d70bf38e5085655b2d93204d"
+                    ]
+                ],
+                "1": [
+                    "sizes_mqc.json:md5,2e53a83a13e34f3495cb797d34f481cd",
+                    "test_preprocessed_mqc.json:md5,2ab35d906f518c74ec39dbc41564390e",
+                    "test_raw_mqc.json:md5,0c9200ede81ffdd31b3e39fffc3462cd"
+                ],
+                "2": [
+                    "versions.yml:md5,2a0808a1136268c0a80724cbacc76048",
+                    "versions.yml:md5,42c1abd6c5e1c373ee37d53bcdcedd13",
+                    "versions.yml:md5,5221bc9a25494bf19dfbffc1cd284f2b",
+                    "versions.yml:md5,54a68d209b5d7940bc149891d0f219b9",
+                    "versions.yml:md5,54d1be156417b290f1629a8874532a2e",
+                    "versions.yml:md5,8d42b8eebbd3b215d93707b3e14dba8d",
+                    "versions.yml:md5,931c90b3ed3b7ae18ca4b450780b014a",
+                    "versions.yml:md5,93254cb7ea8020ead8a711cde452236a",
+                    "versions.yml:md5,b59264a63e3020ca924bb9dbf195c49e",
+                    "versions.yml:md5,bec5ecb8a91456f3975b68d8b549c1de",
+                    "versions.yml:md5,c4fa0994e912b7196f0dbce73012ae76"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,096121d1d70bf38e5085655b2d93204d"
+                    ]
+                ],
+                "multiqc_files": [
+                    "sizes_mqc.json:md5,2e53a83a13e34f3495cb797d34f481cd",
+                    "test_preprocessed_mqc.json:md5,2ab35d906f518c74ec39dbc41564390e",
+                    "test_raw_mqc.json:md5,0c9200ede81ffdd31b3e39fffc3462cd"
+                ],
+                "versions": [
+                    "versions.yml:md5,2a0808a1136268c0a80724cbacc76048",
+                    "versions.yml:md5,42c1abd6c5e1c373ee37d53bcdcedd13",
+                    "versions.yml:md5,5221bc9a25494bf19dfbffc1cd284f2b",
+                    "versions.yml:md5,54a68d209b5d7940bc149891d0f219b9",
+                    "versions.yml:md5,54d1be156417b290f1629a8874532a2e",
+                    "versions.yml:md5,8d42b8eebbd3b215d93707b3e14dba8d",
+                    "versions.yml:md5,931c90b3ed3b7ae18ca4b450780b014a",
+                    "versions.yml:md5,93254cb7ea8020ead8a711cde452236a",
+                    "versions.yml:md5,b59264a63e3020ca924bb9dbf195c49e",
+                    "versions.yml:md5,bec5ecb8a91456f3975b68d8b549c1de",
+                    "versions.yml:md5,c4fa0994e912b7196f0dbce73012ae76"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-04-13T21:21:39.248176544"
+    }
+}

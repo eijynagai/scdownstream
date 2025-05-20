@@ -1,0 +1,25 @@
+nextflow_pipeline {
+
+    name "Test Workflow main.nf"
+    script "main.nf"
+
+    test("Should process data from scratch") {
+
+        when {
+            params {
+                input = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/lupus/samplesheet_build.csv'
+                integration_methods = 'scvi,harmony,bbknn,combat,seurat'
+                doublet_detection   = 'scrublet,doubletdetection,scds'
+                celltypist_model    = 'Adult_COVID19_PBMC'
+                integration_hvgs    = 500
+                outdir              = "$outputDir"
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}

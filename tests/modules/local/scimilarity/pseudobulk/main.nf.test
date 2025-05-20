@@ -1,0 +1,91 @@
+nextflow_process {
+
+    name "Test Process SCIMILARITY_PSEUDOBULK"
+    script "modules/local/scimilarity/pseudobulk/main.nf"
+    process "SCIMILARITY_PSEUDOBULK"
+
+    test("Should run without failures with groupby batch") {
+
+        config './basic.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [id: 'test'],
+                        file(params.pipelines_testdata_base_path + 'lupus/base/merged.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures with groupby sample and clustering") {
+
+        config './multi.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [id: 'test'],
+                        file(params.pipelines_testdata_base_path + 'lupus/base/merged.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures - stub") {
+
+        options '-stub'
+        config './basic.config'
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [id: 'test'],
+                        file(params.pipelines_testdata_base_path + 'lupus/base/merged.h5ad', checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

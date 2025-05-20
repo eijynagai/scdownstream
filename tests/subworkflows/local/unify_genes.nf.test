@@ -1,0 +1,67 @@
+nextflow_workflow {
+
+    name "Test Workflow UNIFY_GENES"
+    script "subworkflows/local/unify_genes.nf"
+    workflow "UNIFY_GENES"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                        [
+                            [ id: 'test1' ],
+                            file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        ],
+                        [
+                            [ id: 'test2' ],
+                            file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run without failures - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                        [
+                            [ id: 'test1' ],
+                            file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        ],
+                        [
+                            [ id: 'test2' ],
+                            file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.h5ad', checkIfExists: true)
+                        ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+}

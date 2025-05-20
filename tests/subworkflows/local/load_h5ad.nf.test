@@ -1,0 +1,65 @@
+nextflow_workflow {
+
+    name "Test Workflow LOAD_H5AD"
+    script "subworkflows/local/load_h5ad.nf"
+    workflow "LOAD_H5AD"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.fromList([
+                    [[id: 'SAMN14430799', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true), file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true)],
+                    [[id: 'SAMN14430801', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'samples/SAMN14430801_raw_matrix.rds', checkIfExists: true), file(params.pipelines_testdata_base_path + 'samples/SAMN14430801_custom_emptydrops_filter_matrix.rds', checkIfExists: true)],
+                    [[id: 'h5', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'misc/filtered_feature_bc_matrix.h5', checkIfExists: true), []],
+                    [[id: 'csv', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.csv', checkIfExists: true), []],
+                ])
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert workflow.out.h5ad.size() == 4
+            assert workflow.out.h5ad.every{ it.size() == 3 }
+            assert workflow.out.h5ad.every{ it[0]['batch_col'] == 'batch' }
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+
+    test("Should run without failures - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.fromList([
+                    [[id: 'SAMN14430799', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true), file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true)],
+                    [[id: 'SAMN14430801', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'samples/SAMN14430801_raw_matrix.rds', checkIfExists: true), file(params.pipelines_testdata_base_path + 'samples/SAMN14430801_custom_emptydrops_filter_matrix.rds', checkIfExists: true)],
+                    [[id: 'h5', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'misc/filtered_feature_bc_matrix.h5', checkIfExists: true), []],
+                    [[id: 'csv', batch_col: 'batch'], file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_processed.csv', checkIfExists: true), []],
+                ])
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert workflow.out.h5ad.size() == 4
+            assert workflow.out.h5ad.every{ it.size() == 3 }
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+}
