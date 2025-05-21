@@ -40,12 +40,20 @@ def simple_name(path):
     basename = os.path.basename(path)
     return basename[:basename.rfind(".")]
 
+def load_pickle_or_csv(path):
+    if path.endswith(".pkl"):
+        return pd.read_pickle(path)
+    elif path.endswith(".csv"):
+        return pd.read_csv(path)
+    else:
+        raise ValueError(f"Unsupported file extension: {path}")
+
 for path in obs_paths:
-    df = pd.read_pickle(path).reindex(adata.obs_names)
+    df = load_pickle_or_csv(path).reindex(adata.obs_names)
     adata.obs = pd.concat([adata.obs, df], axis=1)
 
 for path in var_paths:
-    df = pd.read_pickle(path).reindex(adata.var_names)
+    df = load_pickle_or_csv(path).reindex(adata.var_names)
     adata.var = pd.concat([adata.var, df], axis=1)
 
 for path in obsm_paths:
