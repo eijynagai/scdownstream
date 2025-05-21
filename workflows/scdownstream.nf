@@ -4,21 +4,22 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { LOAD_H5AD              } from '../subworkflows/local/load_h5ad'
-include { QUALITY_CONTROL        } from '../subworkflows/local/quality_control'
-include { UNIFY                  } from '../subworkflows/local/unify'
-include { CELLTYPE_ASSIGNMENT    } from '../subworkflows/local/celltype_assignment'
-include { COMBINE                } from '../subworkflows/local/combine'
-include { ADATA_SPLITEMBEDDINGS  } from '../modules/local/adata/splitembeddings'
-include { CLUSTER                } from '../subworkflows/local/cluster'
-include { PSEUDOBULKING          } from '../subworkflows/local/pseudobulking'
-include { PER_GROUP              } from '../subworkflows/local/per_group'
-include { FINALIZE               } from '../subworkflows/local/finalize'
-include { MULTIQC                } from '../modules/nf-core/multiqc/main'
-include { paramsSummaryMap       } from 'plugin/nf-schema'
-include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_scdownstream_pipeline'
+include { LOAD_H5AD                            } from '../subworkflows/local/load_h5ad'
+include { QUALITY_CONTROL                      } from '../subworkflows/local/quality_control'
+include { UNIFY                                } from '../subworkflows/local/unify'
+include { CELLTYPE_ASSIGNMENT                  } from '../subworkflows/local/celltype_assignment'
+include { ADATA_EXTEND as FINALIZE_QC_ANNDATAS } from '../modules/local/adata/extend'
+include { COMBINE                              } from '../subworkflows/local/combine'
+include { ADATA_SPLITEMBEDDINGS                } from '../modules/local/adata/splitembeddings'
+include { CLUSTER                              } from '../subworkflows/local/cluster'
+include { PSEUDOBULKING                        } from '../subworkflows/local/pseudobulking'
+include { PER_GROUP                            } from '../subworkflows/local/per_group'
+include { FINALIZE                             } from '../subworkflows/local/finalize'
+include { MULTIQC                              } from '../modules/nf-core/multiqc/main'
+include { paramsSummaryMap                     } from 'plugin/nf-schema'
+include { paramsSummaryMultiqc                 } from '../subworkflows/nf-core/utils_nfcore_pipeline'
+include { softwareVersionsToYAML               } from '../subworkflows/nf-core/utils_nfcore_pipeline'
+include { methodsDescriptionText               } from '../subworkflows/local/utils_nfcore_scdownstream_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,6 +45,13 @@ workflow SCDOWNSTREAM {
     ch_multiqc_files = Channel.empty()
 
     if (params.input) {
+        ch_obs_per_sample = Channel.empty()
+        ch_var_per_sample = Channel.empty()
+        ch_obsm_per_sample = Channel.empty()
+        ch_obsp_per_sample = Channel.empty()
+        ch_uns_per_sample = Channel.empty()
+        ch_layers_per_sample = Channel.empty()
+
         //
         // Load/Convert input to h5ad
         //
@@ -66,7 +74,20 @@ workflow SCDOWNSTREAM {
         //
         CELLTYPE_ASSIGNMENT(ch_h5ad)
         ch_versions = ch_versions.mix(CELLTYPE_ASSIGNMENT.out.versions)
-        ch_h5ad = CELLTYPE_ASSIGNMENT.out.h5ad
+        ch_obs_per_sample = ch_obs_per_sample.mix(CELLTYPE_ASSIGNMENT.out.obs)
+
+        FINALIZE_QC_ANNDATAS(ch_h5ad
+            .join(ch_obs_per_sample.groupTuple(), remainder: true)
+            .join(ch_var_per_sample.groupTuple(), remainder: true)
+            .join(ch_obsm_per_sample.groupTuple(), remainder: true)
+            .join(ch_obsp_per_sample.groupTuple(), remainder: true)
+            .join(ch_uns_per_sample.groupTuple(), remainder: true)
+            .join(ch_layers_per_sample.groupTuple(), remainder: true)
+            .map { meta, h5ad, obs, var, obsm, obsp, uns, layers ->
+                [meta, h5ad, obs ?: [], var ?: [], obsm ?: [], obsp ?: [], uns ?: [], layers ?: []] }
+        )
+        ch_h5ad = FINALIZE_QC_ANNDATAS.out.h5ad
+        ch_versions = ch_versions.mix(FINALIZE_QC_ANNDATAS.out.versions)
 
         if (!params.qc_only) {
             //
