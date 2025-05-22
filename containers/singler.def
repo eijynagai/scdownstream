@@ -1,0 +1,16 @@
+Bootstrap: docker
+From: bioconductor/cioconductor_docker:RELEASE_3_21
+
+%post
+    echo """
+            install.packages('pak')
+            pak::pak(c('scverse/anndataR', 'yaml', 'anndataR', 'HDF5Array', 'ggplot2', 'SingleR', 'celldex', 'Seurat'), dependencies = TRUE)
+         """ > setup.R
+    Rscript setup.R
+
+%labels
+    Author Paul Theodor Pyl <paul-theodor.pyl@scilifelab.se>
+    Version v0.0.1
+
+%help
+    Container for running SingleR based on the 3.21 bioconductor release.

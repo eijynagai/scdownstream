@@ -3,9 +3,14 @@ process CELLTYPES_SINGLER {
     label 'process_medium'
 
     //conda "${moduleDir}/environment.yml"
+    //container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+    //   'docker://saditya88/singler:0.0.1':
+    //    'saditya88/singler:0.0.1' }"
+
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://docker.com://saditya88/singler:0.0.1':
-        'saditya88/singler:0.0.1' }"
+        'library://paulpyl/scqc/singler:latest':
+        'paulpyl/scqc/singler:latest' }"
+
 
     input:
     tuple val(meta), path(h5ad)

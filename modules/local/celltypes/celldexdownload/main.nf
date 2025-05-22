@@ -38,7 +38,9 @@ process CELLTYPES_CELLDEXDOWNLOAD {
 
     output:
     // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
-    path("${ref}.Rds"), emit: rds
+    path("celldex_${ref}_h5_se/assays.h5"), emit: h5
+    path("celldex_${ref}_h5_se/se.rds"),    emit: rds
+    path("celldex_${ref}_h5_se"),           emit: refdir
     // TODO nf-core: List additional required output channels/values here
     path "versions.yml"           , emit: versions
 
@@ -62,14 +64,15 @@ process CELLTYPES_CELLDEXDOWNLOAD {
     library(celldex)
     library(SingleCellExperiment)
     library(yaml)
+    library(HDF5Array)
     ref <- "${ref}"
     # Split the ref into ref and version based on __
     refName <- strsplit(ref, "__")[[1]][1]
     refVersion <- strsplit(ref, "__")[[1]][2]
 
     reference <- fetchReference(refName, refVersion)
-    # Save RDS
-    saveHDF5SummarizedExperiment(reference, file = paste0(ref, ".Rds"))
+    # Save SummarizedExperiment to HDF5 files
+    saveHDF5SummarizedExperiment(reference, dir="celldex_${ref}_h5_se")
 
         # Capturing version information, as before
     versions <- list(
@@ -77,10 +80,11 @@ process CELLTYPES_CELLDEXDOWNLOAD {
         R = R.version.string,
         celldex = as.character(packageVersion("celldex")),
         yaml = as.character(packageVersion("yaml")),
+        HDF5Array = as.character(packageVersion("yaml"))
         )
     )
     # Write versions info into a YAML file, as before
-    write(format_yaml_like(versions), file = "versions.yml")
+    write_yaml(x = versions, file = "versions.yml")
     """
 
     stub:
@@ -90,6 +94,8 @@ process CELLTYPES_CELLDEXDOWNLOAD {
     //               Simple example: https://github.com/nf-core/modules/blob/818474a292b4860ae8ff88e149fbcda68814114d/modules/nf-core/bcftools/annotate/main.nf#L47-L63
     //               Complex example: https://github.com/nf-core/modules/blob/818474a292b4860ae8ff88e149fbcda68814114d/modules/nf-core/bedtools/split/main.nf#L38-L54
     """
-    touch ${ref}.Rds
+    mkdir -p celldex_${ref}_h5_se
+    touch "celldex_${ref}_h5_se/assays.h5"
+    touch "celldex_${ref}_h5_se/se.rds"
     """
 }
