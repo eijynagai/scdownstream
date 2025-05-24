@@ -12,6 +12,7 @@ torch.set_float32_matmul_precision('medium')
 from threadpoolctl import threadpool_limits
 threadpool_limits(int("${task.cpus}"))
 scvi.settings.num_threads = int("${task.cpus}")
+scvi.settings.seed = 0
 
 def format_yaml_like(data: dict, indent: int = 0) -> str:
     """Formats a dictionary to a YAML-like string.
