@@ -68,6 +68,9 @@ model.train(early_stopping=True,
 
 adata.obsm["X_emb"] = model.get_latent_representation()
 
+del adata.uns["_scvi_manager_uuid"]
+del adata.uns["_scvi_uuid"]
+
 adata.write_h5ad("${prefix}.h5ad")
 model.save("${prefix}_model")
 
