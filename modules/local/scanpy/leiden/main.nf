@@ -5,14 +5,14 @@ process SCANPY_LEIDEN {
 
     conda "${moduleDir}/environment.yml"
     container "${task.ext.use_gpu
-        ? 'ghcr.io/scverse/rapids_singlecell:v0.11.0'
+        ? 'ghcr.io/scverse/rapids_singlecell:v0.12.5'
         : workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
             ? 'oras://community.wave.seqera.io/library/leidenalg_python-igraph_scanpy:8b9713e90ca62747'
             : 'community.wave.seqera.io/library/leidenalg_python-igraph_scanpy:270d93d02d764f1a'}"
 
     input:
     tuple val(meta), path(h5ad, arity: 1), val(resolution)
-    val(plot_umap)
+    val plot_umap
 
     output:
     tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
