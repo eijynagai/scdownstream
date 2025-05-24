@@ -62,7 +62,7 @@ workflow CLUSTER {
             ]
         }
 
-    LEIDEN(ch_h5ad)
+    LEIDEN(ch_h5ad.map { meta, h5ad -> [meta, h5ad, meta.resolution] }, true)
     ch_versions = ch_versions.mix(LEIDEN.out.versions)
     ch_obs = ch_obs.mix(LEIDEN.out.obs)
     ch_multiqc_files = ch_multiqc_files.mix(LEIDEN.out.multiqc_files)
