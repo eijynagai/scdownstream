@@ -28,40 +28,40 @@ h5ad_file <- "${h5ad}" # Get the filename from environment variable
 sce <- read_h5ad(h5ad_file, as = "SingleCellExperiment") # Converts .h5ad to a SingleCellExperiment object
 
 # Split the references by comma and loop over each
-references <- strsplit("${reference}", ",")[[1]]
+# references <- strsplit("${reference}", ",")[[1]]
+references <- stringr::strsplit("${models.join(',')}", ",")[[1]]
 prefix <- "${prefix}"
 Sys.setenv(XDG_CACHE_HOME = file.path(getwd(), ".cache"))
 for (ref in references) {
-  ref <- trimws(ref)
-  ref_name <- strsplit(ref, "__")[[1]][1]
-  ref_ver <- strsplit(ref, "__")[[1]][2]
+  # ref <- trimws(ref)
+  # ref_name <- strsplit(ref, "__")[[1]][1]
+  # ref_ver <- strsplit(ref, "__")[[1]][2]
   # Read the SummarizedExperiment object from the provided path
-  print("${reference}")
-  print(list.files("${reference}"))
-  reference <- loadHDF5SummarizedExperiment(dir = "${reference}")
+  print(ref)
+  print(list.files(ref))
+  reference <- loadHDF5SummarizedExperiment(dir = ref)
   predictions <- SingleR(test = assay(sce, 'counts'), ref = reference, labels = colData(reference)[['label.main']]) #TODO make the label column name a parameter that defaults to label.main
 
   #predictions_df <- predictions
   #rownames(predictions_df) <- NULL
   #predictions_df <- cbind(Barcode = rownames(predictions), predictions_df)
-
   #predictions_df |> write.csv(quote = FALSE, row.names = FALSE, file = paste0(prefix, "_", ref, "_predictions.csv") )
-
+  colnames(predictions) <- paste0(colnames(predictions), "_", ref_name, "_", ref_ver)
   write.csv(predictions, file = paste0(prefix, "_", ref, "_predictions.csv"), row.names = TRUE)
 
   # Unique column names for each reference
-  pred_col <- paste0("SingleR_", ref_name, "_", ref_ver)
-  score_col <- paste0("SingleR_score_", ref_name, "_", ref_ver)
+  # pred_col <- paste0("SingleR_", ref_name, "_", ref_ver)
+  # score_col <- paste0("SingleR_score_", ref_name, "_", ref_ver)
 
   # Add predictions and scores to the SingleCellExperiment object
-  colData(sce)[[pred_col]] <- predictions\$labels
-  scores <- predictions\$scores
-  single_scores <- vapply(
-    seq_len(nrow(scores)),
-    FUN = function(i) scores[i, predictions\$labels[i]],
-    FUN.VALUE = numeric(1)
-  )
-  colData(sce)[[score_col]] <- single_scores
+  # colData(sce)[[pred_col]] <- predictions\$labels
+  # scores <- predictions\$scores
+  # single_scores <- vapply(
+  #   seq_len(nrow(scores)),
+  #   FUN = function(i) scores[i, predictions\$labels[i]],
+  #   FUN.VALUE = numeric(1)
+  # )
+  # colData(sce)[[score_col]] <- single_scores
 
   # Plot and save heatmap
   p <- plotScoreHeatmap(predictions,

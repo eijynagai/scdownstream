@@ -38,9 +38,9 @@ process CELLTYPES_CELLDEXDOWNLOAD {
 
     output:
     // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
-    path("celldex_${ref}_h5_se/assays.h5"), emit: h5
-    path("celldex_${ref}_h5_se/se.rds"),    emit: rds
-    path("celldex_${ref}_h5_se"),           emit: refdir
+    path("celldex_${ref}_h5_se/assays.h5"), emit: h5 
+    path("celldex_${ref}_h5_se/se.rds"),    emit: rds 
+    path("celldex_${ref}_h5_se"),           emit: refdir 
     // TODO nf-core: List additional required output channels/values here
     path "versions.yml"           , emit: versions
 
@@ -67,20 +67,19 @@ process CELLTYPES_CELLDEXDOWNLOAD {
     library(HDF5Array)
     ref <- "${ref}"
     # Split the ref into ref and version based on __
-    refName <- strsplit(ref, "__")[[1]][1]
-    refVersion <- strsplit(ref, "__")[[1]][2]
-
+    refName <- strsplit(r, "__")[[1]][1]
+    refVersion <- strsplit(r, "__")[[1]][2]
     reference <- fetchReference(refName, refVersion)
     # Save SummarizedExperiment to HDF5 files
     saveHDF5SummarizedExperiment(reference, dir="celldex_${ref}_h5_se")
 
-        # Capturing version information, as before
+    # Capturing version information, as before
     versions <- list(
-    "${task.process}" = list(
-        R = R.version.string,
-        celldex = as.character(packageVersion("celldex")),
-        yaml = as.character(packageVersion("yaml")),
-        HDF5Array = as.character(packageVersion("yaml"))
+        "${task.process}" = list(
+            R = R.version.string,
+            celldex = as.character(packageVersion("celldex")),
+            yaml = as.character(packageVersion("yaml")),
+            HDF5Array = as.character(packageVersion("HDF5Array"))
         )
     )
     # Write versions info into a YAML file, as before
