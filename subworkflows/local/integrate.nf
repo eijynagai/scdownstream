@@ -59,6 +59,8 @@ workflow INTEGRATE {
             params.scvi_model
                 ? Channel.value([[id: 'scvi_model'], params.scvi_model])
                 : [[], []],
+            params.scvi_categorical_covariates,
+            params.scvi_continuous_covariates,
         )
         ch_versions = ch_versions.mix(SCVITOOLS_SCVI.out.versions)
         ch_integrations = ch_integrations.mix(SCVITOOLS_SCVI.out.h5ad)
@@ -73,6 +75,9 @@ workflow INTEGRATE {
                 : methods.contains('scvi')
                     ? SCVITOOLS_SCVI.out.model
                     : [[], []],
+            "label",
+            params.scvi_categorical_covariates,
+            params.scvi_continuous_covariates,
         )
         ch_versions = ch_versions.mix(SCVITOOLS_SCANVI.out.versions)
         ch_integrations = ch_integrations.mix(SCVITOOLS_SCANVI.out.h5ad)

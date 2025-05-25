@@ -41,7 +41,7 @@ if reference_model_type == "scanvi":
     SCANVI.prepare_query_anndata(adata, reference_model_path)
     model = SCANVI.load_query_data(adata, reference_model_path)
 else:
-    unique_labels = set(adata.obs["label"].unique())
+    unique_labels = set(adata.obs["${label_col}"].unique())
     unique_labels.discard("unknown")
 
     if not len(unique_labels) > 1:
@@ -51,7 +51,7 @@ else:
         SCVI.prepare_query_anndata(adata, reference_model_path)
         model = SCVI.load(reference_model_path, adata)
         model = SCANVI.from_scvi_model(
-            scvi_model=model, labels_key="label", unlabeled_category="unknown"
+            scvi_model=model, labels_key="${label_col}", unlabeled_category="unknown"
         )
     else:
         categorical_covariates = "${categorical_covariates}"
@@ -60,7 +60,7 @@ else:
         categorical_covariates = categorical_covariates.split(",") if categorical_covariates else None
         continuous_covariates = continuous_covariates.split(",") if continuous_covariates else None
 
-        SCANVI.setup_anndata(adata, batch_key="batch", labels_key="label", unlabeled_category="unknown",
+        SCANVI.setup_anndata(adata, batch_key="batch", labels_key="${label_col}", unlabeled_category="unknown",
                                 categorical_covariate_keys = categorical_covariates,
                                 continuous_covariate_keys = continuous_covariates)
         model = SCANVI(adata,
@@ -77,6 +77,9 @@ model.train(early_stopping=True,
             max_epochs=int("${max_epochs}") if "${max_epochs?:''}" else None)
 adata.obsm["X_emb"] = model.get_latent_representation()
 adata.obs["label:scANVI"] = model.predict()
+
+del adata.uns["_scvi_manager_uuid"]
+del adata.uns["_scvi_uuid"]
 
 adata.write_h5ad("${prefix}.h5ad")
 adata.obs[["label:scANVI"]].to_pickle("${prefix}.pkl")
