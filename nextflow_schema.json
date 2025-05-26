@@ -520,6 +520,10 @@
     "properties": {
         "celldex_reference": {
             "type": "string"
+        },
+        "celldex_reference_label": {
+            "type": "string",
+            "default": "label.main"
         }
     }
 }

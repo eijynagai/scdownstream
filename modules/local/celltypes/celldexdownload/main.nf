@@ -28,8 +28,8 @@ process CELLTYPES_CELLDEXDOWNLOAD {
     //    'community.wave.seqera.io/library/bioconductor-celldex_bioconductor-hdf5array_bioconductor-singlecellexperiment_r-yaml:13bf33457e3e7490' }"
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'library://paulpyl/scqc/singler:latest':
-        'paulpyl/scqc/singler:latest' }"
+        'docker.io/saditya88/singler:0.0.1':
+        'docker.io/saditya88/singler:0.0.1' }"
 
     input:
     // TODO nf-core: Where applicable all sample-specific information e.g. "id", "single_end", "read_group"
@@ -62,35 +62,7 @@ process CELLTYPES_CELLDEXDOWNLOAD {
     //               using the Nextflow "task" variable e.g. "--threads $task.cpus"
     // TODO nf-core: Please replace the example samtools command below with your module's command
     // TODO nf-core: Please indent the command appropriately (4 spaces!!) to help with readability ;)
-    """
-    #!/usr/bin/env Rscript
-    # -*- coding: utf-8 -*-
-    library(celldex)
-    library(SingleCellExperiment)
-    library(yaml)
-    library(HDF5Array)
-    r="${ref}"
-    print(paste("Attempting to fetch reference:", r))
-    # Split the reference into refName and refVersion based on __
-    refName <- strsplit(r, "__")[[1]][1]
-    refVersion <- strsplit(r, "__")[[1]][2]
-    reference <- fetchReference(refName, refVersion)
-    # Save SummarizedExperiment to HDF5 files
-    saveHDF5SummarizedExperiment(reference, dir=paste0("celldex_", r, "_h5_se"), replace = TRUE)
-
-
-    # Capturing version information, as before
-    versions <- list(
-        "${task.process}" = list(
-            R = R.version.string,
-            celldex = as.character(packageVersion("celldex")),
-            yaml = as.character(packageVersion("yaml")),
-            HDF5Array = as.character(packageVersion("HDF5Array"))
-        )
-    )
-    # Write versions info into a YAML file, as before
-    write_yaml(x = versions, file = "versions.yml")
-    """
+    template("celldexDownload.R")
 
     stub:
     def args = task.ext.args ?: ''
