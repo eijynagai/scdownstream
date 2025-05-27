@@ -5,7 +5,7 @@ process HUGOUNIFIER_GET {
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'oras://community.wave.seqera.io/library/pip_hugo-unifier:3e1901cbb7f39dfc':
-        'wave.seqera.io/wt/f965c212486e/wave/build:pip_hugo-unifier-0.2.7--8acab3bff8cdd8ae' }"
+        'community.wave.seqera.io/library/pip_hugo-unifier:6d176a11f2d9defb' }"
 
     input:
     tuple val(meta), val(names), path(h5ads, stageAs: 'input/file_?.h5ad')
