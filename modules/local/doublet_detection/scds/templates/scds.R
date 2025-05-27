@@ -3,6 +3,8 @@
 library(scds)
 library(SingleCellExperiment)
 
+Sys.setenv(TMP = ".")
+
 sce <- readRDS("${rds}")
 
 ## Annotate doublet using binary classification based doublet scoring:
