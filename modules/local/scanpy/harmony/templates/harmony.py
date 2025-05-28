@@ -8,6 +8,7 @@ os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 
 import scanpy as sc
 import pandas as pd
+import scanpy.external as sce
 
 from threadpoolctl import threadpool_limits
 threadpool_limits(int("${task.cpus}"))
@@ -32,32 +33,9 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
     return yaml_str
 
 adata = sc.read_h5ad("${h5ad}")
-use_gpu = "${task.ext.use_gpu}" == "true"
 
-if use_gpu:
-    os.environ["CUPY_CACHE_DIR"] = "./tmp/cupy"
-
-    import rapids_singlecell as rsc
-    import rmm
-    from rmm.allocators.cupy import rmm_cupy_allocator
-    import cupy as cp
-    rmm.reinitialize(
-        managed_memory=True,
-        pool_allocator=False,
-    )
-    cp.cuda.set_allocator(rmm_cupy_allocator)
-
-    rsc.get.anndata_to_GPU(adata)
-
-    rsc.pp.pca(adata)
-    rsc.pp.harmony_integrate(adata, "batch", adjusted_basis="X_emb")
-
-    rsc.get.anndata_to_CPU(adata)
-else:
-    import scanpy.external as sce
-
-    sc.pp.pca(adata)
-    sce.pp.harmony_integrate(adata, "batch", adjusted_basis="X_emb")
+sc.pp.pca(adata)
+sce.pp.harmony_integrate(adata, "batch", adjusted_basis="X_emb")
 
 adata.write_h5ad("${prefix}.h5ad")
 

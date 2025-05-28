@@ -12,6 +12,7 @@ torch.set_float32_matmul_precision('medium')
 from threadpoolctl import threadpool_limits
 threadpool_limits(int("${task.cpus}"))
 scvi.settings.num_threads = int("${task.cpus}")
+scvi.settings.seed = 0
 
 def format_yaml_like(data: dict, indent: int = 0) -> str:
     """Formats a dictionary to a YAML-like string.
@@ -66,6 +67,9 @@ model.train(early_stopping=True,
             max_epochs=int("${max_epochs}") if "${max_epochs?:''}" else None)
 
 adata.obsm["X_emb"] = model.get_latent_representation()
+
+del adata.uns["_scvi_manager_uuid"]
+del adata.uns["_scvi_uuid"]
 
 adata.write_h5ad("${prefix}.h5ad")
 model.save("${prefix}_model")

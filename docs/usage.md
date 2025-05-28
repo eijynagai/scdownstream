@@ -161,12 +161,6 @@ Tools with implemented support for GPU acceleration are:
   - scVI/scANVI
   - scAR
   - solo
-- rapids-singlecell
-  - scrublet
-  - harmony
-  - HVG identification
-  - Neighborhood graph calculation, UMAP and Leiden clustering
-  - Identification of characteristic genes (`rank_genes_groups`)
 
 To utilize GPU acceleration, you need to specify the `gpu` profile. This will make the tool steps use cuda-enabled environments and it will tell the tools to use the GPU. All processes which support GPU acceleration are marked with the `process_gpu` label.
 

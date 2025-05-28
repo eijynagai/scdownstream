@@ -31,7 +31,7 @@ include { CELLDEX_REFERENCE_PROCESSING         } from '../subworkflows/local/cel
 workflow SCDOWNSTREAM {
     take:
     ch_samplesheet // channel: samplesheet read in from --input
-    ch_base        // value channel: [ val(meta), path(h5ad) ]
+    ch_base        // channel: [ val(meta), path(h5ad) ]
 
     main:
 
@@ -56,7 +56,6 @@ workflow SCDOWNSTREAM {
         //
         // Load/Convert input to h5ad
         //
-
         LOAD_H5AD(ch_samplesheet)
         ch_h5ad = LOAD_H5AD.out.h5ad
         ch_versions = ch_versions.mix(LOAD_H5AD.out.versions)
@@ -64,7 +63,6 @@ workflow SCDOWNSTREAM {
         //
         // Quality control per sample
         //
-
         QUALITY_CONTROL(ch_h5ad)
         ch_versions = ch_versions.mix(QUALITY_CONTROL.out.versions)
         ch_multiqc_files = ch_multiqc_files.mix(QUALITY_CONTROL.out.multiqc_files)
@@ -99,7 +97,6 @@ workflow SCDOWNSTREAM {
             //
             // Unify samples to make them compatible for integration
             //
-
             UNIFY(ch_h5ad)
             ch_versions = ch_versions.mix(UNIFY.out.versions)
             ch_multiqc_files = ch_multiqc_files.mix(UNIFY.out.multiqc_files)
@@ -108,16 +105,12 @@ workflow SCDOWNSTREAM {
             //
             // Combine samples and perform integration
             //
-
             COMBINE(ch_h5ad, ch_base)
             ch_versions = ch_versions.mix(COMBINE.out.versions)
-            ch_multiqc_files = ch_multiqc_files.mix(COMBINE.out.multiqc_files)
             ch_obs = ch_obs.mix(COMBINE.out.obs)
             ch_var = ch_var.mix(COMBINE.out.var)
             ch_obsm = ch_obsm.mix(COMBINE.out.obsm)
-            ch_layers = ch_layers.mix(COMBINE.out.layers)
             ch_integrations = ch_integrations.mix(COMBINE.out.integrations)
-
             ch_finalization_base = COMBINE.out.h5ad
         }
 
@@ -125,7 +118,7 @@ workflow SCDOWNSTREAM {
         grouping_col = "label"
     }
     else {
-        ch_embeddings = Channel.value(params.base_embeddings.split(',').collect { it.trim() })
+        ch_embeddings = Channel.value(params.base_embeddings.split(',').collect { it -> it.trim() })
 
         ADATA_SPLITEMBEDDINGS(ch_base, ch_embeddings)
         ch_versions = ch_versions.mix(ADATA_SPLITEMBEDDINGS.out.versions)
@@ -141,14 +134,11 @@ workflow SCDOWNSTREAM {
     //
     // Perform clustering and per-cluster analysis
     //
-
     if (!params.qc_only) {
         CLUSTER(ch_integrations)
         ch_versions = ch_versions.mix(CLUSTER.out.versions)
         ch_obs = ch_obs.mix(CLUSTER.out.obs)
         ch_obsm = ch_obsm.mix(CLUSTER.out.obsm)
-        ch_obsp = ch_obsp.mix(CLUSTER.out.obsp)
-        ch_uns = ch_uns.mix(CLUSTER.out.uns)
         ch_multiqc_files = ch_multiqc_files.mix(CLUSTER.out.multiqc_files)
 
         if (params.pseudobulk) {
@@ -180,7 +170,6 @@ workflow SCDOWNSTREAM {
             newLine: true,
         )
         .set { ch_collated_versions }
-
 
     //
     // MODULE: MultiQC
@@ -230,5 +219,5 @@ workflow SCDOWNSTREAM {
 
     emit:
     multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
-    versions       = ch_versions // channel: [ path(versions.yml) ]
+    versions       = ch_versions                 // channel: [ path(versions.yml) ]
 }

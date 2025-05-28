@@ -7,7 +7,7 @@ include { ADATA_UNIFY                         } from '../../modules/local/adata/
 
 workflow UNIFY {
     take:
-    ch_h5ad
+    ch_h5ad // channel: [ meta, h5ad ]
 
     main:
     ch_versions = Channel.empty()
@@ -54,7 +54,7 @@ workflow UNIFY {
     ch_multiqc_files = ch_multiqc_files.mix(UPSET_GENES.out.multiqc_files)
 
     emit:
-    h5ad          = ch_h5ad
-    multiqc_files = ch_multiqc_files
-    versions      = ch_versions
+    h5ad          = ch_h5ad          // channel: [ meta, h5ad ]
+    multiqc_files = ch_multiqc_files // channel: [ json ]
+    versions      = ch_versions      // channel: [ versions.yml ]
 }

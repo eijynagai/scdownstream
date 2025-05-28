@@ -4,8 +4,8 @@ include { SCIMILARITY_ANNOTATE } from '../../modules/local/scimilarity/annotate'
 
 workflow SCIMILARITY {
     take:
-    ch_h5ad
-    scimilarity_model
+    ch_h5ad           // channel: [ merged, h5ad ]
+    scimilarity_model // channel: [ model ]
 
     main:
     ch_versions = Channel.empty()
@@ -46,8 +46,8 @@ workflow SCIMILARITY {
     ch_obs = ch_obs.mix(SCIMILARITY_ANNOTATE.out.obs)
 
     emit:
-    integrations = ch_integrations
-    obs          = ch_obs
-    obsm         = ch_obsm
-    versions     = ch_versions
+    integrations = ch_integrations // channel: [ integration, h5ad ]
+    obs          = ch_obs          // channel: [ pkl ]
+    obsm         = ch_obsm         // channel: [ pkl ]
+    versions     = ch_versions     // channel: [ versions.yml ]
 }

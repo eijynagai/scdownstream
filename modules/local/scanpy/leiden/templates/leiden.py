@@ -36,7 +36,6 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
 
 
 adata = sc.read_h5ad("${h5ad}", backed='r')
-use_gpu = "${task.ext.use_gpu}" == "true"
 prefix = "${prefix}"
 
 kwargs = {
@@ -44,50 +43,34 @@ kwargs = {
     "key_added": prefix
 }
 
-if use_gpu:
-    os.environ["CUPY_CACHE_DIR"] = "./tmp/cupy"
-
-    import rapids_singlecell as rsc
-    import rmm
-    from rmm.allocators.cupy import rmm_cupy_allocator
-    import cupy as cp
-    rmm.reinitialize(
-        managed_memory=True,
-        pool_allocator=False,
-    )
-    cp.cuda.set_allocator(rmm_cupy_allocator)
-
-    rsc.get.anndata_to_GPU(adata)
-    rsc.tl.leiden(adata, **kwargs)
-    rsc.get.anndata_to_CPU(adata)
-else:
-    sc.tl.leiden(adata, **kwargs)
+sc.tl.leiden(adata, **kwargs)
 
 adata.obs[[prefix]].to_pickle(f"{prefix}.pkl")
 adata.write_h5ad(f"{prefix}.h5ad")
 
-# Plot
-sc.pl.umap(adata, title="${meta.id} Leiden", color=prefix, show=False)
-path = f"{prefix}.png"
-plt.savefig(path, bbox_inches='tight')
+if "${plot_umap}" == "true":
+    # Plot
+    sc.pl.umap(adata, title="${meta.id} Leiden", color=prefix, show=False)
+    path = f"{prefix}.png"
+    plt.savefig(path, bbox_inches='tight')
 
-# MultiQC
-with open(path, "rb") as f_plot, open("${prefix}_mqc.json", "w") as f_json:
-    image_string = base64.b64encode(f_plot.read()).decode("utf-8")
-    image_html = f'<div class="mqc-custom-content-image"><img src="data:image/png;base64,{image_string}" /></div>'
+    # MultiQC
+    with open(path, "rb") as f_plot, open("${prefix}_mqc.json", "w") as f_json:
+        image_string = base64.b64encode(f_plot.read()).decode("utf-8")
+        image_html = f'<div class="mqc-custom-content-image"><img src="data:image/png;base64,{image_string}" /></div>'
 
-    custom_json = {
-        "id": "${prefix}",
-        "parent_id": "${meta.integration}",
-        "parent_name": "${meta.integration}",
-        "parent_description": "Results of the ${meta.integration} integration.",
+        custom_json = {
+            "id": "${prefix}",
+            "parent_id": "${meta.integration}",
+            "parent_name": "${meta.integration}",
+            "parent_description": "Results of the ${meta.integration} integration.",
 
-        "section_name": "${meta.id} Leiden",
-        "plot_type": "image",
-        "data": image_html,
-    }
+            "section_name": "${meta.id} Leiden",
+            "plot_type": "image",
+            "data": image_html,
+        }
 
-    json.dump(custom_json, f_json)
+        json.dump(custom_json, f_json)
 
 # Versions
 

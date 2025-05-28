@@ -11,13 +11,12 @@ include { SCIMILARITY        } from './scimilarity'
 
 workflow INTEGRATE {
     take:
-    ch_h5ad
+    ch_h5ad // channel: [ merged, h5ad ]
 
     main:
     ch_versions = Channel.empty()
     ch_obs = Channel.empty()
     ch_obsm = Channel.empty()
-    ch_layers = Channel.empty()
     ch_integrations = Channel.empty()
 
     // If a reference model is provided, only the genes in the reference model are used
@@ -30,7 +29,7 @@ workflow INTEGRATE {
         ch_h5ad_hvg = ch_h5ad
     }
 
-    methods = params.integration_methods.split(',').collect { it.trim().toLowerCase() }
+    methods = params.integration_methods.split(',').collect { it -> it.trim().toLowerCase() }
 
     // Special treatment for R-based methods
     if (methods.intersect(['seurat']).size() > 0) {
@@ -59,6 +58,8 @@ workflow INTEGRATE {
             params.scvi_model
                 ? Channel.value([[id: 'scvi_model'], params.scvi_model])
                 : [[], []],
+            params.scvi_categorical_covariates,
+            params.scvi_continuous_covariates,
         )
         ch_versions = ch_versions.mix(SCVITOOLS_SCVI.out.versions)
         ch_integrations = ch_integrations.mix(SCVITOOLS_SCVI.out.h5ad)
@@ -73,6 +74,9 @@ workflow INTEGRATE {
                 : methods.contains('scvi')
                     ? SCVITOOLS_SCVI.out.model
                     : [[], []],
+            "label",
+            params.scvi_categorical_covariates,
+            params.scvi_continuous_covariates,
         )
         ch_versions = ch_versions.mix(SCVITOOLS_SCANVI.out.versions)
         ch_integrations = ch_integrations.mix(SCVITOOLS_SCANVI.out.h5ad)
@@ -112,9 +116,8 @@ workflow INTEGRATE {
     }
 
     emit:
-    integrations = ch_integrations
-    obs          = ch_obs
-    obsm         = ch_obsm
-    layers       = ch_layers
-    versions     = ch_versions
+    integrations = ch_integrations // channel: [ integration, h5ad ]
+    obs          = ch_obs          // channel: [ pkl ]
+    obsm         = ch_obsm         // channel: [ pkl ]
+    versions     = ch_versions     // channel: [ versions.yml ]
 }

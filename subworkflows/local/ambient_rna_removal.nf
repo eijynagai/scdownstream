@@ -6,7 +6,7 @@ include { SCVITOOLS_SCAR              } from '../../modules/nf-core/scvitools/sc
 
 workflow AMBIENT_RNA_REMOVAL {
     take:
-    ch_pairing
+    ch_pairing // channel: [ meta, h5ad, h5ad ]
 
     main:
     ch_versions = Channel.empty()
@@ -45,7 +45,6 @@ workflow AMBIENT_RNA_REMOVAL {
     }
 
     emit:
-    h5ad = ch_h5ad
-
-    versions = ch_versions
+    h5ad     = ch_h5ad     // channel: [ meta, h5ad ]
+    versions = ch_versions // channel: [ versions.yml ]
 }

@@ -4,7 +4,7 @@ include { ADATA_READCSV } from '../../modules/local/adata/readcsv'
 
 workflow LOAD_H5AD {
     take:
-    ch_samples
+    ch_samples // channel: [ meta, {h5ad/rds}, {h5ad/rds} ]
 
     main:
     ch_versions = Channel.empty()
@@ -59,7 +59,6 @@ workflow LOAD_H5AD {
         .map{ _id, meta, filtered, unfiltered -> [meta, filtered ?: [], unfiltered ?: []] }
 
     emit:
-    h5ad = ch_output
-
-    versions = ch_versions
+    h5ad     = ch_output   // channel: [ meta, h5ad, h5ad ]
+    versions = ch_versions // channel: [ versions.yml ]
 }

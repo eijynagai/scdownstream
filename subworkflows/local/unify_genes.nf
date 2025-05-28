@@ -3,7 +3,7 @@ include { HUGOUNIFIER_APPLY } from '../../modules/local/hugounifier/apply'
 
 workflow UNIFY_GENES {
     take:
-    ch_h5ad
+    ch_h5ad // channel: [ meta, h5ad ]
 
     main:
     ch_versions = Channel.empty()
@@ -32,6 +32,6 @@ workflow UNIFY_GENES {
     ch_h5ad = HUGOUNIFIER_APPLY.out.h5ad
 
     emit:
-    h5ad     = ch_h5ad
-    versions = ch_versions
+    h5ad     = ch_h5ad     // channel: [ meta, h5ad ]
+    versions = ch_versions // channel: [ versions.yml ]
 }

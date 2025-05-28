@@ -4,9 +4,9 @@ include { LIANA_RANKAGGREGATE    } from '../../modules/local/liana/rankaggregate
 
 workflow PER_GROUP {
     take:
-    ch_h5ad_both
-    ch_h5ad_with_neighbors
-    ch_h5ad_no_neighbors
+    ch_h5ad_both           // channel: [ integration, h5ad ]
+    ch_h5ad_with_neighbors // channel: [ integration, h5ad ]
+    ch_h5ad_no_neighbors   // channel: [ merged, h5ad ]
 
     main:
     ch_versions      = Channel.empty()
@@ -36,7 +36,7 @@ workflow PER_GROUP {
     }
 
     emit:
-    uns           = ch_uns
-    multiqc_files = ch_multiqc_files
-    versions      = ch_versions
+    uns           = ch_uns           // channel: [ pkl ]
+    multiqc_files = ch_multiqc_files // channel: [ json ]
+    versions      = ch_versions      // channel: [ versions.yml ]
 }
