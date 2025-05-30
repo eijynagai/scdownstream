@@ -14,12 +14,16 @@ seu_raw <- adata_raw\$as_Seurat()
 
 # Get layer to use (default to "X" if not specified)
 use_layer <- "${input_layer}"
-if (use_layer != "X" && use_layer %in% names(adata\$layers)) {
-    # Replace counts in the Seurat object with the specified layer
-    counts_matrix <- t(adata\$layers[[use_layer]])
-    rownames(counts_matrix) <- rownames(seu)
-    colnames(counts_matrix) <- colnames(seu)
-    seu[["RNA"]] <- CreateAssayObject(counts = counts_matrix)
+if (use_layer != "X") {
+    if (use_layer %in% names(adata\$layers)) {
+        # Replace counts in the Seurat object with the specified layer
+        counts_matrix <- t(adata\$layers[[use_layer]])
+        rownames(counts_matrix) <- rownames(seu)
+        colnames(counts_matrix) <- colnames(seu)
+        seu[["RNA"]] <- CreateAssayObject(counts = counts_matrix)
+    } else {
+        stop(paste("Layer", use_layer, "not found in AnnData object"))
+    }
 }
 
 # Preprocessing with Seurat workflow
