@@ -2,7 +2,7 @@ process SCDS {
     tag "${meta.id}"
     label 'process_medium'
 
-    container "wave.seqera.io/wt/1ab22a119f94/wave/build:70e61b47dfea3cce"
+    container "wave.seqera.io/wt/b979b9a01800/wave/build:70e61b47dfea3cce"
 
     input:
     tuple val(meta), path(h5ad)
