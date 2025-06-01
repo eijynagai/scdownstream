@@ -1,4 +1,3 @@
-include { ADATA_TORDS      } from '../../modules/local/adata/tords'
 include { SCVITOOLS_SOLO   } from '../../modules/nf-core/scvitools/solo'
 include { SCANPY_SCRUBLET  } from '../../modules/local/scanpy/scrublet'
 include { DOUBLETDETECTION } from '../../modules/nf-core/doubletdetection'
@@ -24,17 +23,10 @@ workflow DOUBLET_DETECTION {
             error("No doublet detection methods selected. If you want to skip this step, set 'doublet_detection' to 'none'.")
         }
 
-        // Special treatment for R-based methods
-        if (methods.intersect(['scds']).size() > 0) {
-            ADATA_TORDS(ch_h5ad)
-            ch_versions = ch_versions.mix(ADATA_TORDS.out.versions)
-            ch_rds = ADATA_TORDS.out.rds
-
-            if (methods.contains('scds')) {
-                SCDS(ch_rds)
-                ch_predictions = ch_predictions.mix(SCDS.out.predictions)
-                ch_versions = SCDS.out.versions
-            }
+        if (methods.contains('scds')) {
+            SCDS(ch_h5ad)
+            ch_predictions = ch_predictions.mix(SCDS.out.predictions)
+            ch_versions = SCDS.out.versions
         }
 
         if (methods.contains('solo')) {
