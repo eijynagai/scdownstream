@@ -16,7 +16,7 @@ nextflow_workflow {
                     ]
                 )
                 input[1] = 'sample'
-                input[2] = ''
+                input[2] = 'leiden'
                 input[3] = 'unknown'
                 input[4] = 'index'
                 input[5] = 'X'
@@ -28,13 +28,13 @@ nextflow_workflow {
             script "modules/local/scanpy/pca/main.nf"
             process {
                 """
-                input[0] = ADATA_UNIFY.out.h5ad
+                input[0] = ADATA_UNIFY.out.h5ad.map{ meta, h5ad -> [meta + [integration: 'pca'], h5ad] }
                 """
             }
         }
     }
 
-    test("Should run without failures - stub") {
+    test("Should run without failures - global - stub") {
 
         options '-stub'
         config './cluster.config'
@@ -46,6 +46,10 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = SCANPY_PCA.out.h5ad
+                input[1] = false
+                input[2] = true
+                input[3] = ''
+                input[4] = Channel.of('0.5', '1')
                 """
             }
         }
@@ -57,7 +61,7 @@ nextflow_workflow {
 
     }
 
-    test("Should run without failures") {
+    test("Should run without failures - global") {
 
         config './cluster.config'
 
@@ -68,6 +72,116 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = SCANPY_PCA.out.h5ad
+                input[1] = false
+                input[2] = true
+                input[3] = ''
+                input[4] = Channel.of('0.5', '1')
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run without failures - per-label - stub") {
+
+        options '-stub'
+        config './cluster.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = SCANPY_PCA.out.h5ad
+                input[1] = true
+                input[2] = false
+                input[3] = 'batch'
+                input[4] = Channel.of('0.5', '1')
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run without failures - per-label") {
+
+        config './cluster.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = SCANPY_PCA.out.h5ad
+                input[1] = true
+                input[2] = false
+                input[3] = 'batch'
+                input[4] = Channel.of('0.5', '1')
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run without failures - both - stub") {
+
+        options '-stub'
+        config './cluster.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = SCANPY_PCA.out.h5ad
+                input[1] = true
+                input[2] = true
+                input[3] = 'batch'
+                input[4] = Channel.of('0.5', '1')
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run without failures - both") {
+
+        config './cluster.config'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = SCANPY_PCA.out.h5ad
+                input[1] = true
+                input[2] = true
+                input[3] = 'batch'
+                input[4] = Channel.of('0.5', '1')
                 """
             }
         }
