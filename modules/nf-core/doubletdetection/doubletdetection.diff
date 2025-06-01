@@ -70,7 +70,19 @@ Changes in 'doubletdetection/environment.yml':
 +- pip
 +- pip:
 +  - doubletdetection==4.3.0.post1
-'modules/nf-core/doubletdetection/templates/doubletdetection.py' is unchanged
+Changes in 'doubletdetection/templates/doubletdetection.py':
+--- modules/nf-core/doubletdetection/templates/doubletdetection.py
++++ modules/nf-core/doubletdetection/templates/doubletdetection.py
+@@ -32,7 +32,7 @@
+ 
+ adata = ad.read_h5ad("${h5ad}")
+ 
+-clf = doubletdetection.BoostClassifier()
++clf = doubletdetection.BoostClassifier(n_jobs=int("${task.cpus}"))
+ doublets = clf.fit(adata.X).predict()
+ scores = clf.doublet_score()
+ 
+
 Changes in 'doubletdetection/tests/main.nf.test':
 --- modules/nf-core/doubletdetection/tests/main.nf.test
 +++ modules/nf-core/doubletdetection/tests/main.nf.test

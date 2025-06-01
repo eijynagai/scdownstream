@@ -32,7 +32,7 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
 
 adata = ad.read_h5ad("${h5ad}")
 
-clf = doubletdetection.BoostClassifier()
+clf = doubletdetection.BoostClassifier(n_jobs=int("${task.cpus}"))
 doublets = clf.fit(adata.X).predict()
 scores = clf.doublet_score()
 
