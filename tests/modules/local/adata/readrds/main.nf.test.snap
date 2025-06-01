@@ -1,5 +1,5 @@
 {
-    "Should run without failures - prefix - stub": {
+    "Should read SCE file": {
         "content": [
             {
                 "0": [
@@ -7,7 +7,7 @@
                         {
                             "id": "test"
                         },
-                        "test.xyz.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,e74b26e72ce47aeb35be0b2e03124bdf"
                     ]
                 ],
                 "1": [
@@ -21,7 +21,7 @@
                         {
                             "id": "test"
                         },
-                        "test.xyz.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,e74b26e72ce47aeb35be0b2e03124bdf"
                     ]
                 ],
                 "obsm": [
@@ -34,11 +34,11 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-11T22:18:12.513339452"
+        "timestamp": "2025-06-01T20:55:07.403136543"
     },
-    "Should run without failures - stub": {
+    "Should read SCE file - stub": {
         "content": [
             {
                 "0": [
@@ -46,7 +46,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,e74b26e72ce47aeb35be0b2e03124bdf"
                     ]
                 ],
                 "1": [
@@ -60,7 +60,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,e74b26e72ce47aeb35be0b2e03124bdf"
                     ]
                 ],
                 "obsm": [
@@ -73,11 +73,11 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-11T22:17:32.595641158"
+        "timestamp": "2025-06-01T20:55:39.995491504"
     },
-    "Should run without failures": {
+    "Should read seurat file": {
         "content": [
             {
                 "0": [
@@ -85,7 +85,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,13ea94bfc83afdd3a33035a441ad999b"
                     ]
                 ],
                 "1": [
@@ -99,7 +99,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,13ea94bfc83afdd3a33035a441ad999b"
                     ]
                 ],
                 "obsm": [
@@ -112,11 +112,11 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-11T22:16:19.028768882"
+        "timestamp": "2025-06-01T20:53:53.125148901"
     },
-    "Should run without failures - prefix": {
+    "Should read seurat file - stub": {
         "content": [
             {
                 "0": [
@@ -124,7 +124,7 @@
                         {
                             "id": "test"
                         },
-                        "test.xyz.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,13ea94bfc83afdd3a33035a441ad999b"
                     ]
                 ],
                 "1": [
@@ -138,7 +138,7 @@
                         {
                             "id": "test"
                         },
-                        "test.xyz.h5ad:md5,b63c6024b5887a2d340b9148aa3d2996"
+                        "test.h5ad:md5,13ea94bfc83afdd3a33035a441ad999b"
                     ]
                 ],
                 "obsm": [
@@ -151,8 +151,8 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-11T22:16:54.458685156"
+        "timestamp": "2025-06-01T20:54:33.00066416"
     }
 }
