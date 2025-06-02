@@ -9,6 +9,9 @@ process SCIMILARITY_PSEUDOBULK {
 
     input:
     tuple val(meta), path(h5ad)
+    val(counts_layer)
+    val(groupby_labels)
+    val(min_num_cells)
 
     output:
     tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
@@ -19,9 +22,6 @@ process SCIMILARITY_PSEUDOBULK {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    counts_layer = task.ext.counts_layer ?: "counts"
-    groupby_labels = task.ext.groupby_labels ?: ["batch"]
-    min_num_cells = task.ext.min_num_cells ?: 1
 
     if ("${prefix}.h5ad" == "${h5ad}") {
         error("Input and output names are the same, use \"task.ext.prefix\" to disambiguate!")
