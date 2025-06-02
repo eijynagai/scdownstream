@@ -12,7 +12,8 @@ process SCVITOOLS_SCANVI {
     input:
     tuple val(meta), path(h5ad, arity: 1)
     tuple val(meta2), path(reference_model, stageAs: 'reference_model/model.pt')
-    val(label_col)
+    tuple val(label_col), val(unlabeled_category)
+    val(batch_col)
     val(categorical_covariates)
     val(continuous_covariates)
 
@@ -37,4 +38,15 @@ process SCVITOOLS_SCANVI {
 
     if ("$h5ad" == "${prefix}.h5ad") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
     template 'scanvi.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    mkdir -p ${prefix}_model
+    touch ${prefix}_model/model.pt
+    touch ${prefix}.pkl
+    touch X_${prefix}.pkl
+    touch versions.yml
+    """
 }
