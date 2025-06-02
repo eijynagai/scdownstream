@@ -100,7 +100,7 @@ workflow INTEGRATE {
     }
 
     if (methods.contains('combat')) {
-        SCANPY_COMBAT(ch_h5ad_hvg.map { _meta, h5ad -> [[id: 'combat'], h5ad] })
+        SCANPY_COMBAT(ch_h5ad_hvg.map { _meta, h5ad -> [[id: 'combat'], h5ad] }, "batch")
         ch_versions = ch_versions.mix(SCANPY_COMBAT.out.versions)
         ch_integrations = ch_integrations.mix(SCANPY_COMBAT.out.h5ad)
         ch_obsm = ch_obsm.mix(SCANPY_COMBAT.out.obsm)

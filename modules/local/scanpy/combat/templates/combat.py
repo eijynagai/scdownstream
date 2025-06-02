@@ -38,7 +38,7 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
 adata = sc.read_h5ad("${h5ad}")
 prefix = "${prefix}"
 
-sc.pp.combat(adata, key="batch")
+sc.pp.combat(adata, key="${batch_col}")
 adata.X = csr_matrix(adata.X)
 
 sc.pp.pca(adata)
