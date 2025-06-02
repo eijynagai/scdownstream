@@ -13,8 +13,8 @@ workflow AMBIENT_RNA_REMOVAL {
 
     ch_multi = ch_pairing.multiMap{ meta, filtered, unfiltered ->
         input: [meta, filtered, unfiltered]
-        batch_col: meta.batch_col
-        input_layer: meta.counts_layer
+        batch_col: meta.batch_col ?: "batch"
+        input_layer: meta.counts_layer ?: "X"
     }
 
     if (params.ambient_removal == 'none') {
