@@ -94,7 +94,7 @@ workflow INTEGRATE {
     }
 
     if (methods.contains('bbknn')) {
-        INTEGRATION_BBKNN(ch_h5ad_hvg.map { _meta, h5ad -> [[id: 'bbknn'], h5ad] })
+        INTEGRATION_BBKNN(ch_h5ad_hvg.map { _meta, h5ad -> [[id: 'bbknn'], h5ad] }, "batch")
         ch_versions = ch_versions.mix(INTEGRATION_BBKNN.out.versions)
         ch_integrations = ch_integrations.mix(INTEGRATION_BBKNN.out.h5ad)
     }

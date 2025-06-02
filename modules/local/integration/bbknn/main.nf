@@ -9,6 +9,7 @@ process INTEGRATION_BBKNN {
 
     input:
     tuple val(meta), path(h5ad)
+    val(batch_col)
 
     output:
     tuple val(meta), path("*.h5ad") , emit: h5ad
