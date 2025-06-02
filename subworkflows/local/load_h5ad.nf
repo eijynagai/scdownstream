@@ -11,25 +11,24 @@ workflow LOAD_H5AD {
     ch_files = Channel.empty()
     ch_h5ad = Channel.empty()
 
-    ch_files = ch_files.mix(ch_samples
-        .map { meta, filtered, _unfiltered -> [meta + [type: 'filtered'], filtered] }
-        .filter { _meta, filtered -> filtered }
+    ch_files = ch_files.mix(
+        ch_samples.map { meta, filtered, _unfiltered -> [meta + [type: 'filtered'], filtered] }.filter { _meta, filtered -> filtered }
     )
-    ch_files = ch_files.mix(ch_samples
-        .map { meta, _filtered, unfiltered -> [meta + [type: 'unfiltered'], unfiltered] }
-        .filter { _meta, unfiltered -> unfiltered }
+    ch_files = ch_files.mix(
+        ch_samples.map { meta, _filtered, unfiltered -> [meta + [type: 'unfiltered'], unfiltered] }.filter { _meta, unfiltered -> unfiltered }
     )
 
-    ch_files = ch_files.map { meta, file -> [meta, file, file.extension.toLowerCase()] }
+    ch_files = ch_files
+        .map { meta, file -> [meta, file, file.extension.toLowerCase()] }
         .branch { meta, file, ext ->
             h5ad: ext == "h5ad"
-                return [meta, file]
+            return [meta, file]
             h5: ext == "h5"
-                return [meta, file]
+            return [meta, file]
             rds: ext == "rds"
-                return [meta, file]
+            return [meta, file]
             csv: ext == "csv"
-                return [meta, file]
+            return [meta, file]
         }
 
     ch_h5ad = ch_h5ad.mix(ch_files.h5ad)
@@ -46,19 +45,21 @@ workflow LOAD_H5AD {
     ch_h5ad = ch_h5ad.mix(ADATA_READCSV.out.h5ad)
     ch_versions = ch_versions.mix(ADATA_READCSV.out.versions)
 
-    ch_output = ch_samples.map{ meta, _filtered, _unfiltered -> [meta.id, meta]}
+    ch_output = ch_samples
+        .map { meta, _filtered, _unfiltered -> [meta.id, meta] }
         .join(
-            ch_h5ad.filter { meta, _h5ad -> meta.type == 'filtered' }
-            .map{ meta, filtered -> [meta.id, filtered]},
-                failOnMismatch: false, remainder: true
+            ch_h5ad.filter { meta, _h5ad -> meta.type == 'filtered' }.map { meta, filtered -> [meta.id, filtered] },
+            failOnMismatch: false,
+            remainder: true,
         )
-        .join(ch_h5ad
-            .filter { meta, _h5ad -> meta.type == 'unfiltered' }
-            .map{ meta, unfiltered -> [meta.id, unfiltered]},
-                failOnMismatch: false, remainder: true)
-        .map{ _id, meta, filtered, unfiltered -> [meta, filtered ?: [], unfiltered ?: []] }
+        .join(
+            ch_h5ad.filter { meta, _h5ad -> meta.type == 'unfiltered' }.map { meta, unfiltered -> [meta.id, unfiltered] },
+            failOnMismatch: false,
+            remainder: true,
+        )
+        .map { _id, meta, filtered, unfiltered -> [meta, filtered ?: [], unfiltered ?: []] }
 
     emit:
-    h5ad     = ch_output   // channel: [ meta, h5ad, h5ad ]
+    h5ad     = ch_output // channel: [ meta, h5ad, h5ad ]
     versions = ch_versions // channel: [ versions.yml ]
 }
