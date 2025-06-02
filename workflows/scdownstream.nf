@@ -137,7 +137,12 @@ workflow SCDOWNSTREAM {
         ch_multiqc_files = ch_multiqc_files.mix(CLUSTER.out.multiqc_files)
 
         if (params.pseudobulk) {
-            PSEUDOBULKING(CLUSTER.out.h5ad_clustering)
+            PSEUDOBULKING(
+                CLUSTER.out.h5ad_clustering,
+                params.pseudobulk_groupby_labels.split(','),
+                params.pseudobulk_min_num_cells,
+                "X"
+            )
             ch_versions = ch_versions.mix(PSEUDOBULKING.out.versions)
         }
 
