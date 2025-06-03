@@ -7,7 +7,7 @@
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,573d12073cc56a9e771d7016931ada84"
+                        "test_hvg.h5ad:md5,a2fa17817c75d3e1918220d195e49101"
                     ]
                 ],
                 "1": [
@@ -21,7 +21,7 @@
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,573d12073cc56a9e771d7016931ada84"
+                        "test_hvg.h5ad:md5,a2fa17817c75d3e1918220d195e49101"
                     ]
                 ],
                 "var": [
@@ -36,7 +36,7 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T08:10:24.953563331"
+        "timestamp": "2025-06-03T07:49:44.289973123"
     },
     "Should run without a specified number of HVGs": {
         "content": [
@@ -46,7 +46,7 @@
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,4ed59a07797bb1ea0f6729af2a8e50aa"
+                        "test_hvg.h5ad:md5,bdebdfe3f16920230deabc6852c02284"
                     ]
                 ],
                 "1": [
@@ -60,7 +60,7 @@
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,4ed59a07797bb1ea0f6729af2a8e50aa"
+                        "test_hvg.h5ad:md5,bdebdfe3f16920230deabc6852c02284"
                     ]
                 ],
                 "var": [
@@ -75,7 +75,7 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T08:10:01.936683014"
+        "timestamp": "2025-06-03T07:49:24.034459241"
     },
     "Should run without failures - stub": {
         "content": [
@@ -114,6 +114,6 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T08:10:39.028638639"
+        "timestamp": "2025-06-03T07:49:56.630416945"
     }
 }

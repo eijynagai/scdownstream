@@ -130,6 +130,7 @@ workflow SCDOWNSTREAM {
             params.cluster_global,
             params.input ? "label" : params.base_label_col,
             params.clustering_resolutions.split(','),
+            "batch"
         )
         ch_versions = ch_versions.mix(CLUSTER.out.versions)
         ch_obs = ch_obs.mix(CLUSTER.out.obs)

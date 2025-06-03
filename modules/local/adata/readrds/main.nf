@@ -12,11 +12,7 @@ process ADATA_READRDS {
 
     output:
     tuple val(meta), path("*.h5ad"), emit: h5ad
-    path("*.pkl")                  , emit: obsm, optional: true
     path "versions.yml"            , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
@@ -26,7 +22,6 @@ process ADATA_READRDS {
     prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch "${prefix}.h5ad"
-    touch "X_${prefix}.pkl"
     touch "versions.yml"
     """
 }

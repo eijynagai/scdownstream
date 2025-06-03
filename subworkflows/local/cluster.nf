@@ -10,6 +10,7 @@ workflow CLUSTER {
     global         // value: boolean
     split_col      // value: string
     ch_resolutions // channel: [ string ]
+    entropy_col    // value: string
 
     main:
     ch_versions = Channel.empty()
@@ -75,7 +76,7 @@ workflow CLUSTER {
         group_col: meta.id + "_leiden"
     }
 
-    ENTROPY(ch_entropy.h5ad, ch_entropy.group_col, "batch")
+    ENTROPY(ch_entropy.h5ad, ch_entropy.group_col, entropy_col)
     ch_obs = ch_obs.mix(ENTROPY.out.obs)
     ch_versions = ch_versions.mix(ENTROPY.out.versions)
     ch_multiqc_files = ch_multiqc_files.mix(ENTROPY.out.multiqc_files)

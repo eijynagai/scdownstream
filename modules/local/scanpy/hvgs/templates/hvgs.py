@@ -16,7 +16,6 @@ sc.settings.n_jobs = int("${task.cpus}")
 adata = sc.read_h5ad("${h5ad}")
 prefix = "${prefix}"
 n_hvgs = int("${n_hvgs}")
-use_gpu = "${task.ext.use_gpu}" == "true"
 batch_key = "${batch_key}"
 
 if adata.n_vars > n_hvgs and n_hvgs >= 0:

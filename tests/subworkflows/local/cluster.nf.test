@@ -6,29 +6,15 @@ nextflow_workflow {
 
     setup {
 
-        run("ADATA_UNIFY") {
-            script "modules/local/adata/unify/main.nf"
-            process {
-                """
-                input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
-                    ]
-                )
-                input[1] = 'sample'
-                input[2] = 'leiden'
-                input[3] = 'unknown'
-                input[4] = 'index'
-                input[5] = 'X'
-                input[6] = 'make_unique'
-                """
-            }
-        }
         run("SCANPY_PCA") {
             script "modules/local/scanpy/pca/main.nf"
             process {
                 """
-                input[0] = ADATA_UNIFY.out.h5ad.map{ meta, h5ad -> [meta + [integration: 'pca'], h5ad] }
+                input[0] = Channel.of([
+                        [ id: 'test', integration: 'pca' ],
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
                 input[1] = 'X_emb'
                 """
             }
@@ -50,6 +36,7 @@ nextflow_workflow {
                 input[2] = true
                 input[3] = ''
                 input[4] = Channel.of('0.5', '1')
+                input[5] = 'sample'
                 """
             }
         }
@@ -74,6 +61,7 @@ nextflow_workflow {
                 input[2] = true
                 input[3] = ''
                 input[4] = Channel.of('0.5', '1')
+                input[5] = 'sample'
                 """
             }
         }
@@ -98,8 +86,9 @@ nextflow_workflow {
                 input[0] = SCANPY_PCA.out.h5ad
                 input[1] = true
                 input[2] = false
-                input[3] = 'batch'
+                input[3] = 'sample'
                 input[4] = Channel.of('0.5', '1')
+                input[5] = 'sample'
                 """
             }
         }
@@ -122,8 +111,9 @@ nextflow_workflow {
                 input[0] = SCANPY_PCA.out.h5ad
                 input[1] = true
                 input[2] = false
-                input[3] = 'batch'
+                input[3] = 'sample'
                 input[4] = Channel.of('0.5', '1')
+                input[5] = 'sample'
                 """
             }
         }
@@ -148,8 +138,9 @@ nextflow_workflow {
                 input[0] = SCANPY_PCA.out.h5ad
                 input[1] = true
                 input[2] = true
-                input[3] = 'batch'
+                input[3] = 'sample'
                 input[4] = Channel.of('0.5', '1')
+                input[5] = 'sample'
                 """
             }
         }
@@ -172,8 +163,9 @@ nextflow_workflow {
                 input[0] = SCANPY_PCA.out.h5ad
                 input[1] = true
                 input[2] = true
-                input[3] = 'batch'
+                input[3] = 'sample'
                 input[4] = Channel.of('0.5', '1')
+                input[5] = 'sample'
                 """
             }
         }

@@ -50,12 +50,6 @@ adata = anndata2ri.rpy2py(sce)
 adata.obs.index = adata.obs.index.astype(str)
 adata.var.index = adata.var.index.astype(str)
 
-for key in ["X_EMB", "X_emb"]:
-    if key in adata.obsm.keys():
-        df = pd.DataFrame(adata.obsm[key], index=adata.obs_names)
-        df.to_pickle("X_${prefix}.pkl")
-        break
-
 adata.write_h5ad("${prefix}.h5ad")
 
 versions = {

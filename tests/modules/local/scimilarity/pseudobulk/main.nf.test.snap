@@ -30,7 +30,7 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T10:54:27.931607222"
+        "timestamp": "2025-06-03T07:52:52.160941308"
     },
     "Should run without failures with groupby sample and clustering": {
         "content": [
@@ -63,7 +63,7 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T10:56:29.998169921"
+        "timestamp": "2025-06-03T07:54:51.682466526"
     },
     "Should run without failures - stub": {
         "content": [
@@ -96,6 +96,6 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T10:56:54.0872032"
+        "timestamp": "2025-06-03T07:55:14.875540011"
     }
 }

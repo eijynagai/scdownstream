@@ -30,7 +30,7 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T11:55:24.647355064"
+        "timestamp": "2025-06-03T08:32:02.887357054"
     },
     "Should run without failures": {
         "content": [
@@ -63,6 +63,6 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T11:55:02.641830277"
+        "timestamp": "2025-06-03T08:31:41.37186872"
     }
 }

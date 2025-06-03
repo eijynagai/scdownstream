@@ -48,7 +48,7 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-01T14:05:53.82643051"
+        "timestamp": "2025-06-03T07:41:52.614018013"
     },
     "Should run without failures": {
         "content": [
@@ -58,11 +58,11 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,e1375b394b6f9882af11692487519d85"
+                        "test.h5ad:md5,5e51e899ba645e56120670566f4563ba"
                     ]
                 ],
                 "1": [
-                    "test.pkl:md5,7aa02adc690f5308a85b278e8f045b39"
+                    "test.pkl:md5,5216dfc097ca79c63d36eea95f2aed34"
                 ],
                 "2": [
                     
@@ -78,14 +78,14 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,e1375b394b6f9882af11692487519d85"
+                        "test.h5ad:md5,5e51e899ba645e56120670566f4563ba"
                     ]
                 ],
                 "multiqc_files": [
                     
                 ],
                 "obs": [
-                    "test.pkl:md5,7aa02adc690f5308a85b278e8f045b39"
+                    "test.pkl:md5,5216dfc097ca79c63d36eea95f2aed34"
                 ],
                 "plots": [
                     
@@ -99,6 +99,6 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-01T14:05:37.495623977"
+        "timestamp": "2025-06-03T07:41:34.328869302"
     }
 }

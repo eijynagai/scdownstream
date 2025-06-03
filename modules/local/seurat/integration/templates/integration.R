@@ -1,14 +1,17 @@
 #!/usr/bin/env Rscript
 
 library(Seurat)
+library(anndataR)
 
-sce <- readRDS("${rds}")
+# Set random seed
+set.seed(0)
 
-seurat_obj <- as.Seurat(sce, data = NULL)
-seurat_obj <- seurat_obj[, unname(which(colSums(GetAssayData(seurat_obj)) != 0))]
+adata <- read_h5ad("${h5ad}")
 
-batches <- SplitObject(seurat_obj, split.by = "batch")
-batches <- lapply(X = batches, FUN = SCTransform, assay = "originalexp")
+seurat_obj <- adata\$as_Seurat()
+
+batches <- SplitObject(seurat_obj, split.by = "${batch_col}")
+batches <- lapply(X = batches, FUN = SCTransform, assay = "RNA")
 
 features <- SelectIntegrationFeatures(object.list = batches, nfeatures = nrow(seurat_obj))
 batches <- PrepSCTIntegration(object.list = batches, anchor.features = features)
@@ -27,10 +30,23 @@ integrated <- IntegrateData(
 
 integrated <- RunPCA(integrated, reduction.name = "X_emb")
 
-# Add X_emb to the original object
-seurat_obj[["X_emb"]] <- integrated[["X_emb"]]
+# Extract embeddings
+emb <- Embeddings(integrated, reduction = "X_emb")
 
-saveRDS(seurat_obj, "${prefix}.rds")
+# Make sure the emb row order matches
+emb <- emb[match(rownames(adata\$obs), rownames(emb)), ]
+
+# Remove row and column names from the matrix
+rownames(emb) <- NULL
+colnames(emb) <- NULL
+
+# Round to 10 decimal places
+emb <- round(emb, 10)
+
+# Add embeddings to adata
+adata\$obsm\$X_emb <- emb
+
+write_h5ad(adata, "${prefix}.h5ad")
 
 ################################################
 ################################################
@@ -40,12 +56,14 @@ saveRDS(seurat_obj, "${prefix}.rds")
 
 r.version <- strsplit(version[['version.string']], ' ')[[1]][3]
 seurat.version <- as.character(packageVersion('Seurat'))
+anndataR.version <- as.character(packageVersion('anndataR'))
 
 writeLines(
     c(
         '"${task.process}":',
         paste('    R:', r.version),
-        paste('    Seurat:', seurat.version)
+        paste('    Seurat:', seurat.version),
+        paste('    anndataR:', anndataR.version)
     ),
 'versions.yml')
 

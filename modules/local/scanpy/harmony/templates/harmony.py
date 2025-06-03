@@ -25,9 +25,9 @@ sc.pp.log1p(adata_processing)
 sc.pp.pca(adata_processing)
 sce.pp.harmony_integrate(adata_processing, "${batch_col}", adjusted_basis="X_emb")
 
-# Round to 10 decimal places to avoid floating point precision issues
+# Round to avoid floating point precision issues
 # This ensures hashes are consistent
-emb = adata_processing.obsm["X_emb"].round(10)
+emb = adata_processing.obsm["X_emb"].round(6)
 adata.obsm["X_emb"] = emb
 
 adata.write_h5ad("${prefix}.h5ad")

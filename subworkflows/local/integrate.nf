@@ -11,7 +11,15 @@ include { SCIMILARITY        } from './scimilarity'
 
 workflow INTEGRATE {
     take:
-    ch_h5ad // channel: [ merged, h5ad ]
+    ch_h5ad                     // channel: [ merged, h5ad ]
+    is_extension                // boolean
+    n_hvgs                      // integer
+    methods                     // list of string
+    scvi_model                  // path
+    scanvi_model                // path
+    scvi_categorical_covariates // list of string
+    scvi_continuous_covariates  // list of string
+    scimilarity_model           // path
 
     main:
     ch_versions = Channel.empty()
@@ -22,47 +30,31 @@ workflow INTEGRATE {
 
     // If a reference model is provided, only the genes in the reference model are used
     // Otherwise, we would intersect the HVGs, which is not what we want
-    if (!params.base_adata && params.integration_hvgs >= 0) {
-        SCANPY_HVGS(ch_h5ad, params.integration_hvgs)
+    if (!is_extension && n_hvgs >= 0) {
+        SCANPY_HVGS(ch_h5ad, n_hvgs)
         ch_versions = ch_versions.mix(SCANPY_HVGS.out.versions)
         ch_h5ad_hvg = SCANPY_HVGS.out.h5ad
         ch_var = ch_var.mix(SCANPY_HVGS.out.var)
-    } else {
+    }
+    else {
         ch_h5ad_hvg = ch_h5ad
     }
 
-    methods = params.integration_methods.split(',').collect { it -> it.trim().toLowerCase() }
-
-    // Special treatment for R-based methods
-    if (methods.intersect(['seurat']).size() > 0) {
-        ADATA_TORDS(ch_h5ad_hvg)
-        ch_versions = ch_versions.mix(ADATA_TORDS.out.versions)
-        ch_rds = ADATA_TORDS.out.rds
-
-        ch_rds_integrations = Channel.empty()
-
-        if (methods.contains('seurat')) {
-            SEURAT_INTEGRATION(ch_rds.map { _meta, rds -> [[id: 'seurat'], rds] })
-            ch_versions = ch_versions.mix(SEURAT_INTEGRATION.out.versions)
-            ch_rds_integrations = ch_rds_integrations.mix(SEURAT_INTEGRATION.out.rds)
-        }
-
-        ADATA_READRDS(ch_rds_integrations)
-        ch_versions = ch_versions.mix(ADATA_READRDS.out.versions)
-
-        ch_integrations = ch_integrations.mix(ADATA_READRDS.out.h5ad)
-        ch_obsm = ch_obsm.mix(ADATA_READRDS.out.obsm)
+    if (methods.contains('seurat')) {
+        SEURAT_INTEGRATION(ch_h5ad_hvg.map { _meta, h5ad -> [[id: 'seurat'], h5ad] }, "batch")
+        ch_versions = ch_versions.mix(SEURAT_INTEGRATION.out.versions)
+        ch_integrations = ch_integrations.mix(SEURAT_INTEGRATION.out.h5ad)
     }
 
     if (methods.contains('scvi')) {
         SCVITOOLS_SCVI(
-            (params.scvi_model ? ch_h5ad : ch_h5ad_hvg).map { _meta, h5ad -> [[id: 'scvi'], h5ad] },
-            params.scvi_model
-                ? Channel.value([[id: 'scvi_model'], params.scvi_model])
+            (scvi_model ? ch_h5ad : ch_h5ad_hvg).map { _meta, h5ad -> [[id: 'scvi'], h5ad] },
+            scvi_model
+                ? Channel.value([[id: 'scvi_model'], scvi_model])
                 : [[], []],
             "batch",
-            params.scvi_categorical_covariates,
-            params.scvi_continuous_covariates,
+            scvi_categorical_covariates,
+            scvi_continuous_covariates,
         )
         ch_versions = ch_versions.mix(SCVITOOLS_SCVI.out.versions)
         ch_integrations = ch_integrations.mix(SCVITOOLS_SCVI.out.h5ad)
@@ -71,16 +63,16 @@ workflow INTEGRATE {
 
     if (methods.contains('scanvi')) {
         SCVITOOLS_SCANVI(
-            (params.scvi_model ? ch_h5ad : ch_h5ad_hvg).map { _meta, h5ad -> [[id: 'scanvi'], h5ad] },
-            params.scanvi_model
-                ? Channel.value([[id: 'scanvi_model'], params.scanvi_model])
+            (scvi_model ? ch_h5ad : ch_h5ad_hvg).map { _meta, h5ad -> [[id: 'scanvi'], h5ad] },
+            scanvi_model
+                ? Channel.value([[id: 'scanvi_model'], scanvi_model])
                 : methods.contains('scvi')
                     ? SCVITOOLS_SCVI.out.model
                     : [[], []],
             ["label", "unknown"],
             "batch",
-            params.scvi_categorical_covariates,
-            params.scvi_continuous_covariates,
+            scvi_categorical_covariates,
+            scvi_continuous_covariates,
         )
         ch_versions = ch_versions.mix(SCVITOOLS_SCANVI.out.versions)
         ch_integrations = ch_integrations.mix(SCVITOOLS_SCANVI.out.h5ad)
@@ -111,7 +103,7 @@ workflow INTEGRATE {
     if (methods.contains('scimilarity')) {
         SCIMILARITY(
             ch_h5ad.map { _meta, h5ad -> [[id: 'scimilarity'], h5ad] },
-            params.scimilarity_model,
+            scimilarity_model,
         )
         ch_versions = ch_versions.mix(SCIMILARITY.out.versions)
         ch_integrations = ch_integrations.mix(SCIMILARITY.out.integrations)
@@ -121,8 +113,8 @@ workflow INTEGRATE {
 
     emit:
     integrations = ch_integrations // channel: [ integration, h5ad ]
-    obs          = ch_obs          // channel: [ pkl ]
-    var          = ch_var          // channel: [ pkl ]
-    obsm         = ch_obsm         // channel: [ pkl ]
-    versions     = ch_versions     // channel: [ versions.yml ]
+    obs          = ch_obs // channel: [ pkl ]
+    var          = ch_var // channel: [ pkl ]
+    obsm         = ch_obsm // channel: [ pkl ]
+    versions     = ch_versions // channel: [ versions.yml ]
 }

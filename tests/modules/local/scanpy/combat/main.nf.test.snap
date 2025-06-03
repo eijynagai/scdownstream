@@ -42,7 +42,7 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T07:56:02.759311603"
+        "timestamp": "2025-06-03T07:48:07.847500785"
     },
     "Should run without failures": {
         "content": [
@@ -52,7 +52,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,65a889e637eea0bf582e606630c5a754"
+                        "test.h5ad:md5,e838561afed35f98abdd2a92382d3188"
                     ]
                 ],
                 "1": [
@@ -69,7 +69,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,65a889e637eea0bf582e606630c5a754"
+                        "test.h5ad:md5,e838561afed35f98abdd2a92382d3188"
                     ]
                 ],
                 "layers": [
@@ -87,6 +87,6 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T07:54:59.86066203"
+        "timestamp": "2025-06-03T07:47:06.392572807"
     }
 }
