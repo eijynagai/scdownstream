@@ -112,10 +112,10 @@ workflow SCDOWNSTREAM {
             ch_obsm = ch_obsm.mix(COMBINE.out.obsm)
             ch_integrations = ch_integrations.mix(COMBINE.out.integrations)
             ch_finalization_base = COMBINE.out.h5ad
-        }
 
-        ch_label_grouping = COMBINE.out.h5ad_inner
-        grouping_col = "label"
+            ch_label_grouping = COMBINE.out.h5ad_inner
+            grouping_col = "label"
+        }
     }
     else {
         ch_embeddings = Channel.value(params.base_embeddings.split(',').collect { it -> it.trim() })
