@@ -7,6 +7,7 @@ os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 os.environ["MPLCONFIGDIR"] = "./tmp/matplotlib"
 
 import scanpy as sc
+import numpy as np
 import pandas as pd
 import yaml
 
@@ -18,6 +19,10 @@ adata = sc.read_h5ad("${h5ad}", backed='r')
 prefix = "${prefix}"
 
 sc.tl.umap(adata, random_state=0)
+
+# Round to 10 decimal places
+# This ensures hashes are stable
+adata.obsm["X_umap"] = np.round(adata.obsm["X_umap"], 10)
 
 adata.write_h5ad(f"{prefix}.h5ad")
 df = pd.DataFrame(adata.obsm["X_umap"], index=adata.obs_names)

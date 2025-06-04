@@ -46,28 +46,28 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,d94c8c324a5a060634488adc8de3a157"
+                        "test.h5ad:md5,d6d28ed09f840e8b2b03f2141ec9c86f"
                     ]
                 ],
                 "1": [
-                    "X_test.pkl:md5,b00c4afdcd3d73fdc1625178155931aa"
+                    "X_test.pkl:md5,3e4a5c2297490a3165471b56f5ab486c"
                 ],
                 "2": [
-                    "versions.yml:md5,825bf224bc901d8e6a3694aabf83195e"
+                    "versions.yml:md5,8dd6b67d52121ffea06f0546bd248df7"
                 ],
                 "h5ad": [
                     [
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,d94c8c324a5a060634488adc8de3a157"
+                        "test.h5ad:md5,d6d28ed09f840e8b2b03f2141ec9c86f"
                     ]
                 ],
                 "obsm": [
-                    "X_test.pkl:md5,b00c4afdcd3d73fdc1625178155931aa"
+                    "X_test.pkl:md5,3e4a5c2297490a3165471b56f5ab486c"
                 ],
                 "versions": [
-                    "versions.yml:md5,825bf224bc901d8e6a3694aabf83195e"
+                    "versions.yml:md5,8dd6b67d52121ffea06f0546bd248df7"
                 ]
             }
         ],
@@ -75,6 +75,6 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-02T10:38:56.31711512"
+        "timestamp": "2025-06-04T17:38:36.42589523"
     }
 }
