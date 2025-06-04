@@ -100,4 +100,3 @@ versions = {
 
 with open("versions.yml", "w") as f:
     f.write(format_yaml_like(versions))
-
