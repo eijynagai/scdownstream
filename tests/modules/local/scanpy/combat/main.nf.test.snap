@@ -40,9 +40,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-14T15:35:51.045239019"
+        "timestamp": "2025-06-03T07:48:07.847500785"
     },
     "Should run without failures": {
         "content": [
@@ -52,14 +52,14 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,cc173ef41bc8813e458d9d81d66fa657"
+                        "test.h5ad:md5,e838561afed35f98abdd2a92382d3188"
                     ]
                 ],
                 "1": [
-                    "X_test.pkl:md5,b5364a49306ebbacf0ecb3c9072016ad"
+                    "X_test.pkl:md5,a785c6b49167fade31ca0c6f56f9e4fd"
                 ],
                 "2": [
-                    "test.npy:md5,0c33b840a9f596a600d252dfc80dfa52"
+                    "test.npy:md5,0be99b86fae136531e0862a50d613b15"
                 ],
                 "3": [
                     "versions.yml:md5,e169e019fff56e5e9984a1690b93ef14"
@@ -69,14 +69,14 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,cc173ef41bc8813e458d9d81d66fa657"
+                        "test.h5ad:md5,e838561afed35f98abdd2a92382d3188"
                     ]
                 ],
                 "layers": [
-                    "test.npy:md5,0c33b840a9f596a600d252dfc80dfa52"
+                    "test.npy:md5,0be99b86fae136531e0862a50d613b15"
                 ],
                 "obsm": [
-                    "X_test.pkl:md5,b5364a49306ebbacf0ecb3c9072016ad"
+                    "X_test.pkl:md5,a785c6b49167fade31ca0c6f56f9e4fd"
                 ],
                 "versions": [
                     "versions.yml:md5,e169e019fff56e5e9984a1690b93ef14"
@@ -85,8 +85,8 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-14T15:34:18.944528751"
+        "timestamp": "2025-06-03T07:47:06.392572807"
     }
 }

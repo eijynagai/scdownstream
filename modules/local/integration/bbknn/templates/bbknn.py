@@ -36,7 +36,7 @@ adata = sc.read_h5ad("${h5ad}")
 sc.tl.pca(adata)
 
 kwargs = {
-    "batch_key": "batch",
+    "batch_key": "${batch_col}",
     "copy": True,
 }
 

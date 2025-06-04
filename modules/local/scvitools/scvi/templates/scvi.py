@@ -49,7 +49,7 @@ else:
     categorical_covariates = categorical_covariates.split(",") if categorical_covariates else None
     continuous_covariates = continuous_covariates.split(",") if continuous_covariates else None
 
-    SCVI.setup_anndata(adata, batch_key = "batch",
+    SCVI.setup_anndata(adata, batch_key = "${batch_col}",
                         categorical_covariate_keys = categorical_covariates,
                         continuous_covariate_keys = continuous_covariates)
 

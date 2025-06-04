@@ -1,4 +1,3 @@
-include { ADATA_TORDS      } from '../../modules/local/adata/tords'
 include { SCVITOOLS_SOLO   } from '../../modules/nf-core/scvitools/solo'
 include { SCANPY_SCRUBLET  } from '../../modules/local/scanpy/scrublet'
 include { DOUBLETDETECTION } from '../../modules/nf-core/doubletdetection'
@@ -8,33 +7,20 @@ include { DOUBLET_REMOVAL  } from '../../modules/local/doublet_detection/doublet
 workflow DOUBLET_DETECTION {
     take:
     ch_h5ad // channel: [ meta, h5ad ]
+    methods // value: list of strings
 
     main:
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
     ch_predictions = Channel.empty()
 
-    if (!params.doublet_detection || params.doublet_detection == 'none') {
-        log.info("DOUBLET_DETECTION: Not performed since none selected.")
-    }
-    else {
-        methods = params.doublet_detection.split(',').collect { it -> it.trim().toLowerCase() }
-
-        if (methods.size() == 0) {
-            error("No doublet detection methods selected. If you want to skip this step, set 'doublet_detection' to 'none'.")
-        }
-
-        // Special treatment for R-based methods
-        if (methods.intersect(['scds']).size() > 0) {
-            ADATA_TORDS(ch_h5ad)
-            ch_versions = ch_versions.mix(ADATA_TORDS.out.versions)
-            ch_rds = ADATA_TORDS.out.rds
-
-            if (methods.contains('scds')) {
-                SCDS(ch_rds)
-                ch_predictions = ch_predictions.mix(SCDS.out.predictions)
-                ch_versions = SCDS.out.versions
-            }
+    if (methods.size() == 0) {
+        log.info("DOUBLET_DETECTION: Not performed since no methods selected.")
+    } else {
+        if (methods.contains('scds')) {
+            SCDS(ch_h5ad)
+            ch_predictions = ch_predictions.mix(SCDS.out.predictions)
+            ch_versions = SCDS.out.versions
         }
 
         if (methods.contains('solo')) {
@@ -44,7 +30,11 @@ workflow DOUBLET_DETECTION {
         }
 
         if (methods.contains('scrublet')) {
-            SCANPY_SCRUBLET(ch_h5ad)
+            ch_scrublet = ch_h5ad.multiMap { meta, h5ad ->
+                input: [meta, h5ad]
+                batch_col: meta.batch_col
+            }
+            SCANPY_SCRUBLET(ch_scrublet.input, ch_scrublet.batch_col)
             ch_predictions = ch_predictions.mix(SCANPY_SCRUBLET.out.predictions)
             ch_versions = SCANPY_SCRUBLET.out.versions
         }
@@ -66,7 +56,7 @@ workflow DOUBLET_DETECTION {
     }
 
     emit:
-    h5ad          = ch_h5ad          // channel: [ meta, h5ad ]
+    h5ad          = ch_h5ad // channel: [ meta, h5ad ]
     multiqc_files = ch_multiqc_files // channel: [ json ]
-    versions      = ch_versions      // channel: [ versions.yml ]
+    versions      = ch_versions // channel: [ versions.yml ]
 }

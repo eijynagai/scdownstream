@@ -24,8 +24,19 @@ workflow COMBINE {
     ch_inner = ADATA_MERGE.out.inner
     ch_versions = ch_versions.mix(ADATA_MERGE.out.versions)
 
-    INTEGRATE( ADATA_MERGE.out.integrate )
+    INTEGRATE(
+        ADATA_MERGE.out.integrate,
+        params.base_adata != null,
+        params.integration_hvgs,
+        params.integration_methods.split(',').collect { it -> it.trim().toLowerCase() },
+        params.scvi_model,
+        params.scanvi_model,
+        params.scvi_categorical_covariates,
+        params.scvi_continuous_covariates,
+        params.scimilarity_model
+    )
     ch_versions      = ch_versions.mix(INTEGRATE.out.versions)
+    ch_var           = ch_var.mix(INTEGRATE.out.var)
 
     if (params.base_adata) {
         ADATA_MERGEEMBEDDINGS(

@@ -6,8 +6,6 @@ nextflow_workflow {
 
     test("Should run without failures") {
 
-        config './pseudobulking.config'
-
         when {
             params {
                 outdir = "$outputDir"
@@ -16,9 +14,12 @@ nextflow_workflow {
                 """
                 input[0] = Channel.of([
                         [id: 'test'],
-                        file(params.pipelines_testdata_base_path + 'lupus/base/merged.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
+                input[1] = ["sample"]
+                input[2] = 10
+                input[3] = "X"
                 """
             }
         }
@@ -33,7 +34,6 @@ nextflow_workflow {
     test("Should run without failures - stub") {
 
         options '-stub'
-        config './pseudobulking.config'
 
         when {
             params {
@@ -43,9 +43,12 @@ nextflow_workflow {
                 """
                 input[0] = Channel.of([
                         [id: 'test'],
-                        file(params.pipelines_testdata_base_path + 'lupus/base/merged.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
+                input[1] = ["sample"]
+                input[2] = 10
+                input[3] = "X"
                 """
             }
         }

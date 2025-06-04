@@ -12,6 +12,7 @@ process SCVITOOLS_SCVI {
     input:
     tuple val(meta), path(h5ad, arity: 1)
     tuple val(meta2), path(reference_model, stageAs: 'reference_model/model.pt')
+    val(batch_col)
     val(categorical_covariates)
     val(continuous_covariates)
 

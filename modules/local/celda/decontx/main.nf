@@ -2,13 +2,12 @@ process CELDA_DECONTX {
     tag "$meta.id"
     label 'process_medium'
 
-    conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/anndata2ri_bioconductor-celda_anndata:b00344b12c58adb2':
-        'community.wave.seqera.io/library/anndata2ri_bioconductor-celda_anndata:b7d0f9b19bf27e00' }"
+    container "docker.io/nicotru/celda:1d48a68e9d534b2b"
 
     input:
     tuple val(meta), path(h5ad), path(raw)
+    val(batch_col)
+    val(input_layer)
 
     output:
     tuple val(meta), path("*.h5ad"), emit: h5ad
@@ -19,8 +18,8 @@ process CELDA_DECONTX {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    batch_col = task.ext.batch_col ?: ""
-    template 'decontx.py'
+    output_layer = task.ext.output_layer ?: "decontXcounts"
+    template 'decontx.R'
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"

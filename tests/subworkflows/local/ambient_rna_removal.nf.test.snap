@@ -1,69 +1,31 @@
 {
     "Should run with 'decontx' ambient removal": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test_decontx.h5ad:md5,68306f1a7eda214b37439f929460ca42"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,df9e96d9143495c3e61c2dfda8916373"
-                ],
-                "h5ad": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test_decontx.h5ad:md5,68306f1a7eda214b37439f929460ca42"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,df9e96d9143495c3e61c2dfda8916373"
-                ]
-            }
+            [
+                "versions.yml:md5,2edde5588f184cbfac859e46fc966aad"
+            ],
+            true,
+            8645020
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-13T16:01:10.532288109"
+        "timestamp": "2025-05-30T11:35:49.196830658"
     },
     "Should run with 'soupx' ambient removal": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test_soupX.h5ad:md5,3be4a5a7f00764b7eb5ea607758732cf"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,644764d4f3ec5f5ab6369c8621830f9f"
-                ],
-                "h5ad": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test_soupX.h5ad:md5,3be4a5a7f00764b7eb5ea607758732cf"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,644764d4f3ec5f5ab6369c8621830f9f"
-                ]
-            }
+            [
+                "versions.yml:md5,db9568c840fa1d3a4390bba83b1eb278"
+            ],
+            true,
+            8652012
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-13T16:03:00.474840012"
+        "timestamp": "2025-05-30T11:36:48.097890698"
     },
     "Should run with 'cellbender' ambient removal": {
         "content": [
@@ -73,7 +35,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,3c152b8b20ea09b11a5ac37df9230ca6"
+                        "test.h5ad:md5,20c28699319d88792e91f724b78badc1"
                     ]
                 ],
                 "1": [
@@ -85,7 +47,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,3c152b8b20ea09b11a5ac37df9230ca6"
+                        "test.h5ad:md5,20c28699319d88792e91f724b78badc1"
                     ]
                 ],
                 "versions": [
@@ -96,9 +58,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-13T17:00:31.621551424"
+        "timestamp": "2025-05-30T11:39:58.711630082"
     },
     "Should run with 'scar' ambient removal": {
         "content": [
@@ -108,7 +70,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,4d7a4226030893dc158367e97b912481"
+                        "test.h5ad:md5,ec278b7ea7384e3a76f147fe396f700c"
                     ]
                 ],
                 "1": [
@@ -119,7 +81,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,4d7a4226030893dc158367e97b912481"
+                        "test.h5ad:md5,ec278b7ea7384e3a76f147fe396f700c"
                     ]
                 ],
                 "versions": [
@@ -129,9 +91,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-13T16:07:08.413534193"
+        "timestamp": "2025-05-30T11:37:40.474230724"
     },
     "Should run with 'none' ambient removal": {
         "content": [
@@ -141,29 +103,29 @@
                         {
                             "id": "test"
                         },
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad"
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679759_filtered_matrix.h5ad"
                     ]
                 ],
                 "1": [
-                    
+
                 ],
                 "h5ad": [
                     [
                         {
                             "id": "test"
                         },
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad"
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679759_filtered_matrix.h5ad"
                     ]
                 ],
                 "versions": [
-                    
+
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-13T16:00:06.406158707"
+        "timestamp": "2025-05-30T11:34:46.098625373"
     }
 }

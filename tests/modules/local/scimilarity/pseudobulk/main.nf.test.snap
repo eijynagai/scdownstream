@@ -7,7 +7,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,137cf608ab1afd1f2d34b0935ee40ce7"
+                        "test_pseudobulk.h5ad:md5,3017c24481a4f4b36325b70e6ededbfa"
                     ]
                 ],
                 "1": [
@@ -18,7 +18,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,137cf608ab1afd1f2d34b0935ee40ce7"
+                        "test_pseudobulk.h5ad:md5,3017c24481a4f4b36325b70e6ededbfa"
                     ]
                 ],
                 "versions": [
@@ -28,9 +28,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-16T08:36:59.971364193"
+        "timestamp": "2025-06-03T07:52:52.160941308"
     },
     "Should run without failures with groupby sample and clustering": {
         "content": [
@@ -40,7 +40,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,6bddd0a22466a7c315013dc2242dbb20"
+                        "test_pseudobulk.h5ad:md5,68acbbaa0f4ee94cc084d0455684af6e"
                     ]
                 ],
                 "1": [
@@ -51,7 +51,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,6bddd0a22466a7c315013dc2242dbb20"
+                        "test_pseudobulk.h5ad:md5,68acbbaa0f4ee94cc084d0455684af6e"
                     ]
                 ],
                 "versions": [
@@ -61,9 +61,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-16T08:37:59.439868804"
+        "timestamp": "2025-06-03T07:54:51.682466526"
     },
     "Should run without failures - stub": {
         "content": [
@@ -73,7 +73,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_pseudobulk.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -84,7 +84,7 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_pseudobulk.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -94,8 +94,8 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-16T08:38:51.296329799"
+        "timestamp": "2025-06-03T07:55:14.875540011"
     }
 }

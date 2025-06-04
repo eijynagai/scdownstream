@@ -1,37 +1,4 @@
 {
-    "Should run without failures - prefix - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "h5ad": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
-        },
-        "timestamp": "2025-04-12T21:59:14.93266031"
-    },
     "Should run without failures - stub": {
         "content": [
             {
@@ -61,74 +28,22 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-12T21:58:51.103508152"
+        "timestamp": "2025-05-30T11:14:27.593195965"
     },
     "Should run without failures": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test_soupX.h5ad:md5,3be4a5a7f00764b7eb5ea607758732cf"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,f1a375f59c0ba131b56c4624804f440f"
-                ],
-                "h5ad": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test_soupX.h5ad:md5,3be4a5a7f00764b7eb5ea607758732cf"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,f1a375f59c0ba131b56c4624804f440f"
-                ]
-            }
+            [
+                "versions.yml:md5,9c2fb6c515c7ddc9276461ce589a82d7"
+            ],
+            true,
+            8652012
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-12T21:56:38.013959199"
-    },
-    "Should run without failures - prefix": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.h5ad:md5,3be4a5a7f00764b7eb5ea607758732cf"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,f1a375f59c0ba131b56c4624804f440f"
-                ],
-                "h5ad": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.h5ad:md5,3be4a5a7f00764b7eb5ea607758732cf"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,f1a375f59c0ba131b56c4624804f440f"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
-        },
-        "timestamp": "2025-04-12T21:58:26.393208439"
+        "timestamp": "2025-05-30T11:14:07.523129386"
     }
 }

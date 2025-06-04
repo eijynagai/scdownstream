@@ -1,7 +1,6 @@
-name: scanpy_harmony
 channels:
   - conda-forge
   - bioconda
 dependencies:
   - bioconda::harmonypy=0.0.10
-  - conda-forge::scanpy=1.10.4
+  - conda-forge::scanpy=1.11.1

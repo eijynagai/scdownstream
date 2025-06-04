@@ -61,6 +61,9 @@ for adata in adatas:
 adata_outer = ad.concat(adatas, join="outer")
 adata_outer.X = csr_matrix(adata_outer.X)
 
+# Sort obs columns alphabetically to make reproducible
+adata_outer.obs = adata_outer.obs.reindex(sorted(adata_outer.obs.columns), axis=1)
+
 gene_intersection = set(genes[0]).intersection(*genes[1:])
 intersection_mask = adata_outer.var_names.to_series(name='intersection').map(lambda x: x in gene_intersection)
 adata_inner = adata_outer[:, intersection_mask]

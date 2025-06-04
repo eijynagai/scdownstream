@@ -14,7 +14,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = ["Adult_COVID19_PBMC"]
@@ -43,7 +43,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = ["Adult_COVID19_PBMC"]

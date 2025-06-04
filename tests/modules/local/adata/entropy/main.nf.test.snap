@@ -11,14 +11,15 @@
                     ]
                 ],
                 "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                    "test.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "2": [
+                    "test.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
                     "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "h5ad": [
@@ -29,13 +30,14 @@
                         "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "pkl": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+                "multiqc_files": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obs": [
+                    "test.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "plots": [
+                    "test.png:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "versions": [
                     "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
@@ -44,9 +46,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-23T13:02:24.734853006"
+        "timestamp": "2025-06-03T07:41:52.614018013"
     },
     "Should run without failures": {
         "content": [
@@ -56,45 +58,47 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,fa045ecc22b89f68f1bec16948da6362"
+                        "test.h5ad:md5,5e51e899ba645e56120670566f4563ba"
                     ]
                 ],
                 "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.pkl:md5,1ccf0caec6882c6a068dd0d488e11a98"
-                    ]
+                    "test.pkl:md5,5216dfc097ca79c63d36eea95f2aed34"
                 ],
                 "2": [
-                    "versions.yml:md5,9009c6700e693919ee71295f8ad24990"
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    "versions.yml:md5,a9e6c712c3f0f7d6323e312384d7e922"
                 ],
                 "h5ad": [
                     [
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,fa045ecc22b89f68f1bec16948da6362"
+                        "test.h5ad:md5,5e51e899ba645e56120670566f4563ba"
                     ]
                 ],
-                "pkl": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.pkl:md5,1ccf0caec6882c6a068dd0d488e11a98"
-                    ]
+                "multiqc_files": [
+                    
+                ],
+                "obs": [
+                    "test.pkl:md5,5216dfc097ca79c63d36eea95f2aed34"
+                ],
+                "plots": [
+                    
                 ],
                 "versions": [
-                    "versions.yml:md5,9009c6700e693919ee71295f8ad24990"
+                    "versions.yml:md5,a9e6c712c3f0f7d6323e312384d7e922"
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-23T13:02:07.90741442"
+        "timestamp": "2025-06-03T07:41:34.328869302"
     }
 }

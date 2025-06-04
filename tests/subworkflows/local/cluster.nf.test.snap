@@ -1,0 +1,1368 @@
+{
+    "Should run without failures - per-label - stub": {
+        "content": [
+            {
+                "0": [
+                    "pca-A-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "X_pca-A_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "X_pca-B_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "pca-A",
+                            "integration": "pca",
+                            "subset": "A"
+                        },
+                        "pca-A_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B",
+                            "integration": "pca",
+                            "subset": "B"
+                        },
+                        "pca-B_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "pca-A-0.5",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "0.5"
+                        },
+                        "pca-A-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-A-1",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "1"
+                        },
+                        "pca-A-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-0.5",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "0.5"
+                        },
+                        "pca-B-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-1",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "1"
+                        },
+                        "pca-B-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "pca-A-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad_clustering": [
+                    [
+                        {
+                            "id": "pca-A-0.5",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "0.5"
+                        },
+                        "pca-A-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-A-1",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "1"
+                        },
+                        "pca-A-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-0.5",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "0.5"
+                        },
+                        "pca-B-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-1",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "1"
+                        },
+                        "pca-B-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "h5ad_neighbors": [
+                    [
+                        {
+                            "id": "pca-A",
+                            "integration": "pca",
+                            "subset": "A"
+                        },
+                        "pca-A_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B",
+                            "integration": "pca",
+                            "subset": "B"
+                        },
+                        "pca-B_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "pca-A-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obs": [
+                    "pca-A-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obsm": [
+                    "X_pca-A_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "X_pca-B_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T08:39:56.19859115"
+    },
+    "Should run without failures - global - stub": {
+        "content": [
+            {
+                "0": [
+                    "pca-global-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "X_pca-global_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "pca-global-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad_clustering": [
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "h5ad_neighbors": [
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "pca-global-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obs": [
+                    "pca-global-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obsm": [
+                    "X_pca-global_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T08:37:10.116538526"
+    },
+    "Should run without failures - global": {
+        "content": [
+            {
+                "0": [
+                    "pca-global-0.5_entropy.pkl:md5,9045ec80f165c715421af81c192a1d30",
+                    "pca-global-0.5_leiden.pkl:md5,f2c5196bbeda5ff1d16dc3a6038470c4",
+                    "pca-global-1_entropy.pkl:md5,683ef5ed5a6683b8f1dd0fde912130e2",
+                    "pca-global-1_leiden.pkl:md5,a046d51100b2f1d96fbb2f4b09982876"
+                ],
+                "1": [
+                    "X_pca-global_umap.pkl:md5,885c51eee1ab4e73b861a0bd8e1ad233"
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,1d20d3897d088b9493337ea37b460aee"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,2a12b3a2ad3c1a66f44a20d80006c912"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,9a48dd9c98b4dc5a005f59a2b13328bc"
+                    ]
+                ],
+                "4": [
+                    "pca-global-0.5_entropy_mqc.json:md5,e4c51be019a5244c47d52e69c1fe9122",
+                    "pca-global-0.5_leiden_mqc.json:md5,fe7a25b7e33ebbac8255bbea366a84bf",
+                    "pca-global-1_entropy_mqc.json:md5,5adc2bdb05df9f3c13552b2c9d286c81",
+                    "pca-global-1_leiden_mqc.json:md5,30e185fa6a4b8af5a09d60ac80dbb6bd"
+                ],
+                "5": [
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c"
+                ],
+                "h5ad_clustering": [
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,2a12b3a2ad3c1a66f44a20d80006c912"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,9a48dd9c98b4dc5a005f59a2b13328bc"
+                    ]
+                ],
+                "h5ad_neighbors": [
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,1d20d3897d088b9493337ea37b460aee"
+                    ]
+                ],
+                "multiqc_files": [
+                    "pca-global-0.5_entropy_mqc.json:md5,e4c51be019a5244c47d52e69c1fe9122",
+                    "pca-global-0.5_leiden_mqc.json:md5,fe7a25b7e33ebbac8255bbea366a84bf",
+                    "pca-global-1_entropy_mqc.json:md5,5adc2bdb05df9f3c13552b2c9d286c81",
+                    "pca-global-1_leiden_mqc.json:md5,30e185fa6a4b8af5a09d60ac80dbb6bd"
+                ],
+                "obs": [
+                    "pca-global-0.5_entropy.pkl:md5,9045ec80f165c715421af81c192a1d30",
+                    "pca-global-0.5_leiden.pkl:md5,f2c5196bbeda5ff1d16dc3a6038470c4",
+                    "pca-global-1_entropy.pkl:md5,683ef5ed5a6683b8f1dd0fde912130e2",
+                    "pca-global-1_leiden.pkl:md5,a046d51100b2f1d96fbb2f4b09982876"
+                ],
+                "obsm": [
+                    "X_pca-global_umap.pkl:md5,885c51eee1ab4e73b861a0bd8e1ad233"
+                ],
+                "versions": [
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T08:39:33.077364098"
+    },
+    "Should run without failures - both - stub": {
+        "content": [
+            {
+                "0": [
+                    "pca-A-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "1": [
+                    "X_pca-A_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "X_pca-B_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "X_pca-global_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "pca-A",
+                            "integration": "pca",
+                            "subset": "A"
+                        },
+                        "pca-A_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B",
+                            "integration": "pca",
+                            "subset": "B"
+                        },
+                        "pca-B_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "pca-A-0.5",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "0.5"
+                        },
+                        "pca-A-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-A-1",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "1"
+                        },
+                        "pca-A-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-0.5",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "0.5"
+                        },
+                        "pca-B-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-1",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "1"
+                        },
+                        "pca-B-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "pca-A-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad_clustering": [
+                    [
+                        {
+                            "id": "pca-A-0.5",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "0.5"
+                        },
+                        "pca-A-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-A-1",
+                            "integration": "pca",
+                            "subset": "A",
+                            "resolution": "1"
+                        },
+                        "pca-A-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-0.5",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "0.5"
+                        },
+                        "pca-B-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B-1",
+                            "integration": "pca",
+                            "subset": "B",
+                            "resolution": "1"
+                        },
+                        "pca-B-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "h5ad_neighbors": [
+                    [
+                        {
+                            "id": "pca-A",
+                            "integration": "pca",
+                            "subset": "A"
+                        },
+                        "pca-A_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-B",
+                            "integration": "pca",
+                            "subset": "B"
+                        },
+                        "pca-B_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "pca-A-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obs": [
+                    "pca-A-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-A-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-B-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-0.5_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_entropy.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "pca-global-1_leiden.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obsm": [
+                    "X_pca-A_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "X_pca-B_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "X_pca-global_umap.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T08:42:18.041010001"
+    },
+    "Should run without failures - per-label": {
+        "content": [
+            {
+                "0": [
+                    "pca-SRR28679756_filtered-0.5_entropy.pkl:md5,e83f5cc4a6193de1917760e757e6c26d",
+                    "pca-SRR28679756_filtered-0.5_leiden.pkl:md5,1bb609920988fc86c9326d5f069faedc",
+                    "pca-SRR28679756_filtered-1_entropy.pkl:md5,974bd0a697f3cedeeee01716ac00d841",
+                    "pca-SRR28679756_filtered-1_leiden.pkl:md5,3e72cf4392f22e6b03b614b04b8e8d9f",
+                    "pca-SRR28679757_filtered-0.5_entropy.pkl:md5,fd47fb52200218f9ae3b9d81b9c47c1f",
+                    "pca-SRR28679757_filtered-0.5_leiden.pkl:md5,a1fabb252ba2a420c59a463f2d5ebe40",
+                    "pca-SRR28679757_filtered-1_entropy.pkl:md5,c75dd052d8000a60db544223ff6145b4",
+                    "pca-SRR28679757_filtered-1_leiden.pkl:md5,c259d588a968c5d763e5bcdc6267e0cd",
+                    "pca-SRR28679758_filtered-0.5_entropy.pkl:md5,6e27eb85046c663eda331f91bc0fb500",
+                    "pca-SRR28679758_filtered-0.5_leiden.pkl:md5,a362352c459d6ac05247be2606d26031",
+                    "pca-SRR28679758_filtered-1_entropy.pkl:md5,4a4a18b83fbb62f02cf47b35a5cc475c",
+                    "pca-SRR28679758_filtered-1_leiden.pkl:md5,99052bd0812652a2b24cab3af4ac8caa"
+                ],
+                "1": [
+                    "X_pca-SRR28679756_filtered_umap.pkl:md5,104c3618b18f22e4c2fbc3a04938c75a",
+                    "X_pca-SRR28679757_filtered_umap.pkl:md5,c379b870dcf0c64858f5a9d5bf22199e",
+                    "X_pca-SRR28679758_filtered_umap.pkl:md5,f94019ec8a1a14b4defce643c97a7064"
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered"
+                        },
+                        "pca-SRR28679756_filtered_neighbors.h5ad:md5,301d468c2bfa0df46e4bddba3020dedc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered"
+                        },
+                        "pca-SRR28679757_filtered_neighbors.h5ad:md5,186447852e8b83e0779632157acaf3d9"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered"
+                        },
+                        "pca-SRR28679758_filtered_neighbors.h5ad:md5,e280245bf6103bfe785ef3a2951d08b3"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679756_filtered-0.5_leiden.h5ad:md5,b64338ed24274e6e54577a2b8ed259c0"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679756_filtered-1_leiden.h5ad:md5,c7ffc570541794bd73a26bc7464fdfbc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679757_filtered-0.5_leiden.h5ad:md5,8af90b6f8f34c553232c45244f43d27b"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679757_filtered-1_leiden.h5ad:md5,e600e17deec5d60822e94d121926cf04"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679758_filtered-0.5_leiden.h5ad:md5,546d5da642b19db3a3f6e0e33d7e9717"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679758_filtered-1_leiden.h5ad:md5,76485b6f02e4d70afbe0f5ddd3dd1013"
+                    ]
+                ],
+                "4": [
+                    "pca-SRR28679756_filtered-0.5_entropy_mqc.json:md5,2bd5bab530f4f1b7d0b0825adaeefa62",
+                    "pca-SRR28679756_filtered-0.5_leiden_mqc.json:md5,c1bd02d3a989ae16de15feb894a7d5ae",
+                    "pca-SRR28679756_filtered-1_entropy_mqc.json:md5,2f5a6abaff8ece623b0680ca295661de",
+                    "pca-SRR28679756_filtered-1_leiden_mqc.json:md5,facb600b343da9c610789d0bdea5c241",
+                    "pca-SRR28679757_filtered-0.5_entropy_mqc.json:md5,267074237abd64a218467ad127bf9995",
+                    "pca-SRR28679757_filtered-0.5_leiden_mqc.json:md5,3084b726f35de16c1333ebf3cea43917",
+                    "pca-SRR28679757_filtered-1_entropy_mqc.json:md5,8fdaf49a9042f5a9b92346b8e61f5b52",
+                    "pca-SRR28679757_filtered-1_leiden_mqc.json:md5,c7407a270f648d4f40fb1272d9f36697",
+                    "pca-SRR28679758_filtered-0.5_entropy_mqc.json:md5,7234c8da65ec8a93fd563efc56986eba",
+                    "pca-SRR28679758_filtered-0.5_leiden_mqc.json:md5,d38b507cff627bb9311b014e68ad1b56",
+                    "pca-SRR28679758_filtered-1_entropy_mqc.json:md5,778a32aa9ca9a9aa1e580c30a425018f",
+                    "pca-SRR28679758_filtered-1_leiden_mqc.json:md5,f50a1cb01ba4fba4206a100b8201e30e"
+                ],
+                "5": [
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,6641dd43811dcf88f01dd0d6198f98bc",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c"
+                ],
+                "h5ad_clustering": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679756_filtered-0.5_leiden.h5ad:md5,b64338ed24274e6e54577a2b8ed259c0"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679756_filtered-1_leiden.h5ad:md5,c7ffc570541794bd73a26bc7464fdfbc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679757_filtered-0.5_leiden.h5ad:md5,8af90b6f8f34c553232c45244f43d27b"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679757_filtered-1_leiden.h5ad:md5,e600e17deec5d60822e94d121926cf04"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679758_filtered-0.5_leiden.h5ad:md5,546d5da642b19db3a3f6e0e33d7e9717"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679758_filtered-1_leiden.h5ad:md5,76485b6f02e4d70afbe0f5ddd3dd1013"
+                    ]
+                ],
+                "h5ad_neighbors": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered"
+                        },
+                        "pca-SRR28679756_filtered_neighbors.h5ad:md5,301d468c2bfa0df46e4bddba3020dedc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered"
+                        },
+                        "pca-SRR28679757_filtered_neighbors.h5ad:md5,186447852e8b83e0779632157acaf3d9"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered"
+                        },
+                        "pca-SRR28679758_filtered_neighbors.h5ad:md5,e280245bf6103bfe785ef3a2951d08b3"
+                    ]
+                ],
+                "multiqc_files": [
+                    "pca-SRR28679756_filtered-0.5_entropy_mqc.json:md5,2bd5bab530f4f1b7d0b0825adaeefa62",
+                    "pca-SRR28679756_filtered-0.5_leiden_mqc.json:md5,c1bd02d3a989ae16de15feb894a7d5ae",
+                    "pca-SRR28679756_filtered-1_entropy_mqc.json:md5,2f5a6abaff8ece623b0680ca295661de",
+                    "pca-SRR28679756_filtered-1_leiden_mqc.json:md5,facb600b343da9c610789d0bdea5c241",
+                    "pca-SRR28679757_filtered-0.5_entropy_mqc.json:md5,267074237abd64a218467ad127bf9995",
+                    "pca-SRR28679757_filtered-0.5_leiden_mqc.json:md5,3084b726f35de16c1333ebf3cea43917",
+                    "pca-SRR28679757_filtered-1_entropy_mqc.json:md5,8fdaf49a9042f5a9b92346b8e61f5b52",
+                    "pca-SRR28679757_filtered-1_leiden_mqc.json:md5,c7407a270f648d4f40fb1272d9f36697",
+                    "pca-SRR28679758_filtered-0.5_entropy_mqc.json:md5,7234c8da65ec8a93fd563efc56986eba",
+                    "pca-SRR28679758_filtered-0.5_leiden_mqc.json:md5,d38b507cff627bb9311b014e68ad1b56",
+                    "pca-SRR28679758_filtered-1_entropy_mqc.json:md5,778a32aa9ca9a9aa1e580c30a425018f",
+                    "pca-SRR28679758_filtered-1_leiden_mqc.json:md5,f50a1cb01ba4fba4206a100b8201e30e"
+                ],
+                "obs": [
+                    "pca-SRR28679756_filtered-0.5_entropy.pkl:md5,e83f5cc4a6193de1917760e757e6c26d",
+                    "pca-SRR28679756_filtered-0.5_leiden.pkl:md5,1bb609920988fc86c9326d5f069faedc",
+                    "pca-SRR28679756_filtered-1_entropy.pkl:md5,974bd0a697f3cedeeee01716ac00d841",
+                    "pca-SRR28679756_filtered-1_leiden.pkl:md5,3e72cf4392f22e6b03b614b04b8e8d9f",
+                    "pca-SRR28679757_filtered-0.5_entropy.pkl:md5,fd47fb52200218f9ae3b9d81b9c47c1f",
+                    "pca-SRR28679757_filtered-0.5_leiden.pkl:md5,a1fabb252ba2a420c59a463f2d5ebe40",
+                    "pca-SRR28679757_filtered-1_entropy.pkl:md5,c75dd052d8000a60db544223ff6145b4",
+                    "pca-SRR28679757_filtered-1_leiden.pkl:md5,c259d588a968c5d763e5bcdc6267e0cd",
+                    "pca-SRR28679758_filtered-0.5_entropy.pkl:md5,6e27eb85046c663eda331f91bc0fb500",
+                    "pca-SRR28679758_filtered-0.5_leiden.pkl:md5,a362352c459d6ac05247be2606d26031",
+                    "pca-SRR28679758_filtered-1_entropy.pkl:md5,4a4a18b83fbb62f02cf47b35a5cc475c",
+                    "pca-SRR28679758_filtered-1_leiden.pkl:md5,99052bd0812652a2b24cab3af4ac8caa"
+                ],
+                "obsm": [
+                    "X_pca-SRR28679756_filtered_umap.pkl:md5,104c3618b18f22e4c2fbc3a04938c75a",
+                    "X_pca-SRR28679757_filtered_umap.pkl:md5,c379b870dcf0c64858f5a9d5bf22199e",
+                    "X_pca-SRR28679758_filtered_umap.pkl:md5,f94019ec8a1a14b4defce643c97a7064"
+                ],
+                "versions": [
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,6641dd43811dcf88f01dd0d6198f98bc",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T08:41:55.037110277"
+    },
+    "Should run without failures - both": {
+        "content": [
+            {
+                "0": [
+                    "pca-SRR28679756_filtered-0.5_entropy.pkl:md5,e83f5cc4a6193de1917760e757e6c26d",
+                    "pca-SRR28679756_filtered-0.5_leiden.pkl:md5,1bb609920988fc86c9326d5f069faedc",
+                    "pca-SRR28679756_filtered-1_entropy.pkl:md5,974bd0a697f3cedeeee01716ac00d841",
+                    "pca-SRR28679756_filtered-1_leiden.pkl:md5,3e72cf4392f22e6b03b614b04b8e8d9f",
+                    "pca-SRR28679757_filtered-0.5_entropy.pkl:md5,fd47fb52200218f9ae3b9d81b9c47c1f",
+                    "pca-SRR28679757_filtered-0.5_leiden.pkl:md5,a1fabb252ba2a420c59a463f2d5ebe40",
+                    "pca-SRR28679757_filtered-1_entropy.pkl:md5,c75dd052d8000a60db544223ff6145b4",
+                    "pca-SRR28679757_filtered-1_leiden.pkl:md5,c259d588a968c5d763e5bcdc6267e0cd",
+                    "pca-SRR28679758_filtered-0.5_entropy.pkl:md5,6e27eb85046c663eda331f91bc0fb500",
+                    "pca-SRR28679758_filtered-0.5_leiden.pkl:md5,a362352c459d6ac05247be2606d26031",
+                    "pca-SRR28679758_filtered-1_entropy.pkl:md5,4a4a18b83fbb62f02cf47b35a5cc475c",
+                    "pca-SRR28679758_filtered-1_leiden.pkl:md5,99052bd0812652a2b24cab3af4ac8caa",
+                    "pca-global-0.5_entropy.pkl:md5,9045ec80f165c715421af81c192a1d30",
+                    "pca-global-0.5_leiden.pkl:md5,f2c5196bbeda5ff1d16dc3a6038470c4",
+                    "pca-global-1_entropy.pkl:md5,683ef5ed5a6683b8f1dd0fde912130e2",
+                    "pca-global-1_leiden.pkl:md5,a046d51100b2f1d96fbb2f4b09982876"
+                ],
+                "1": [
+                    "X_pca-SRR28679756_filtered_umap.pkl:md5,104c3618b18f22e4c2fbc3a04938c75a",
+                    "X_pca-SRR28679757_filtered_umap.pkl:md5,c379b870dcf0c64858f5a9d5bf22199e",
+                    "X_pca-SRR28679758_filtered_umap.pkl:md5,f94019ec8a1a14b4defce643c97a7064",
+                    "X_pca-global_umap.pkl:md5,885c51eee1ab4e73b861a0bd8e1ad233"
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered"
+                        },
+                        "pca-SRR28679756_filtered_neighbors.h5ad:md5,301d468c2bfa0df46e4bddba3020dedc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered"
+                        },
+                        "pca-SRR28679757_filtered_neighbors.h5ad:md5,186447852e8b83e0779632157acaf3d9"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered"
+                        },
+                        "pca-SRR28679758_filtered_neighbors.h5ad:md5,e280245bf6103bfe785ef3a2951d08b3"
+                    ],
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,1d20d3897d088b9493337ea37b460aee"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679756_filtered-0.5_leiden.h5ad:md5,b64338ed24274e6e54577a2b8ed259c0"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679756_filtered-1_leiden.h5ad:md5,c7ffc570541794bd73a26bc7464fdfbc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679757_filtered-0.5_leiden.h5ad:md5,8af90b6f8f34c553232c45244f43d27b"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679757_filtered-1_leiden.h5ad:md5,e600e17deec5d60822e94d121926cf04"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679758_filtered-0.5_leiden.h5ad:md5,546d5da642b19db3a3f6e0e33d7e9717"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679758_filtered-1_leiden.h5ad:md5,76485b6f02e4d70afbe0f5ddd3dd1013"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,2a12b3a2ad3c1a66f44a20d80006c912"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,9a48dd9c98b4dc5a005f59a2b13328bc"
+                    ]
+                ],
+                "4": [
+                    "pca-SRR28679756_filtered-0.5_entropy_mqc.json:md5,2bd5bab530f4f1b7d0b0825adaeefa62",
+                    "pca-SRR28679756_filtered-0.5_leiden_mqc.json:md5,c1bd02d3a989ae16de15feb894a7d5ae",
+                    "pca-SRR28679756_filtered-1_entropy_mqc.json:md5,2f5a6abaff8ece623b0680ca295661de",
+                    "pca-SRR28679756_filtered-1_leiden_mqc.json:md5,facb600b343da9c610789d0bdea5c241",
+                    "pca-SRR28679757_filtered-0.5_entropy_mqc.json:md5,267074237abd64a218467ad127bf9995",
+                    "pca-SRR28679757_filtered-0.5_leiden_mqc.json:md5,3084b726f35de16c1333ebf3cea43917",
+                    "pca-SRR28679757_filtered-1_entropy_mqc.json:md5,8fdaf49a9042f5a9b92346b8e61f5b52",
+                    "pca-SRR28679757_filtered-1_leiden_mqc.json:md5,c7407a270f648d4f40fb1272d9f36697",
+                    "pca-SRR28679758_filtered-0.5_entropy_mqc.json:md5,7234c8da65ec8a93fd563efc56986eba",
+                    "pca-SRR28679758_filtered-0.5_leiden_mqc.json:md5,d38b507cff627bb9311b014e68ad1b56",
+                    "pca-SRR28679758_filtered-1_entropy_mqc.json:md5,778a32aa9ca9a9aa1e580c30a425018f",
+                    "pca-SRR28679758_filtered-1_leiden_mqc.json:md5,f50a1cb01ba4fba4206a100b8201e30e",
+                    "pca-global-0.5_entropy_mqc.json:md5,e4c51be019a5244c47d52e69c1fe9122",
+                    "pca-global-0.5_leiden_mqc.json:md5,fe7a25b7e33ebbac8255bbea366a84bf",
+                    "pca-global-1_entropy_mqc.json:md5,5adc2bdb05df9f3c13552b2c9d286c81",
+                    "pca-global-1_leiden_mqc.json:md5,30e185fa6a4b8af5a09d60ac80dbb6bd"
+                ],
+                "5": [
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,6641dd43811dcf88f01dd0d6198f98bc",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c"
+                ],
+                "h5ad_clustering": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679756_filtered-0.5_leiden.h5ad:md5,b64338ed24274e6e54577a2b8ed259c0"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679756_filtered-1_leiden.h5ad:md5,c7ffc570541794bd73a26bc7464fdfbc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679757_filtered-0.5_leiden.h5ad:md5,8af90b6f8f34c553232c45244f43d27b"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679757_filtered-1_leiden.h5ad:md5,e600e17deec5d60822e94d121926cf04"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-0.5",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "0.5"
+                        },
+                        "pca-SRR28679758_filtered-0.5_leiden.h5ad:md5,546d5da642b19db3a3f6e0e33d7e9717"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered-1",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered",
+                            "resolution": "1"
+                        },
+                        "pca-SRR28679758_filtered-1_leiden.h5ad:md5,76485b6f02e4d70afbe0f5ddd3dd1013"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-0.5",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "0.5"
+                        },
+                        "pca-global-0.5_leiden.h5ad:md5,2a12b3a2ad3c1a66f44a20d80006c912"
+                    ],
+                    [
+                        {
+                            "id": "pca-global-1",
+                            "integration": "pca",
+                            "subset": "global",
+                            "resolution": "1"
+                        },
+                        "pca-global-1_leiden.h5ad:md5,9a48dd9c98b4dc5a005f59a2b13328bc"
+                    ]
+                ],
+                "h5ad_neighbors": [
+                    [
+                        {
+                            "id": "pca-SRR28679756_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679756_filtered"
+                        },
+                        "pca-SRR28679756_filtered_neighbors.h5ad:md5,301d468c2bfa0df46e4bddba3020dedc"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679757_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679757_filtered"
+                        },
+                        "pca-SRR28679757_filtered_neighbors.h5ad:md5,186447852e8b83e0779632157acaf3d9"
+                    ],
+                    [
+                        {
+                            "id": "pca-SRR28679758_filtered",
+                            "integration": "pca",
+                            "subset": "SRR28679758_filtered"
+                        },
+                        "pca-SRR28679758_filtered_neighbors.h5ad:md5,e280245bf6103bfe785ef3a2951d08b3"
+                    ],
+                    [
+                        {
+                            "id": "pca-global",
+                            "integration": "pca",
+                            "subset": "global"
+                        },
+                        "pca-global_neighbors.h5ad:md5,1d20d3897d088b9493337ea37b460aee"
+                    ]
+                ],
+                "multiqc_files": [
+                    "pca-SRR28679756_filtered-0.5_entropy_mqc.json:md5,2bd5bab530f4f1b7d0b0825adaeefa62",
+                    "pca-SRR28679756_filtered-0.5_leiden_mqc.json:md5,c1bd02d3a989ae16de15feb894a7d5ae",
+                    "pca-SRR28679756_filtered-1_entropy_mqc.json:md5,2f5a6abaff8ece623b0680ca295661de",
+                    "pca-SRR28679756_filtered-1_leiden_mqc.json:md5,facb600b343da9c610789d0bdea5c241",
+                    "pca-SRR28679757_filtered-0.5_entropy_mqc.json:md5,267074237abd64a218467ad127bf9995",
+                    "pca-SRR28679757_filtered-0.5_leiden_mqc.json:md5,3084b726f35de16c1333ebf3cea43917",
+                    "pca-SRR28679757_filtered-1_entropy_mqc.json:md5,8fdaf49a9042f5a9b92346b8e61f5b52",
+                    "pca-SRR28679757_filtered-1_leiden_mqc.json:md5,c7407a270f648d4f40fb1272d9f36697",
+                    "pca-SRR28679758_filtered-0.5_entropy_mqc.json:md5,7234c8da65ec8a93fd563efc56986eba",
+                    "pca-SRR28679758_filtered-0.5_leiden_mqc.json:md5,d38b507cff627bb9311b014e68ad1b56",
+                    "pca-SRR28679758_filtered-1_entropy_mqc.json:md5,778a32aa9ca9a9aa1e580c30a425018f",
+                    "pca-SRR28679758_filtered-1_leiden_mqc.json:md5,f50a1cb01ba4fba4206a100b8201e30e",
+                    "pca-global-0.5_entropy_mqc.json:md5,e4c51be019a5244c47d52e69c1fe9122",
+                    "pca-global-0.5_leiden_mqc.json:md5,fe7a25b7e33ebbac8255bbea366a84bf",
+                    "pca-global-1_entropy_mqc.json:md5,5adc2bdb05df9f3c13552b2c9d286c81",
+                    "pca-global-1_leiden_mqc.json:md5,30e185fa6a4b8af5a09d60ac80dbb6bd"
+                ],
+                "obs": [
+                    "pca-SRR28679756_filtered-0.5_entropy.pkl:md5,e83f5cc4a6193de1917760e757e6c26d",
+                    "pca-SRR28679756_filtered-0.5_leiden.pkl:md5,1bb609920988fc86c9326d5f069faedc",
+                    "pca-SRR28679756_filtered-1_entropy.pkl:md5,974bd0a697f3cedeeee01716ac00d841",
+                    "pca-SRR28679756_filtered-1_leiden.pkl:md5,3e72cf4392f22e6b03b614b04b8e8d9f",
+                    "pca-SRR28679757_filtered-0.5_entropy.pkl:md5,fd47fb52200218f9ae3b9d81b9c47c1f",
+                    "pca-SRR28679757_filtered-0.5_leiden.pkl:md5,a1fabb252ba2a420c59a463f2d5ebe40",
+                    "pca-SRR28679757_filtered-1_entropy.pkl:md5,c75dd052d8000a60db544223ff6145b4",
+                    "pca-SRR28679757_filtered-1_leiden.pkl:md5,c259d588a968c5d763e5bcdc6267e0cd",
+                    "pca-SRR28679758_filtered-0.5_entropy.pkl:md5,6e27eb85046c663eda331f91bc0fb500",
+                    "pca-SRR28679758_filtered-0.5_leiden.pkl:md5,a362352c459d6ac05247be2606d26031",
+                    "pca-SRR28679758_filtered-1_entropy.pkl:md5,4a4a18b83fbb62f02cf47b35a5cc475c",
+                    "pca-SRR28679758_filtered-1_leiden.pkl:md5,99052bd0812652a2b24cab3af4ac8caa",
+                    "pca-global-0.5_entropy.pkl:md5,9045ec80f165c715421af81c192a1d30",
+                    "pca-global-0.5_leiden.pkl:md5,f2c5196bbeda5ff1d16dc3a6038470c4",
+                    "pca-global-1_entropy.pkl:md5,683ef5ed5a6683b8f1dd0fde912130e2",
+                    "pca-global-1_leiden.pkl:md5,a046d51100b2f1d96fbb2f4b09982876"
+                ],
+                "obsm": [
+                    "X_pca-SRR28679756_filtered_umap.pkl:md5,104c3618b18f22e4c2fbc3a04938c75a",
+                    "X_pca-SRR28679757_filtered_umap.pkl:md5,c379b870dcf0c64858f5a9d5bf22199e",
+                    "X_pca-SRR28679758_filtered_umap.pkl:md5,f94019ec8a1a14b4defce643c97a7064",
+                    "X_pca-global_umap.pkl:md5,885c51eee1ab4e73b861a0bd8e1ad233"
+                ],
+                "versions": [
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,34a78f745e60bdc076118409a85b970c",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,3cc66466d54c667c99b9409ba42ac512",
+                    "versions.yml:md5,6641dd43811dcf88f01dd0d6198f98bc",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,74c6aaedbfc3a7a5974f5100996d551e",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c",
+                    "versions.yml:md5,d11218769759829be152e8e08bf6e70c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T08:44:43.181405628"
+    }
+}

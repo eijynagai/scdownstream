@@ -14,7 +14,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = 0
@@ -41,7 +41,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = 100
@@ -70,7 +70,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = 100

@@ -10,6 +10,8 @@ import rpy2
 import pandas as pd
 import rpy2.robjects as ro
 seurat = ro.packages.importr('Seurat')
+# Import SingleCellExperiment to check for class
+sce_pkg = ro.packages.importr('SingleCellExperiment')
 
 def format_yaml_like(data: dict, indent: int = 0) -> str:
     """Formats a dictionary to a YAML-like string.
@@ -30,19 +32,23 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
             yaml_str += f"{spaces}{key}: {value}\\n"
     return yaml_str
 
-sce = ro.r(f'as.SingleCellExperiment(readRDS("${rds}"))')
+# Read the RDS file first
+rds_obj = ro.r(f'readRDS("${rds}")')
+
+# Check if it's already a SingleCellExperiment
+is_sce = ro.r(f'inherits(x = {rds_obj.r_repr()}, what = "SingleCellExperiment")')[0]
+
+# Convert only if not already a SingleCellExperiment
+if not is_sce:
+    sce = ro.r(f'as.SingleCellExperiment({rds_obj.r_repr()})')
+else:
+    sce = rds_obj
 
 adata = anndata2ri.rpy2py(sce)
 
 # Convert indices to string
 adata.obs.index = adata.obs.index.astype(str)
 adata.var.index = adata.var.index.astype(str)
-
-for key in ["X_EMB", "X_emb"]:
-    if key in adata.obsm.keys():
-        df = pd.DataFrame(adata.obsm[key], index=adata.obs_names)
-        df.to_pickle("X_${prefix}.pkl")
-        break
 
 adata.write_h5ad("${prefix}.h5ad")
 

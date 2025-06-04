@@ -3,18 +3,18 @@ nextflow_pipeline {
     name "Test Workflow main.nf"
     script "main.nf"
 
-    test("Should perform scvi reference mapping") {
+    test("Should perform scvi reference extension") {
 
         when {
             params {
-                input = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/lupus/samplesheet_extend.csv'
+                input = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/samplesheet_single.csv'
                 integration_methods = 'scvi'
                 doublet_detection   = 'scrublet,doubletdetection,scds'
                 celltypist_model    = 'Adult_COVID19_PBMC'
                 integration_hvgs    = 500
                 outdir              = "$outputDir"
-                scvi_model          = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/lupus/base/model.pt'
-                base_adata          = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/lupus/base/merged.h5ad'
+                scvi_model          = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/extension_base/model.pt'
+                base_adata          = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/extension_base/merged.h5ad'
             }
         }
 

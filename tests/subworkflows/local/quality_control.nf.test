@@ -6,22 +6,20 @@ nextflow_workflow {
 
     test("Should run without ambient RNA removal and doublet detection") {
 
-        config './quality_control.config'
-
         when {
             params {
                 outdir = "$outputDir"
-                ambient_removal = 'none'
-                doublet_detection = 'none'
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
-                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                        [ id: 'test', batch_col: 'sample', counts_layer: 'X' ],
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_raw_matrix.h5ad', checkIfExists: true)
                     ]
                 )
+                input[1] = 'none'
+                input[2] = []
                 """
             }
         }
@@ -35,22 +33,20 @@ nextflow_workflow {
 
     test("Should run with ambient RNA removal and doublet detection") {
 
-        config './quality_control.config'
-
         when {
             params {
                 outdir = "$outputDir"
-                ambient_removal = 'decontx'
-                doublet_detection = 'scrublet'
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
-                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                        [ id: 'test', batch_col: 'sample', counts_layer: 'X' ],
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_raw_matrix.h5ad', checkIfExists: true)
                     ]
                 )
+                input[1] = 'decontx'
+                input[2] = ['scrublet']
                 """
             }
         }
@@ -65,22 +61,21 @@ nextflow_workflow {
     test("Should run with ambient RNA removal and doublet detection - stub") {
 
         options '-stub'
-        config './quality_control.config'
 
         when {
             params {
                 outdir = "$outputDir"
-                ambient_removal = 'decontx'
-                doublet_detection = 'scrublet'
             }
             workflow {
                 """
                 input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad', checkIfExists: true),
-                        file(params.pipelines_testdata_base_path + 'samples/SAMN14430799_raw_matrix.h5ad', checkIfExists: true)
+                        [ id: 'test', batch_col: 'sample', counts_layer: 'X' ],
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.pipelines_testdata_base_path + 'pbmc/SRR28679756_raw_matrix.h5ad', checkIfExists: true)
                     ]
                 )
+                input[1] = 'decontx'
+                input[2] = ['scrublet']
                 """
             }
         }

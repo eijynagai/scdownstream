@@ -5,88 +5,98 @@
                 "0": [
                     [
                         {
-                            "id": "SAMN14430799",
-                            "batch_col": "batch"
+                            "id": "SRR28679756"
                         },
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_raw_matrix.h5ad",
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad"
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_filtered_matrix.h5ad",
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_raw_matrix.h5ad"
                     ],
                     [
                         {
-                            "id": "SAMN14430801",
-                            "batch_col": "batch"
+                            "id": "SRR28679757"
                         },
-                        "SAMN14430801.h5ad:md5,1b39e5d15aaa307a9724fa5443020d29",
-                        "SAMN14430801.h5ad:md5,020d50a8f51b43784efadb0c628456e0"
+                        "SRR28679757.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "SRR28679757.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
-                            "id": "csv",
-                            "batch_col": "batch"
+                            "id": "SRR28679758"
+                        },
+                        "SRR28679758.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "SRR28679758.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "csv"
                         },
                         "csv.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
                         [
-                            
+
                         ]
                     ],
                     [
                         {
-                            "id": "h5",
-                            "batch_col": "batch"
+                            "id": "h5"
                         },
                         "h5.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
                         [
-                            
+
                         ]
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
-                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
                     "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
                     "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 "h5ad": [
                     [
                         {
-                            "id": "SAMN14430799",
-                            "batch_col": "batch"
+                            "id": "SRR28679756"
                         },
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_raw_matrix.h5ad",
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad"
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_filtered_matrix.h5ad",
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_raw_matrix.h5ad"
                     ],
                     [
                         {
-                            "id": "SAMN14430801",
-                            "batch_col": "batch"
+                            "id": "SRR28679757"
                         },
-                        "SAMN14430801.h5ad:md5,1b39e5d15aaa307a9724fa5443020d29",
-                        "SAMN14430801.h5ad:md5,020d50a8f51b43784efadb0c628456e0"
+                        "SRR28679757.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "SRR28679757.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
-                            "id": "csv",
-                            "batch_col": "batch"
+                            "id": "SRR28679758"
+                        },
+                        "SRR28679758.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "SRR28679758.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "csv"
                         },
                         "csv.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
                         [
-                            
+
                         ]
                     ],
                     [
                         {
-                            "id": "h5",
-                            "batch_col": "batch"
+                            "id": "h5"
                         },
                         "h5.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e",
                         [
-                            
+
                         ]
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
-                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
                     "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
                     "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
@@ -94,9 +104,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-13T18:24:50.712531526"
+        "timestamp": "2025-06-02T13:54:44.741062172"
     },
     "Should run without failures": {
         "content": [
@@ -104,38 +114,41 @@
                 "0": [
                     [
                         {
-                            "id": "SAMN14430799",
-                            "batch_col": "batch"
+                            "id": "SRR28679756"
                         },
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_raw_matrix.h5ad",
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad"
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_filtered_matrix.h5ad",
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_raw_matrix.h5ad"
                     ],
                     [
                         {
-                            "id": "SAMN14430801",
-                            "batch_col": "batch"
+                            "id": "SRR28679757"
                         },
-                        "SAMN14430801.h5ad:md5,1b39e5d15aaa307a9724fa5443020d29",
-                        "SAMN14430801.h5ad:md5,020d50a8f51b43784efadb0c628456e0"
+                        "SRR28679757.h5ad:md5,e74b26e72ce47aeb35be0b2e03124bdf",
+                        "SRR28679757.h5ad:md5,6a43913880e011e04485cbceb02cd2f1"
                     ],
                     [
                         {
-                            "id": "csv",
-                            "batch_col": "batch"
+                            "id": "SRR28679758"
                         },
-                        "csv.h5ad:md5,7fadbc3f846b876a51cf1126f493d09a",
+                        "SRR28679758.h5ad:md5,13ea94bfc83afdd3a33035a441ad999b",
+                        "SRR28679758.h5ad:md5,f229efbaca1bc2920bca6f2015ac8ede"
+                    ],
+                    [
+                        {
+                            "id": "csv"
+                        },
+                        "csv.h5ad:md5,e28b88c987fde8c847fbece9c4c4d06f",
                         [
-                            
+
                         ]
                     ],
                     [
                         {
-                            "id": "h5",
-                            "batch_col": "batch"
+                            "id": "h5"
                         },
                         "h5.h5ad:md5,21c4adb5fe4d572d55059833c8c8cb60",
                         [
-                            
+
                         ]
                     ]
                 ],
@@ -143,43 +156,48 @@
                     "versions.yml:md5,59434ae587b2431ff9bcf0039174b668",
                     "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
                     "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
-                    "versions.yml:md5,88f2c1ed1ebfe32d9f97880fb9a1c39d"
+                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
+                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
+                    "versions.yml:md5,61ef0166c64921fe3b668bbf5191d316"
                 ],
                 "h5ad": [
                     [
                         {
-                            "id": "SAMN14430799",
-                            "batch_col": "batch"
+                            "id": "SRR28679756"
                         },
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_raw_matrix.h5ad",
-                        "/nf-core/test-datasets/42be2e94124cdda7f6ae5a493c9759f7daaf379c/samples/SAMN14430799_custom_emptydrops_filter_matrix.h5ad"
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_filtered_matrix.h5ad",
+                        "/nf-core/test-datasets/36ba4e5f076f4b46b0dc5f02ec77b390fb76bf2d/pbmc/SRR28679756_raw_matrix.h5ad"
                     ],
                     [
                         {
-                            "id": "SAMN14430801",
-                            "batch_col": "batch"
+                            "id": "SRR28679757"
                         },
-                        "SAMN14430801.h5ad:md5,1b39e5d15aaa307a9724fa5443020d29",
-                        "SAMN14430801.h5ad:md5,020d50a8f51b43784efadb0c628456e0"
+                        "SRR28679757.h5ad:md5,e74b26e72ce47aeb35be0b2e03124bdf",
+                        "SRR28679757.h5ad:md5,6a43913880e011e04485cbceb02cd2f1"
                     ],
                     [
                         {
-                            "id": "csv",
-                            "batch_col": "batch"
+                            "id": "SRR28679758"
                         },
-                        "csv.h5ad:md5,7fadbc3f846b876a51cf1126f493d09a",
+                        "SRR28679758.h5ad:md5,13ea94bfc83afdd3a33035a441ad999b",
+                        "SRR28679758.h5ad:md5,f229efbaca1bc2920bca6f2015ac8ede"
+                    ],
+                    [
+                        {
+                            "id": "csv"
+                        },
+                        "csv.h5ad:md5,e28b88c987fde8c847fbece9c4c4d06f",
                         [
-                            
+
                         ]
                     ],
                     [
                         {
-                            "id": "h5",
-                            "batch_col": "batch"
+                            "id": "h5"
                         },
                         "h5.h5ad:md5,21c4adb5fe4d572d55059833c8c8cb60",
                         [
-                            
+
                         ]
                     ]
                 ],
@@ -187,14 +205,16 @@
                     "versions.yml:md5,59434ae587b2431ff9bcf0039174b668",
                     "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
                     "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
-                    "versions.yml:md5,88f2c1ed1ebfe32d9f97880fb9a1c39d"
+                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
+                    "versions.yml:md5,5b260ea1255030014b0fb69427ed7818",
+                    "versions.yml:md5,61ef0166c64921fe3b668bbf5191d316"
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-13T18:24:04.81237548"
+        "timestamp": "2025-06-02T13:54:28.483702052"
     }
 }

@@ -5,150 +5,70 @@
                 "0": [
                     [
                         {
-                            "id": "test1"
+                            "id": "combined"
                         },
-                        "test1_outer.h5ad:md5,2d3fedf7c30a41d0cbdda0d5ce334707"
-                    ],
-                    [
-                        {
-                            "id": "test2"
-                        },
-                        "test2_outer.h5ad:md5,fedefe59e5cb860c924abded7d837f4e"
-                    ],
-                    [
-                        {
-                            "id": "test3"
-                        },
-                        "test3_outer.h5ad:md5,48a066a8d4bd6e7f9a3c526135af8e66"
+                        "combined_outer.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "test1"
+                            "id": "combined"
                         },
-                        "test1_inner.h5ad:md5,2d3fedf7c30a41d0cbdda0d5ce334707"
-                    ],
-                    [
-                        {
-                            "id": "test2"
-                        },
-                        "test2_inner.h5ad:md5,fedefe59e5cb860c924abded7d837f4e"
-                    ],
-                    [
-                        {
-                            "id": "test3"
-                        },
-                        "test3_inner.h5ad:md5,48a066a8d4bd6e7f9a3c526135af8e66"
+                        "combined_inner.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "2": [
                     [
                         {
-                            "id": "test1"
+                            "id": "combined"
                         },
-                        "test1_integrate.h5ad:md5,2d3fedf7c30a41d0cbdda0d5ce334707"
-                    ],
-                    [
-                        {
-                            "id": "test2"
-                        },
-                        "test2_integrate.h5ad:md5,fedefe59e5cb860c924abded7d837f4e"
-                    ],
-                    [
-                        {
-                            "id": "test3"
-                        },
-                        "test3_integrate.h5ad:md5,48a066a8d4bd6e7f9a3c526135af8e66"
+                        "combined_integrate.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "3": [
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf",
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf",
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf"
+                    "gene_intersection.pkl:md5,c0c997e228a2aafb9af01fe06fb3ab28"
                 ],
                 "4": [
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466",
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466",
                     "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466"
                 ],
                 "inner": [
                     [
                         {
-                            "id": "test1"
+                            "id": "combined"
                         },
-                        "test1_inner.h5ad:md5,2d3fedf7c30a41d0cbdda0d5ce334707"
-                    ],
-                    [
-                        {
-                            "id": "test2"
-                        },
-                        "test2_inner.h5ad:md5,fedefe59e5cb860c924abded7d837f4e"
-                    ],
-                    [
-                        {
-                            "id": "test3"
-                        },
-                        "test3_inner.h5ad:md5,48a066a8d4bd6e7f9a3c526135af8e66"
+                        "combined_inner.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "integrate": [
                     [
                         {
-                            "id": "test1"
+                            "id": "combined"
                         },
-                        "test1_integrate.h5ad:md5,2d3fedf7c30a41d0cbdda0d5ce334707"
-                    ],
-                    [
-                        {
-                            "id": "test2"
-                        },
-                        "test2_integrate.h5ad:md5,fedefe59e5cb860c924abded7d837f4e"
-                    ],
-                    [
-                        {
-                            "id": "test3"
-                        },
-                        "test3_integrate.h5ad:md5,48a066a8d4bd6e7f9a3c526135af8e66"
+                        "combined_integrate.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "intersect_genes": [
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf",
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf",
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf"
+                    "gene_intersection.pkl:md5,c0c997e228a2aafb9af01fe06fb3ab28"
                 ],
                 "outer": [
                     [
                         {
-                            "id": "test1"
+                            "id": "combined"
                         },
-                        "test1_outer.h5ad:md5,2d3fedf7c30a41d0cbdda0d5ce334707"
-                    ],
-                    [
-                        {
-                            "id": "test2"
-                        },
-                        "test2_outer.h5ad:md5,fedefe59e5cb860c924abded7d837f4e"
-                    ],
-                    [
-                        {
-                            "id": "test3"
-                        },
-                        "test3_outer.h5ad:md5,48a066a8d4bd6e7f9a3c526135af8e66"
+                        "combined_outer.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466",
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466",
                     "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466"
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-14T13:38:27.880535048"
+        "timestamp": "2025-06-01T20:28:18.0835123"
     },
     "Should run with base": {
         "content": [
@@ -156,29 +76,29 @@
                 "0": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_outer.h5ad:md5,820972651f316ed4800774ef2b1c74e1"
+                        "SRR28679756_outer.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_inner.h5ad:md5,820972651f316ed4800774ef2b1c74e1"
+                        "SRR28679756_inner.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "2": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_integrate.h5ad:md5,f37d2abcaab84e035bf192482b43f994"
+                        "SRR28679756_integrate.h5ad:md5,c5a71a3e6c04514d55b22dc0e2a3c810"
                     ]
                 ],
                 "3": [
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf"
+                    "gene_intersection.pkl:md5,c0c997e228a2aafb9af01fe06fb3ab28"
                 ],
                 "4": [
                     "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466"
@@ -186,28 +106,28 @@
                 "inner": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_inner.h5ad:md5,820972651f316ed4800774ef2b1c74e1"
+                        "SRR28679756_inner.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "integrate": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_integrate.h5ad:md5,f37d2abcaab84e035bf192482b43f994"
+                        "SRR28679756_integrate.h5ad:md5,c5a71a3e6c04514d55b22dc0e2a3c810"
                     ]
                 ],
                 "intersect_genes": [
-                    "gene_intersection.pkl:md5,b00d4f9b7f7e795225c6951b235a4ebf"
+                    "gene_intersection.pkl:md5,c0c997e228a2aafb9af01fe06fb3ab28"
                 ],
                 "outer": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_outer.h5ad:md5,820972651f316ed4800774ef2b1c74e1"
+                        "SRR28679756_outer.h5ad:md5,317c914790987bf102950e0faf38d909"
                     ]
                 ],
                 "versions": [
@@ -217,9 +137,80 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-14T13:39:01.64467508"
+        "timestamp": "2025-06-01T20:29:01.17035464"
+    },
+    "Should run without base - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "combined"
+                        },
+                        "combined_outer.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "combined"
+                        },
+                        "combined_inner.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "combined"
+                        },
+                        "combined_integrate.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    "gene_intersection.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "inner": [
+                    [
+                        {
+                            "id": "combined"
+                        },
+                        "combined_inner.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "integrate": [
+                    [
+                        {
+                            "id": "combined"
+                        },
+                        "combined_integrate.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "intersect_genes": [
+                    "gene_intersection.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "outer": [
+                    [
+                        {
+                            "id": "combined"
+                        },
+                        "combined_outer.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-01T20:28:38.500167477"
     },
     "Should run with base - stub": {
         "content": [
@@ -227,25 +218,25 @@
                 "0": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_outer.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SRR28679756_outer.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_inner.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SRR28679756_inner.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_integrate.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SRR28679756_integrate.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "3": [
@@ -257,17 +248,17 @@
                 "inner": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_inner.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SRR28679756_inner.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "integrate": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_integrate.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SRR28679756_integrate.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "intersect_genes": [
@@ -276,9 +267,9 @@
                 "outer": [
                     [
                         {
-                            "id": "test2"
+                            "id": "SRR28679756"
                         },
-                        "test2_outer.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "SRR28679756_outer.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -288,8 +279,8 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-14T13:39:33.829527474"
+        "timestamp": "2025-06-01T20:29:20.550815092"
     }
 }

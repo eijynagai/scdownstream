@@ -1,37 +1,4 @@
 {
-    "Should run without failures - prefix - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ],
-                "rds": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
-        },
-        "timestamp": "2025-04-11T22:21:48.953882187"
-    },
     "Should run without failures - stub": {
         "content": [
             {
@@ -61,9 +28,9 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-11T22:21:27.00508389"
+        "timestamp": "2025-06-01T21:20:06.728038404"
     },
     "Should run without failures": {
         "content": [
@@ -73,7 +40,7 @@
                         {
                             "id": "test"
                         },
-                        "test.rds:md5,099d5cbfe9be7b64f0c398333ff815a0"
+                        "test.rds:md5,60ab7e5c573ecbef988cb0e205a139ec"
                     ]
                 ],
                 "1": [
@@ -84,7 +51,7 @@
                         {
                             "id": "test"
                         },
-                        "test.rds:md5,099d5cbfe9be7b64f0c398333ff815a0"
+                        "test.rds:md5,60ab7e5c573ecbef988cb0e205a139ec"
                     ]
                 ],
                 "versions": [
@@ -94,41 +61,8 @@
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
+            "nextflow": "25.04.2"
         },
-        "timestamp": "2025-04-11T22:20:16.830892451"
-    },
-    "Should run without failures - prefix": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.rds:md5,099d5cbfe9be7b64f0c398333ff815a0"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,49dc8f6638973bec2c328ee45dca2137"
-                ],
-                "rds": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.xyz.rds:md5,099d5cbfe9be7b64f0c398333ff815a0"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,49dc8f6638973bec2c328ee45dca2137"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.04.4"
-        },
-        "timestamp": "2025-04-11T22:21:04.529340453"
+        "timestamp": "2025-06-01T21:19:48.321943703"
     }
 }

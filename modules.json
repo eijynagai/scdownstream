@@ -10,6 +10,11 @@
                         "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
                         "installed_by": ["h5ad_removebackground_barcodes_cellbender_anndata", "modules"]
                     },
+                    "anndata/getsize": {
+                        "branch": "master",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
+                        "installed_by": ["modules"]
+                    },
                     "cellbender/merge": {
                         "branch": "master",
                         "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
@@ -22,7 +27,7 @@
                     },
                     "doubletdetection": {
                         "branch": "master",
-                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
+                        "git_sha": "b82d04bf00be51dacffeb5568380470fa85dbb46",
                         "installed_by": ["modules"]
                     },
                     "multiqc": {
@@ -38,7 +43,8 @@
                     "scvitools/solo": {
                         "branch": "master",
                         "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
-                        "installed_by": ["modules"]
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/scvitools/solo/scvitools-solo.diff"
                     },
                     "untar": {
                         "branch": "master",

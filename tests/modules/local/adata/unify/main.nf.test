@@ -6,8 +6,6 @@ nextflow_process {
 
     test("Should run without failures") {
 
-        config './nextflow.config'
-
         when {
             params {
                 outdir = "$outputDir"
@@ -16,9 +14,15 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [id: 'test'],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
+                input[1] = 'sample'
+                input[2] = ''
+                input[3] = 'unknown'
+                input[4] = 'index'
+                input[5] = 'X'
+                input[6] = 'make_unique'
                 """
             }
         }
@@ -35,7 +39,6 @@ nextflow_process {
     test("Should run without failures - stub") {
 
         options '-stub'
-        config './nextflow.config'
 
         when {
             params {
@@ -45,9 +48,15 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                         [id: 'test'],
-                        file(params.pipelines_testdata_base_path + 'pbmc3k/pbmc3k_raw_geneid.h5ad', checkIfExists: true)
+                        file(params.pipelines_testdata_base_path + 'pbmc/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
+                input[1] = 'sample'
+                input[2] = ''
+                input[3] = 'unknown'
+                input[4] = 'index'
+                input[5] = 'X'
+                input[6] = 'make_unique'
                 """
             }
         }

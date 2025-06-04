@@ -9,6 +9,7 @@ process SCANPY_PCA {
 
     input:
     tuple val(meta), path(h5ad)
+    val(key_added)
 
     output:
     tuple val(meta), path("*.h5ad"), emit: h5ad
@@ -26,7 +27,7 @@ process SCANPY_PCA {
     """
     export MPLCONFIGDIR=./tmp/mpl
     export NUMBA_CACHE_DIR=./tmp
-    scanpy-cli pp pca -i ${h5ad} -o ${prefix}.h5ad ${args}
+    scanpy-cli pp pca -i ${h5ad} -o ${prefix}.h5ad --key-added ${key_added} ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
