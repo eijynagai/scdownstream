@@ -56,7 +56,7 @@
                         {
                             "id": "test"
                         },
-                        "test_celltypist.h5ad:md5,d6e199f7ad2cb350fb8053c88f34338c"
+                        "test_celltypist.h5ad:md5,f2ea8a20ad0454d039477fbcc7fe2c27"
                     ]
                 ],
                 "1": [
@@ -75,7 +75,7 @@
                         {
                             "id": "test"
                         },
-                        "test_celltypist.h5ad:md5,d6e199f7ad2cb350fb8053c88f34338c"
+                        "test_celltypist.h5ad:md5,f2ea8a20ad0454d039477fbcc7fe2c27"
                     ]
                 ],
                 "obs": [
@@ -92,9 +92,9 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
+            "nf-test": "0.9.2",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-01T22:03:33.393212149"
+        "timestamp": "2025-06-05T21:45:05.63214511"
     }
 }
