@@ -111,8 +111,126 @@ jobs:
           shard: ${{ matrix.shard }}
           total_shards: ${{ env.TOTAL_SHARDS }}
           paths: "modules/local subworkflows/local"
+
+  pipeline-tests:
+    name: "Pipeline Test | ${{ matrix.test_name }} | ${{ matrix.NXF_VER }} | ${{ matrix.profile }}"
+    runs-on: # use self-hosted runners
+      - runs-on=$-pipeline-tests
+      - runner=4cpu-linux-x64
+    strategy:
+      fail-fast: false
+      matrix:
+        test_name:
+          - "default"
+          - "main_pipeline_build"
+          - "main_pipeline_extend"
+          - "main_pipeline_sub"
+          - "main_pipeline_qc"
+          - "main_pipeline_reference_mapping"
+        profile: [conda, docker, singularity]
+        isMain:
+          - ${{ github.base_ref == 'master' || github.base_ref == 'main' }}
+        # Exclude conda and singularity on dev
+        exclude:
+          - isMain: false
+            profile: "conda"
+          - isMain: false
+            profile: "singularity"
+        NXF_VER:
+          - "24.04.2"
+          - "latest-everything"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Disk space cleanup
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        with:
+          tool-cache: true
+
+      - name: Setup Nextflow
+        uses: nf-core/setup-nextflow@v2
+        with:
+          version: "${{ matrix.NXF_VER }}"
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.13"
+
+      - name: Install nf-test
+        uses: nf-core/setup-nf-test@v1
+        with:
+          version: ${{ env.NFT_VER }}
+          install-pdiff: true
+
+      - name: Setup apptainer
+        if: contains(matrix.profile, 'singularity')
+        uses: eWaterCycle/setup-apptainer@main
+
+      - name: Set up Singularity
+        if: contains(matrix.profile, 'singularity')
+        shell: bash
+        run: |
+          mkdir -p $NXF_SINGULARITY_CACHEDIR
+          mkdir -p $NXF_SINGULARITY_LIBRARYDIR
+
+      - name: Conda setup
+        if: contains(matrix.profile, 'conda')
+        uses: conda-incubator/setup-miniconda@505e6394dae86d6a5c7fbb6e3fb8938e3e863830 # v3
+        with:
+          auto-update-conda: true
+          conda-solver: libmamba
+          conda-remove-defaults: true
+
+      - name: Run nf-test
+        shell: bash
+        env:
+          NFT_DIFF: ${{ env.NFT_DIFF }}
+          NFT_DIFF_ARGS: ${{ env.NFT_DIFF_ARGS }}
+          NFT_WORKDIR: ${{ env.NFT_WORKDIR }}
+        run: |
+          nf-test test \
+            --profile=+${{ matrix.profile }} \
+            --ci \
+            --verbose \
+            --tap=test.tap \
+            tests/${{ matrix.test_name }}.nf.test
+
+      - name: Generate test summary
+        if: always()
+        shell: bash
+        run: |
+          # Add header if it doesn't exist (using a token file to track this)
+          if [ ! -f ".summary_header" ]; then
+            echo "# 🚀 nf-test results" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Status | Test Name | Profile | Nextflow Version |" >> $GITHUB_STEP_SUMMARY
+            echo "|:------:|-----------|---------|-----------------|" >> $GITHUB_STEP_SUMMARY
+            touch .summary_header
+          fi
+
+          if [ -f test.tap ]; then
+            while IFS= read -r line; do
+              if [[ $line =~ ^ok ]]; then
+                test_name="${line#ok }"
+                # Remove the test number from the beginning
+                test_name="${test_name#* }"
+                echo "| ✅ | ${test_name} | ${{ matrix.profile }} | ${{ matrix.NXF_VER }} |" >> $GITHUB_STEP_SUMMARY
+              elif [[ $line =~ ^not\ ok ]]; then
+                test_name="${line#not ok }"
+                # Remove the test number from the beginning
+                test_name="${test_name#* }"
+                echo "| ❌ | ${test_name} | ${{ matrix.profile }} | ${{ matrix.NXF_VER }} |" >> $GITHUB_STEP_SUMMARY
+              fi
+            done < test.tap
+          else
+            echo "| ⚠️ | No test results found | ${{ matrix.profile }} | ${{ matrix.NXF_VER }} |" >> $GITHUB_STEP_SUMMARY
+          fi
+
   confirm-pass:
-    needs: [nf-test]
+    needs: [nf-test, pipeline-tests]
     if: always()
     runs-on: # use self-hosted runners
       - runs-on=$-confirm-pass
