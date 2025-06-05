@@ -71,7 +71,7 @@ runs:
           --verbose \
           --tap=test.tap \
           --shard ${{ inputs.shard }}/${{ inputs.total_shards }} \
-          $(if [ -n "${{ inputs.paths }}" ]; then echo "${{ inputs.paths }}"; fi)
+          modules/local/**/*.test subworkflows/local/**/*.test
 
           # Save the absolute path of the test.tap file to the output
           echo "tap_file_path=$(realpath test.tap)" >> $GITHUB_OUTPUT

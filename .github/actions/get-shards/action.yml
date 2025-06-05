@@ -35,7 +35,7 @@ runs:
           --dry-run \
           --ci \
           --changed-since HEAD^ \
-          $(if [ -n "${{ inputs.paths }}" ]; then echo "${{ inputs.paths }}"; fi)) || {
+          modules/local/**/*.test subworkflows/local/**/*.test) || {
             echo "nf-test command failed with exit code $?"
             echo "Full output: $nftest_output"
             exit 1
@@ -48,7 +48,7 @@ runs:
 
         # Check if there are related tests
         if echo "$nftest_output" | grep -q 'No tests to execute'; then
-          echo "No related tests found."
+          echo "No related tests found in modules/local or subworkflows/local."
         else
           # Extract the number of related tests
           number_of_shards=$(echo "$nftest_output" | sed -n 's|.*Executed \([0-9]*\) tests.*|\1|p')

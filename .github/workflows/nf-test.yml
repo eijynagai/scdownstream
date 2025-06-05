@@ -58,7 +58,6 @@ jobs:
           NFT_VER: ${{ env.NFT_VER }}
         with:
           max_shards: 15
-          paths: "modules/local subworkflows/local"
 
       - name: debug
         run: |
@@ -110,7 +109,6 @@ jobs:
           profile: ${{ matrix.profile }}
           shard: ${{ matrix.shard }}
           total_shards: ${{ env.TOTAL_SHARDS }}
-          paths: "modules/local subworkflows/local"
 
   pipeline-tests:
     name: "Pipeline Test | ${{ matrix.test_name }} | ${{ matrix.NXF_VER }} | ${{ matrix.profile }}"
@@ -191,6 +189,8 @@ jobs:
           NFT_DIFF_ARGS: ${{ env.NFT_DIFF_ARGS }}
           NFT_WORKDIR: ${{ env.NFT_WORKDIR }}
         run: |
+          # Make it clear that we're ONLY running tests from the tests directory
+          # and not including any module or subworkflow tests
           nf-test test \
             --profile=+${{ matrix.profile }} \
             --ci \
