@@ -11,12 +11,12 @@ import yaml
 
 adata = ad.read_h5ad("${base}")
 prefix = "${prefix}"
-obs_paths = "${obs}".split()
-var_paths = "${var}".split()
-obsm_paths = "${obsm}".split()
-obsp_paths = "${obsp}".split()
-uns_paths = "${uns}".split()
-layers_paths = "${layers}".split()
+obs_paths = sorted("${obs}".split())
+var_paths = sorted("${var}".split())
+obsm_paths = sorted("${obsm}".split())
+obsp_paths = sorted("${obsp}".split())
+uns_paths = sorted("${uns}".split())
+layers_paths = sorted("${layers}".split())
 
 def simple_name(path):
     basename = os.path.basename(path)

@@ -14,7 +14,7 @@ import anndata as ad
 import scanpy as sc
 import yaml
 
-adatas = [sc.read_h5ad(f) for f in "${h5ads}".split()]
+adatas = [sc.read_h5ad(f) for f in sorted("${h5ads}".split())]
 
 base_path = "${base}"
 if base_path:
