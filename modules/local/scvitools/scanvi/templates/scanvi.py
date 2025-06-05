@@ -64,7 +64,7 @@ model.train(early_stopping=True,
             max_epochs=int("${max_epochs}") if "${max_epochs?:''}" else None)
 
 # Round to ensure hashes are stable
-adata.obsm["X_emb"] = model.get_latent_representation().round(4)
+adata.obsm["X_emb"] = model.get_latent_representation()
 
 adata.obs["label:scANVI"] = model.predict()
 

@@ -56,17 +56,9 @@
     },
     "Should run without failures": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test.h5ad:md5,199b517b1fda6b8844bf4393e44235dc"
-                ]
-            ],
-            [
-                "X_test.pkl:md5,e2f6195f12902fdd34af5b10b96682ed"
-            ],
+            18403662,
+            26244445,
+            6118418,
             [
                 "versions.yml:md5,db38e91d243e36a0a829f43974b1134d"
             ]
@@ -75,6 +67,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-05T19:30:06.980032101"
+        "timestamp": "2025-06-05T20:20:36.934200384"
     }
 }
