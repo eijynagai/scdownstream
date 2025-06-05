@@ -52,14 +52,14 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,57bf39219a16681b766144910dcfcbea"
+                        "test.h5ad:md5,60097f606e7453b2edac98aadbbcc5c4"
                     ]
                 ],
                 "1": [
-                    "X_test.pkl:md5,ba64ec38ad8fa0a310c683579b2d231b"
+                    "X_test.pkl:md5,c5d789060d8e3d2583fa12542600f04b"
                 ],
                 "2": [
-                    "test.npy:md5,0be99b86fae136531e0862a50d613b15"
+                    "test.npy:md5,5708f0c74afc05e5ad08c565ad886e0a"
                 ],
                 "3": [
                     "versions.yml:md5,18e6151255e6e40e1d9d4923d89f6a78"
@@ -69,14 +69,14 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,57bf39219a16681b766144910dcfcbea"
+                        "test.h5ad:md5,60097f606e7453b2edac98aadbbcc5c4"
                     ]
                 ],
                 "layers": [
-                    "test.npy:md5,0be99b86fae136531e0862a50d613b15"
+                    "test.npy:md5,5708f0c74afc05e5ad08c565ad886e0a"
                 ],
                 "obsm": [
-                    "X_test.pkl:md5,ba64ec38ad8fa0a310c683579b2d231b"
+                    "X_test.pkl:md5,c5d789060d8e3d2583fa12542600f04b"
                 ],
                 "versions": [
                     "versions.yml:md5,18e6151255e6e40e1d9d4923d89f6a78"
@@ -87,6 +87,6 @@
             "nf-test": "0.9.0",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-05T00:22:48.361850349"
+        "timestamp": "2025-06-05T08:00:22.752647935"
     }
 }

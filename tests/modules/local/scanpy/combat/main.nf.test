@@ -4,6 +4,22 @@ nextflow_process {
     script "modules/local/scanpy/combat/main.nf"
     process "SCANPY_COMBAT"
 
+    setup {
+        run("SCANPY_HVGS") {
+            script "modules/local/scanpy/hvgs/main.nf"
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/combined_filtered_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = 100
+                """
+            }
+        }
+    }
+
     test("Should run without failures") {
 
         when {
@@ -12,11 +28,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/combined_filtered_matrix.h5ad', checkIfExists: true)
-                    ]
-                )
+                input[0] = SCANPY_HVGS.out.h5ad
                 input[1] = "sample"
                 """
             }
@@ -41,11 +53,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
-                        [ id: 'test' ],
-                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/combined_filtered_matrix.h5ad', checkIfExists: true)
-                    ]
-                )
+                input[0] = SCANPY_HVGS.out.h5ad
                 input[1] = "sample"
                 """
             }
