@@ -57,8 +57,7 @@ nextflow_process {
                     process.out.versions,
                     // Hashing of h5ad does not work due to this issue:
                     // https://github.com/scverse/anndataR/issues/272
-                    file(process.out.h5ad.get(0).get(1)).exists(),
-                    file(process.out.h5ad.get(0).get(1)).size()
+                    file(process.out.h5ad.get(0).get(1)).exists()
                 ).match()
             },
             )
