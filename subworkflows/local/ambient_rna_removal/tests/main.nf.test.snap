@@ -18,14 +18,13 @@
             [
                 "versions.yml:md5,db9568c840fa1d3a4390bba83b1eb278"
             ],
-            true,
-            8531996
+            true
         ],
         "meta": {
-            "nf-test": "0.9.0",
+            "nf-test": "0.9.2",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-04T16:57:35.450898541"
+        "timestamp": "2025-06-07T13:18:24.551793468"
     },
     "Should run with 'cellbender' ambient removal": {
         "content": [

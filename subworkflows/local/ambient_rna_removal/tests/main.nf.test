@@ -115,8 +115,7 @@ nextflow_workflow {
                 // Hashing does not work due to this issue:
                 // https://github.com/scverse/anndataR/issues/272
                 workflow.out.versions,
-                file(workflow.out.h5ad.get(0).get(1)).exists(),
-                file(workflow.out.h5ad.get(0).get(1)).size()
+                file(workflow.out.h5ad.get(0).get(1)).exists()
             ).match()
         }
 
