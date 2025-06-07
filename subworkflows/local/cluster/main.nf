@@ -11,6 +11,7 @@ workflow CLUSTER {
     split_col      // value: string
     ch_resolutions // channel: [ string ]
     entropy_col    // value: string
+    embedding_key  // value: string
 
     main:
     ch_versions = Channel.empty()
@@ -39,7 +40,7 @@ workflow CLUSTER {
         needs_neighbors: true
     }
 
-    NEIGHBORS(ch_h5ad.needs_neighbors, "X_emb")
+    NEIGHBORS(ch_h5ad.needs_neighbors, embedding_key)
     ch_versions = ch_versions.mix(NEIGHBORS.out.versions)
     ch_h5ad = NEIGHBORS.out.h5ad.mix(ch_h5ad.has_neighbors)
     ch_h5ad_neighbours = NEIGHBORS.out.h5ad
