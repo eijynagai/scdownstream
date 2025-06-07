@@ -288,9 +288,7 @@
                 "quality_control/sizes/sizes.tsv"
             ],
             [
-                "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f",
-                "multiqc_sizes.txt:md5,6bae5bad4a992121991437802c8899f6",
-                "sizes.tsv:md5,c97c6e2e883fe4254e71b0702e72b86e"
+                "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f"
             ]
         ],
         "meta": {
