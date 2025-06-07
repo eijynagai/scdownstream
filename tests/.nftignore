@@ -9,3 +9,5 @@ pipeline_info/*.{html,json,txt,yml}
 
 **/*.{png,pt,h5ad,rds}
 finalized/merged_metadata.csv
+**/multiqc_sizes.txt
+**/sizes.tsv

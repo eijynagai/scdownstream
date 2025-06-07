@@ -8,6 +8,7 @@ nextflow_pipeline {
         when {
             params {
                 outdir              = "$outputDir"
+                input               = null
                 base_adata          = 'https://github.com/nf-core/test-datasets/raw/refs/heads/scdownstream/extension_base/merged.h5ad'
                 base_embeddings     = 'combat,harmony,scvi'
                 cluster_global      = false
