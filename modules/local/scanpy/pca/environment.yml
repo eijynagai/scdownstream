@@ -2,4 +2,5 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - bioconda::scanpy-cli=0.1.6
+  - conda-forge::pyyaml=6.0.2
+  - conda-forge::scanpy=1.11.2

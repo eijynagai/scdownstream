@@ -63,7 +63,11 @@ workflow SCDOWNSTREAM {
         //
         // Quality control per sample
         //
-        QUALITY_CONTROL(ch_h5ad)
+        QUALITY_CONTROL(
+            ch_h5ad,
+            params.ambient_removal,
+            (!params.doublet_detection || params.doublet_detection == 'none') ? [] : params.doublet_detection.split(',').collect { it -> it.trim().toLowerCase() },
+        )
         ch_versions = ch_versions.mix(QUALITY_CONTROL.out.versions)
         ch_multiqc_files = ch_multiqc_files.mix(QUALITY_CONTROL.out.multiqc_files)
         ch_h5ad = QUALITY_CONTROL.out.h5ad
@@ -80,15 +84,10 @@ workflow SCDOWNSTREAM {
         ch_versions = ch_versions.mix(CELLTYPE_ASSIGNMENT.out.versions)
         ch_obs_per_sample = ch_obs_per_sample.mix(CELLTYPE_ASSIGNMENT.out.obs)
 
-        FINALIZE_QC_ANNDATAS(ch_h5ad
-            .join(ch_obs_per_sample.groupTuple(), remainder: true)
-            .join(ch_var_per_sample.groupTuple(), remainder: true)
-            .join(ch_obsm_per_sample.groupTuple(), remainder: true)
-            .join(ch_obsp_per_sample.groupTuple(), remainder: true)
-            .join(ch_uns_per_sample.groupTuple(), remainder: true)
-            .join(ch_layers_per_sample.groupTuple(), remainder: true)
-            .map { meta, h5ad, obs, var, obsm, obsp, uns, layers ->
-                [meta, h5ad, obs ?: [], var ?: [], obsm ?: [], obsp ?: [], uns ?: [], layers ?: []] }
+        FINALIZE_QC_ANNDATAS(
+            ch_h5ad.join(ch_obs_per_sample.groupTuple(), remainder: true).join(ch_var_per_sample.groupTuple(), remainder: true).join(ch_obsm_per_sample.groupTuple(), remainder: true).join(ch_obsp_per_sample.groupTuple(), remainder: true).join(ch_uns_per_sample.groupTuple(), remainder: true).join(ch_layers_per_sample.groupTuple(), remainder: true).map { meta, h5ad, obs, var, obsm, obsp, uns, layers ->
+                [meta, h5ad, obs ?: [], var ?: [], obsm ?: [], obsp ?: [], uns ?: [], layers ?: []]
+            }
         )
         ch_h5ad = FINALIZE_QC_ANNDATAS.out.h5ad
         ch_versions = ch_versions.mix(FINALIZE_QC_ANNDATAS.out.versions)
@@ -135,14 +134,27 @@ workflow SCDOWNSTREAM {
     // Perform clustering and per-cluster analysis
     //
     if (!params.qc_only) {
-        CLUSTER(ch_integrations)
+        CLUSTER(
+            ch_integrations,
+            params.cluster_per_label,
+            params.cluster_global,
+            params.input ? "label" : params.base_label_col,
+            params.clustering_resolutions.split(','),
+            "batch",
+            "X_emb"
+        )
         ch_versions = ch_versions.mix(CLUSTER.out.versions)
         ch_obs = ch_obs.mix(CLUSTER.out.obs)
         ch_obsm = ch_obsm.mix(CLUSTER.out.obsm)
         ch_multiqc_files = ch_multiqc_files.mix(CLUSTER.out.multiqc_files)
 
         if (params.pseudobulk) {
-            PSEUDOBULKING(CLUSTER.out.h5ad_clustering)
+            PSEUDOBULKING(
+                CLUSTER.out.h5ad_clustering,
+                params.pseudobulk_groupby_labels.split(','),
+                params.pseudobulk_min_num_cells,
+                "X",
+            )
             ch_versions = ch_versions.mix(PSEUDOBULKING.out.versions)
         }
 
@@ -219,5 +231,5 @@ workflow SCDOWNSTREAM {
 
     emit:
     multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
-    versions       = ch_versions                 // channel: [ path(versions.yml) ]
+    versions       = ch_versions // channel: [ path(versions.yml) ]
 }

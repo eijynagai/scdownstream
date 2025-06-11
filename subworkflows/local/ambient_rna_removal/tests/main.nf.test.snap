@@ -1,0 +1,111 @@
+{
+    "Should run with 'decontx' ambient removal": {
+        "content": [
+            [
+                "versions.yml:md5,2edde5588f184cbfac859e46fc966aad"
+            ],
+            true,
+            8609260
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-04T16:56:48.326139665"
+    },
+    "Should run with 'soupx' ambient removal": {
+        "content": [
+            [
+                "versions.yml:md5,db9568c840fa1d3a4390bba83b1eb278"
+            ],
+            true
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-07T13:18:24.551793468"
+    },
+    "Should run with 'cellbender' ambient removal": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,83d1090399cda0521ee6280a441b116d"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a29db5b64d7a654f1ec79c3d0350dde2",
+                    "versions.yml:md5,a7e0df5f126d781bb90be7c9057c00fd"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,83d1090399cda0521ee6280a441b116d"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a29db5b64d7a654f1ec79c3d0350dde2",
+                    "versions.yml:md5,a7e0df5f126d781bb90be7c9057c00fd"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-04T17:00:37.48267837"
+    },
+    "Should run with 'scar' ambient removal": {
+        "content": [
+            [
+                "versions.yml:md5,acd5105c0ecccd400cbdbbe3c9d0b4de"
+            ],
+            true,
+            4123555
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-07T12:47:57.622464817"
+    },
+    "Should run with 'none' ambient removal": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad"
+                    ]
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-04T16:55:52.504939572"
+    }
+}

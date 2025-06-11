@@ -8,8 +8,10 @@ process SCANPY_LEIDEN {
             : 'community.wave.seqera.io/library/leidenalg_python-igraph_scanpy:270d93d02d764f1a'}"
 
     input:
-    tuple val(meta), path(h5ad, arity: 1), val(resolution)
-    val plot_umap
+    tuple val(meta), path(h5ad, arity: 1)
+    val(resolution)
+    val(key_added)
+    val(plot_umap)
 
     output:
     tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
@@ -23,7 +25,6 @@ process SCANPY_LEIDEN {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    resolution = resolution ?: 1.0
     template('leiden.py')
 
     stub:

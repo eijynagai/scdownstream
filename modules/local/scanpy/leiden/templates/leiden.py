@@ -37,20 +37,21 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
 
 adata = sc.read_h5ad("${h5ad}", backed='r')
 prefix = "${prefix}"
+key_added = "${key_added}"
 
 kwargs = {
     "resolution": float("${resolution}"),
-    "key_added": prefix
+    "key_added": key_added
 }
 
 sc.tl.leiden(adata, **kwargs)
 
-adata.obs[[prefix]].to_pickle(f"{prefix}.pkl")
+adata.obs[[key_added]].to_pickle(f"{prefix}.pkl")
 adata.write_h5ad(f"{prefix}.h5ad")
 
 if "${plot_umap}" == "true":
     # Plot
-    sc.pl.umap(adata, title="${meta.id} Leiden", color=prefix, show=False)
+    sc.pl.umap(adata, title="${meta.id} Leiden", color=key_added, show=False)
     path = f"{prefix}.png"
     plt.savefig(path, bbox_inches='tight')
 

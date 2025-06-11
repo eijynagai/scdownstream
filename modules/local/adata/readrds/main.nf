@@ -12,13 +12,16 @@ process ADATA_READRDS {
 
     output:
     tuple val(meta), path("*.h5ad"), emit: h5ad
-    path("*.pkl")                  , emit: obsm, optional: true
     path "versions.yml"            , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'readrds.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch "${prefix}.h5ad"
+    touch "versions.yml"
+    """
 }

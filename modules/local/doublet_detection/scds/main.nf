@@ -1,31 +1,28 @@
 process SCDS {
-    tag "$meta.id"
+    tag "${meta.id}"
     label 'process_medium'
 
-    conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/bioconductor-scds:1.18.0--b0910f04d88fb193':
-        'community.wave.seqera.io/library/bioconductor-scds:1.18.0--aaf652129cf65197' }"
+    container "docker.io/nicotru/scds:7788dbeb87bc7eec"
 
     input:
-    tuple val(meta), path(rds)
+    tuple val(meta), path(h5ad)
 
     output:
-    tuple val(meta), path("${prefix}.rds"), emit: rds
+    tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
     tuple val(meta), path("${prefix}.csv"), emit: predictions
-    path "versions.yml"           , emit: versions
+    path "versions.yml", emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    template 'scds.R'
+    template('scds.R')
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.rds
+    touch ${prefix}.h5ad
     touch ${prefix}.csv
     touch versions.yml
     """

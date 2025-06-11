@@ -4,8 +4,8 @@ process SCANPY_HVGS {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-            ? 'oras://community.wave.seqera.io/library/pyyaml_scanpy:158b12038812cf13'
-            : 'community.wave.seqera.io/library/pyyaml_scanpy:61c9ab8e312bbe0a'}"
+        ? 'oras://community.wave.seqera.io/library/pyyaml_scanpy:158b12038812cf13'
+        : 'community.wave.seqera.io/library/pyyaml_scanpy:61c9ab8e312bbe0a'}"
 
     input:
     tuple val(meta), path(h5ad)
@@ -13,6 +13,7 @@ process SCANPY_HVGS {
 
     output:
     tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
+    path ("${prefix}.pkl"), emit: var
     path "versions.yml", emit: versions
 
     when:
@@ -27,6 +28,7 @@ process SCANPY_HVGS {
     prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.h5ad
+    touch ${prefix}.pkl
     touch versions.yml
     """
 }

@@ -1,0 +1,119 @@
+{
+    "Should run with a specified number of HVGs": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,a2fa17817c75d3e1918220d195e49101"
+                    ]
+                ],
+                "1": [
+                    "test_hvg.pkl:md5,6e7304cb50e936bf78b69ad70b29495e"
+                ],
+                "2": [
+                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,a2fa17817c75d3e1918220d195e49101"
+                    ]
+                ],
+                "var": [
+                    "test_hvg.pkl:md5,6e7304cb50e936bf78b69ad70b29495e"
+                ],
+                "versions": [
+                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T07:49:44.289973123"
+    },
+    "Should run without a specified number of HVGs": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,bdebdfe3f16920230deabc6852c02284"
+                    ]
+                ],
+                "1": [
+                    "test_hvg.pkl:md5,82f4f37286430dbfbe76a531a53b867d"
+                ],
+                "2": [
+                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,bdebdfe3f16920230deabc6852c02284"
+                    ]
+                ],
+                "var": [
+                    "test_hvg.pkl:md5,82f4f37286430dbfbe76a531a53b867d"
+                ],
+                "versions": [
+                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T07:49:24.034459241"
+    },
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_hvg.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "var": [
+                    "test_hvg.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T07:49:56.630416945"
+    }
+}

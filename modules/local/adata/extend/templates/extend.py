@@ -7,34 +7,16 @@ import pickle
 import anndata as ad
 import pandas as pd
 import numpy as np
-
-def format_yaml_like(data: dict, indent: int = 0) -> str:
-    """Formats a dictionary to a YAML-like string.
-
-    Args:
-        data (dict): The dictionary to format.
-        indent (int): The current indentation level.
-
-    Returns:
-        str: A string formatted as YAML.
-    """
-    yaml_str = ""
-    for key, value in data.items():
-        spaces = "  " * indent
-        if isinstance(value, dict):
-            yaml_str += f"{spaces}{key}:\\n{format_yaml_like(value, indent + 1)}"
-        else:
-            yaml_str += f"{spaces}{key}: {value}\\n"
-    return yaml_str
+import yaml
 
 adata = ad.read_h5ad("${base}")
 prefix = "${prefix}"
-obs_paths = "${obs}".split()
-var_paths = "${var}".split()
-obsm_paths = "${obsm}".split()
-obsp_paths = "${obsp}".split()
-uns_paths = "${uns}".split()
-layers_paths = "${layers}".split()
+obs_paths = sorted("${obs}".split())
+var_paths = sorted("${var}".split())
+obsm_paths = sorted("${obsm}".split())
+obsp_paths = sorted("${obsp}".split())
+uns_paths = sorted("${uns}".split())
+layers_paths = sorted("${layers}".split())
 
 def simple_name(path):
     basename = os.path.basename(path)
@@ -84,4 +66,4 @@ versions = {
 }
 
 with open("versions.yml", "w") as f:
-    f.write(format_yaml_like(versions))
+    yaml.dump(versions, f)

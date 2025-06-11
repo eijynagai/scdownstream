@@ -1,0 +1,80 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_total_counts_vs_n_genes_by_counts.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "multiqc_files": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "plots": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_total_counts_vs_n_genes_by_counts.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T07:51:19.339687176"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_total_counts_vs_n_genes_by_counts.png:md5,409d4c85213f8383b09834f2e49f7532"
+                    ]
+                ],
+                "1": [
+                    "test_mqc.json:md5,3940316f7b3a942afe344024d4e09a06"
+                ],
+                "2": [
+                    "versions.yml:md5,795977763d53d43cabf58c81a146c8ec"
+                ],
+                "multiqc_files": [
+                    "test_mqc.json:md5,3940316f7b3a942afe344024d4e09a06"
+                ],
+                "plots": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_total_counts_vs_n_genes_by_counts.png:md5,409d4c85213f8383b09834f2e49f7532"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,795977763d53d43cabf58c81a146c8ec"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-05T00:17:43.538362146"
+    }
+}

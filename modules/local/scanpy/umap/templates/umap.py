@@ -7,36 +7,22 @@ os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 os.environ["MPLCONFIGDIR"] = "./tmp/matplotlib"
 
 import scanpy as sc
+import numpy as np
 import pandas as pd
+import yaml
 
 from threadpoolctl import threadpool_limits
 threadpool_limits(int("${task.cpus}"))
 sc.settings.n_jobs = int("${task.cpus}")
 
-def format_yaml_like(data: dict, indent: int = 0) -> str:
-    """Formats a dictionary to a YAML-like string.
-
-    Args:
-        data (dict): The dictionary to format.
-        indent (int): The current indentation level.
-
-    Returns:
-        str: A string formatted as YAML.
-    """
-    yaml_str = ""
-    for key, value in data.items():
-        spaces = "  " * indent
-        if isinstance(value, dict):
-            yaml_str += f"{spaces}{key}:\\n{format_yaml_like(value, indent + 1)}"
-        else:
-            yaml_str += f"{spaces}{key}: {value}\\n"
-    return yaml_str
-
-
 adata = sc.read_h5ad("${h5ad}", backed='r')
 prefix = "${prefix}"
 
-sc.tl.umap(adata)
+sc.tl.umap(adata, random_state=0)
+
+# Round to 10 decimal places
+# This ensures hashes are stable
+adata.obsm["X_umap"] = np.round(adata.obsm["X_umap"], 10)
 
 adata.write_h5ad(f"{prefix}.h5ad")
 df = pd.DataFrame(adata.obsm["X_umap"], index=adata.obs_names)
@@ -53,4 +39,4 @@ versions = {
 }
 
 with open("versions.yml", "w") as f:
-    f.write(format_yaml_like(versions))
+    yaml.dump(versions, f)

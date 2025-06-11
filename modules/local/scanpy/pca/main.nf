@@ -1,43 +1,36 @@
 process SCANPY_PCA {
-    tag "$meta.id"
+    tag "${meta.id}"
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/scanpy-cli:0.1.6--6ce8e193a0ecbf8a':
-        'community.wave.seqera.io/library/scanpy-cli:0.1.6--f0a9e6aaa5c7abbd' }"
+    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ba/baee2c1ee0f6cd0b6a18a6c71bad03370139a77e53cad06464b065f795d52cd0/data'
+        : 'community.wave.seqera.io/library/pyyaml_scanpy:a3a797e09552fddc'}"
 
     input:
     tuple val(meta), path(h5ad)
+    val key_added
 
     output:
-    tuple val(meta), path("*.h5ad"), emit: h5ad
-    path "versions.yml"            , emit: versions
+    tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
+    path "X_${prefix}.pkl", emit: obsm
+    path "versions.yml", emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    args = task.ext.args ?: ""
-
-    if ("${prefix}.h5ad" == "${h5ad}")
-        error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
-    """
-    export MPLCONFIGDIR=./tmp/mpl
-    export NUMBA_CACHE_DIR=./tmp
-    scanpy-cli pp pca -i ${h5ad} -o ${prefix}.h5ad ${args}
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        scanpy-cli: \$(scanpy-cli --version | grep -oP '(?<=version )[\d.]+')
-    END_VERSIONS
-    """
+    if ("${prefix}.h5ad" == "${h5ad}") {
+        error("Input and output names are the same, use \"task.ext.prefix\" to disambiguate!")
+    }
+    template('pca.py')
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.h5ad
+    touch X_${prefix}.pkl
     touch versions.yml
     """
 }

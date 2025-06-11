@@ -35,7 +35,7 @@ adata = sc.read_h5ad("${h5ad}", backed='r')
 prefix = "${prefix}"
 
 kwargs = {
-    "use_rep": "X_EMB" if "X_EMB" in adata.obsm.keys() else "X_emb"
+    "use_rep": "${rep}"
 }
 
 sc.pp.neighbors(adata, **kwargs)

@@ -9,29 +9,33 @@ process ADATA_ENTROPY {
 
     input:
     tuple val(meta), path(h5ad)
+    val(group_col)
+    val(entropy_col)
 
     output:
-    tuple val(meta), path("*.h5ad"), emit: h5ad
-    path "*.pkl"                   , emit: obs
-    path "*.png"                   , emit: plots, optional: true
-    path "*_mqc.json"              , emit: multiqc_files, optional: true
-    path "versions.yml"            , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
+    tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
+    path "${prefix}.pkl"                   , emit: obs
+    path "${prefix}.png"                   , emit: plots, optional: true
+    path "${prefix}_mqc.json"              , emit: multiqc_files, optional: true
+    path "versions.yml"                    , emit: versions
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    group_col = task.ext.group_col ?: "leiden"
-    entropy_col = task.ext.entropy_col ?: "batch"
+    plot_basis = task.ext.plot_basis ?: null
     template 'entropy.py'
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
+    plot_basis = task.ext.plot_basis ?: null
     """
     touch ${prefix}.h5ad
     touch ${prefix}.pkl
-    touch ${prefix}.png
+
+    if [ ${plot_basis ? 'true' : 'false'} ]; then
+        touch ${prefix}.png
+        touch ${prefix}_mqc.json
+    fi
+
     touch ${prefix}_mqc.json
     touch versions.yml
     """

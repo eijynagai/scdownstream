@@ -1,0 +1,21 @@
+Changes in component 'nf-core/scvitools/solo'
+'modules/nf-core/scvitools/solo/main.nf' is unchanged
+'modules/nf-core/scvitools/solo/meta.yml' is unchanged
+'modules/nf-core/scvitools/solo/environment.yml' is unchanged
+Changes in 'scvitools/solo/templates/solo.py':
+--- modules/nf-core/scvitools/solo/templates/solo.py
++++ modules/nf-core/scvitools/solo/templates/solo.py
+@@ -59,7 +59,7 @@
+ 
+ adata.obs["doublet"] = False
+ 
+-batches = adata.obs["batch"].unique() if "${batch_key}" else [0]
++batches = adata.obs["${batch_key}"].unique() if "${batch_key}" else [0]
+ for batch in batches:
+     model = SOLO.from_scvi_model(model, restrict_to_batch=batch if len(batches) > 1 else None)
+ 
+
+'modules/nf-core/scvitools/solo/tests/main.nf.test' is unchanged
+'modules/nf-core/scvitools/solo/tests/nextflow.config' is unchanged
+'modules/nf-core/scvitools/solo/tests/main.nf.test.snap' is unchanged
+************************************************************

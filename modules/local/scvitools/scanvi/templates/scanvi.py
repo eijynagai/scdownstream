@@ -6,32 +6,18 @@ import pandas as pd
 from scvi.model import SCVI, SCANVI
 import platform
 import torch
+import numpy as np
+import random
+import yaml
 
+torch.use_deterministic_algorithms(True)
 torch.set_float32_matmul_precision('medium')
 
 from threadpoolctl import threadpool_limits
 threadpool_limits(int("${task.cpus}"))
+
 scvi.settings.num_threads = int("${task.cpus}")
 scvi.settings.seed = 0
-
-def format_yaml_like(data: dict, indent: int = 0) -> str:
-    """Formats a dictionary to a YAML-like string.
-
-    Args:
-        data (dict): The dictionary to format.
-        indent (int): The current indentation level.
-
-    Returns:
-        str: A string formatted as YAML.
-    """
-    yaml_str = ""
-    for key, value in data.items():
-        spaces = "  " * indent
-        if isinstance(value, dict):
-            yaml_str += f"{spaces}{key}:\\n{format_yaml_like(value, indent + 1)}"
-        else:
-            yaml_str += f"{spaces}{key}: {value}\\n"
-    return yaml_str
 
 adata = ad.read_h5ad("${h5ad}")
 reference_model_path = "reference_model"
@@ -60,9 +46,10 @@ else:
         categorical_covariates = categorical_covariates.split(",") if categorical_covariates else None
         continuous_covariates = continuous_covariates.split(",") if continuous_covariates else None
 
-        SCANVI.setup_anndata(adata, batch_key="batch", labels_key="${label_col}", unlabeled_category="unknown",
+        SCANVI.setup_anndata(adata, batch_key="${batch_col}", labels_key="${label_col}", unlabeled_category="${unlabeled_category}",
                                 categorical_covariate_keys = categorical_covariates,
                                 continuous_covariate_keys = continuous_covariates)
+
         model = SCANVI(adata,
                         n_hidden=int("${n_hidden}"),
                         n_layers=int("${n_layers}"),
@@ -75,7 +62,10 @@ if "${task.ext.use_gpu}" == "true":
 
 model.train(early_stopping=True,
             max_epochs=int("${max_epochs}") if "${max_epochs?:''}" else None)
+
+# Round to ensure hashes are stable
 adata.obsm["X_emb"] = model.get_latent_representation()
+
 adata.obs["label:scANVI"] = model.predict()
 
 del adata.uns["_scvi_manager_uuid"]
@@ -99,5 +89,4 @@ versions = {
 }
 
 with open("versions.yml", "w") as f:
-    f.write(format_yaml_like(versions))
-
+    yaml.dump(versions, f)

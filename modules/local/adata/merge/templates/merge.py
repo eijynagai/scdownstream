@@ -14,7 +14,7 @@ import anndata as ad
 import scanpy as sc
 import yaml
 
-adatas = [sc.read_h5ad(f) for f in "${h5ads}".split()]
+adatas = [sc.read_h5ad(f) for f in sorted("${h5ads}".split())]
 
 base_path = "${base}"
 if base_path:
@@ -60,6 +60,9 @@ for adata in adatas:
 
 adata_outer = ad.concat(adatas, join="outer")
 adata_outer.X = csr_matrix(adata_outer.X)
+
+# Sort obs columns alphabetically to make reproducible
+adata_outer.obs = adata_outer.obs.reindex(sorted(adata_outer.obs.columns), axis=1)
 
 gene_intersection = set(genes[0]).intersection(*genes[1:])
 intersection_mask = adata_outer.var_names.to_series(name='intersection').map(lambda x: x in gene_intersection)

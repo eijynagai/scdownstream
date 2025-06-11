@@ -9,6 +9,7 @@ process SCANPY_SCRUBLET {
 
     input:
     tuple val(meta), path(h5ad)
+    val(batch_col)
 
     output:
     tuple val(meta), path("*.h5ad"), emit: h5ad
@@ -20,7 +21,6 @@ process SCANPY_SCRUBLET {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    batch_col = task.ext.batch_col ?: ""
     template('scrublet.py')
 
     stub:
