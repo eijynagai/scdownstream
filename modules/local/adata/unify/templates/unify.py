@@ -74,6 +74,10 @@ if symbol_col != "index":
     adata.var["original_index"] = adata.var.index
     adata.var.index = adata.var[symbol_col]
 
+if "${aggregate_isoforms}" == "true":
+    # Remove all numeric suffixes following a dot, keep non-numeric suffixes
+    adata.var_names = adata.var_names.str.replace(r'\\.\\d+', '', regex=True)
+
 # Deal with duplicate genes
 method = "${duplicate_var_resolution}"
 if method in ["mean", "sum", "max"]:

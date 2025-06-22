@@ -61,6 +61,7 @@ workflow UNIFY {
         ch_adata_unify.symbol_col,
         ch_adata_unify.counts_layer,
         params.duplicate_var_resolution,
+        params.aggregate_isoforms
     )
     ch_h5ad = ADATA_UNIFY.out.h5ad
     ch_versions = ch_versions.mix(ADATA_UNIFY.out.versions)
