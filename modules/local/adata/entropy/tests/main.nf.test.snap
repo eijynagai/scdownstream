@@ -58,11 +58,11 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,ef3d5f468ecfc323d29bb46183e448c9"
+                        "test.h5ad:md5,c0996f9b0b3d73094788ca402a08d030"
                     ]
                 ],
                 "1": [
-                    "test.pkl:md5,30379b39824af1d6e3a1a8765c50c761"
+                    "test.pkl:md5,ee87a1298337f8fe2230eaa0f7ae2b01"
                 ],
                 "2": [
                     
@@ -78,14 +78,14 @@
                         {
                             "id": "test"
                         },
-                        "test.h5ad:md5,ef3d5f468ecfc323d29bb46183e448c9"
+                        "test.h5ad:md5,c0996f9b0b3d73094788ca402a08d030"
                     ]
                 ],
                 "multiqc_files": [
                     
                 ],
                 "obs": [
-                    "test.pkl:md5,30379b39824af1d6e3a1a8765c50c761"
+                    "test.pkl:md5,ee87a1298337f8fe2230eaa0f7ae2b01"
                 ],
                 "plots": [
                     
@@ -97,8 +97,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.2"
+            "nextflow": "25.04.3"
         },
-        "timestamp": "2025-06-06T19:22:21.694894933"
+        "timestamp": "2025-06-22T14:49:12.068333274"
     }
 }

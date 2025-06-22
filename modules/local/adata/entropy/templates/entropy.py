@@ -31,7 +31,7 @@ colname = "${meta.id}:entropy"
 adata.obs[colname] = adata.obs[group_col].map(entropies).astype(float) / np.log2(n_unique)
 
 # Round to prevent hash inconsistencies
-adata.obs[colname] = adata.obs[colname].round(3)
+adata.obs[colname] = adata.obs[colname].round(2)
 
 adata.obs[[colname]].to_pickle(f"{prefix}.pkl")
 adata.write_h5ad(f"{prefix}.h5ad")
