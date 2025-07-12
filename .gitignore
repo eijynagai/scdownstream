@@ -8,7 +8,3 @@ testing*
 *.pyc
 null/
 .nf-test*
-SetUp.and.Conf.txt
-nextflow
-celldex_references/celldex_hpca__2024-02-26_h5_se/assays.h5
-celldex_references/celldex_hpca__2024-02-26_h5_se/se.rds
