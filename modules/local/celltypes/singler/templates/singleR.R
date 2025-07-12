@@ -16,7 +16,7 @@ format_yaml_like <- function(data, indent = 0) {
     value <- data[[key]]
     if (is.list(value)) {
       yaml_str <- paste0(yaml_str, spaces, key, ":\n",
-                         format_yaml_like(value, indent + 1))
+                        format_yaml_like(value, indent + 1))
     } else {
       yaml_str <- paste0(yaml_str, spaces, key, ": ", value, "\n")
     }
@@ -28,9 +28,9 @@ h5ad_file <- "${h5ad}" # Get the filename from environment variable
 sce <- read_h5ad(h5ad_file, as = "SingleCellExperiment") # Converts .h5ad to a SingleCellExperiment object
 
 # Split the references by comma and loop over each
-references <- strsplit("${reference.join(',')}", ",")[[1]]
+references <- strsplit("${references.join(',')}", ",")[[1]]
 
-reference_labels <- strsplit("${label}", ",")[[1]]
+reference_labels <- strsplit("${labels.join(',')}", ",")[[1]]
 stopifnot(
     #"Lengths of references and reference_labels vectors must match",
     length(references) == length(reference_labels)
