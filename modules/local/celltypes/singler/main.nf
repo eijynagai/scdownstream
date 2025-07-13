@@ -7,13 +7,13 @@ process CELLTYPES_SINGLER {
 
     input:
     tuple val(meta), path(h5ad)
-    tuple val(meta2), val(labels), path(references)
+    tuple val(meta2), val(names), val(labels), path(references)
 
     output:
     //tuple val(meta), path("*.h5ad"), emit: h5ad
-    tuple val(meta), path("*.csv") , emit: obs
-    path "*.pdf"                   , emit: pdf
-    path "versions.yml"            , emit: versions
+    tuple val(meta), path("*.csv"), emit: obs
+    tuple val(meta), path("*.pdf"), emit: pdf
+    path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

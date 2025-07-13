@@ -15,7 +15,12 @@ workflow SINGLER {
         names: true
     }
 
-    CELLDEX_FETCHREFERENCE(ch_reference.names)
+    CELLDEX_FETCHREFERENCE(ch_reference.names.map { meta, ref -> {
+        if (!meta.version) {
+            error "If you specify a celldex reference, you also need to specify a version."
+        }
+        return [meta, ref, meta.version]
+    }})
     ch_versions = ch_versions.mix(CELLDEX_FETCHREFERENCE.out.versions)
 
     // Bring the branches back together
@@ -23,7 +28,7 @@ workflow SINGLER {
 
     CELLTYPES_SINGLER(
         ch_h5ad,
-        ch_reference.map { meta, ref -> [[id: "singler"], meta.id, ref] }.groupTuple(),
+        ch_reference.map { meta, ref -> [[id: "singler"], meta.id, meta.label, ref] }.groupTuple(),
     )
     ch_versions = ch_versions.mix(CELLTYPES_SINGLER.out.versions)
     ch_obs = ch_obs.mix(CELLTYPES_SINGLER.out.obs)

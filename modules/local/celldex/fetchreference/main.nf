@@ -1,4 +1,5 @@
 process CELLDEX_FETCHREFERENCE {
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -8,21 +9,23 @@ process CELLDEX_FETCHREFERENCE {
         : 'community.wave.seqera.io/library/bioconductor-celldex_bioconductor-hdf5array_bioconductor-singlecellexperiment_r-yaml:13bf33457e3e7490'}"
 
     input:
-    tuple val(meta), val(ref)
+    tuple val(meta), val(ref), val(version)
 
     output:
-    tuple val(meta), path("celldex_${ref}_h5_se.tar.gz"), emit: tar
+    tuple val(meta), path("${prefix}.tar"), emit: tar
     path "versions.yml", emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
+    prefix = task.ext.prefix ?: meta.id
     template("celldexDownload.R")
 
     stub:
+    prefix = task.ext.prefix ?: meta.id
     """
-    touch "celldex_${ref}_h5_se.tar.gz"
+    touch "${prefix}.tar"
     touch "versions.yml"
     """
 }

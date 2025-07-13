@@ -6,23 +6,23 @@ library(SingleCellExperiment)
 library(yaml)
 library(HDF5Array)
 
-r <- "${ref}"
-
-print(paste("Attempting to fetch reference:", r))
-
 # Split the reference into ref_name and ref_version based on __
-ref_name <- strsplit(r, "__")[[1]][1]
-ref_version <- strsplit(r, "__")[[1]][2]
+prefix <- "${prefix}"
+ref_name <- "${ref}"
+ref_version <- "${version}"
+
+print(paste("Attempting to fetch reference:", ref_name, ref_version))
+
 reference <- fetchReference(ref_name, ref_version, cache = "./")
 
 # Save SummarizedExperiment to HDF5 files
 saveHDF5SummarizedExperiment(
   reference,
-  dir = paste0("celldex_", r, "_h5_se"),
+  dir = prefix,
   replace = TRUE
 )
-# Compress the HDF5 files into a tar.gz archive
-tar(tarfile = paste0("celldex_", r, "_h5_se.tar.gz"), files = paste0("celldex_", r, "_h5_se"))
+# Compress the HDF5 files into a tar archive
+tar(tarfile = paste0(prefix, ".tar"), files = prefix)
 
 # Capturing version information, as before
 versions <- list(

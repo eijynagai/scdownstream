@@ -28,23 +28,25 @@ h5ad_file <- "${h5ad}" # Get the filename from environment variable
 sce <- read_h5ad(h5ad_file, as = "SingleCellExperiment") # Converts .h5ad to a SingleCellExperiment object
 
 # Split the references by comma and loop over each
+prefix <- "${prefix}"
 references <- strsplit("${references.join(',')}", ",")[[1]]
-
+reference_names <- strsplit("${names.join(',')}", ",")[[1]]
 reference_labels <- strsplit("${labels.join(',')}", ",")[[1]]
+
 stopifnot(
     #"Lengths of references and reference_labels vectors must match",
-    length(references) == length(reference_labels)
+    length(references) == length(reference_labels) && length(references) == length(reference_names)
 )
-prefix <- "${prefix}"
+
 Sys.setenv(XDG_CACHE_HOME = file.path(getwd(), ".cache"))
 prediction_results <- list()
 for (ref_idx in seq_along(references)) {
   ref <- references[ref_idx]
   reflabel <- reference_labels[ref_idx]
-  ref_name <- strsplit(ref, "__")[[1]][1]
-  ref_ver <- strsplit(ref, "__")[[1]][2]
+  ref_name <- reference_names[ref_idx]
+
   # Untar the reference files into a directory named after the reference without the extension
-  ref_dir <- gsub(".tar.gz", "", ref)
+  ref_dir <- gsub(".tar", "", ref)
   untar(ref, exdir = "./")
   # Read the SummarizedExperiment object from the provided path
   reference <- loadHDF5SummarizedExperiment(dir = ref_dir)
@@ -63,13 +65,13 @@ for (ref_idx in seq_along(references)) {
     main = paste0(
       "SingleR Predictions: ",
       basename(h5ad_file),
-      " [", ref, "]"
+      " [", ref_name, "]"
     ),
     show_rownames = TRUE,
     show_colnames = FALSE
   )
   ggsave(
-    filename = paste0(prefix, "_", ref, "_heatmap.pdf"),
+    filename = paste0(ref_name, "_heatmap.pdf"),
     plot = p,
     width = 10,
     height = 8
@@ -85,14 +87,14 @@ for (ref_idx in seq_along(references)) {
     )
   )
   ggsave(
-    filename = paste0(prefix, "_", ref, "_distribution.pdf"),
+    filename = paste0(ref_name, "_distribution.pdf"),
     plot = p2,
     width = 14,
     height = 12
   )
 
   colnames(predictions) <- paste0(
-    colnames(predictions), "_", ref_name, "_", ref_ver
+    colnames(predictions), "_", ref_name
   )
   prediction_results[[ref]] <- predictions
 }
