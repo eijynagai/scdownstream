@@ -9,6 +9,8 @@ Initial release of nf-core/scdownstream, created with the [nf-core](https://nf-c
 
 ### `Added`
 
+- Added `singleR` module for automated cell type annotation.
+
 ### `Fixed`
 
 ### `Dependencies`

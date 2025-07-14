@@ -29,7 +29,23 @@
 
 - [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
 
-> Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.
+  > Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.
+
+- [singleR](https://pubmed.ncbi.nlm.nih.gov/30643263/)
+
+  > Aran D, Looney AP, Liu L, Wu E, Fong V, Hsu A, et al. Reference-based analysis of lung single-cell sequencing reveals a transitional profibrotic macrophage. Nat Immunol. 2019;20(2):163-172. doi: 10.1038/s41590-018-0276-y. Epub 2018 Dec 17. PubMed PMID: 30531964; PubMed Central PMCID: PMC6350770.
+
+- [Seurat](https://pubmed.ncbi.nlm.nih.gov/29608179/)
+
+  > Butler A, Hoffman P, Smibert P, Papalexi E, Satija R. Integrating single-cell transcriptomic data across different conditions, technologies, and species. Nat Biotechnol. 2018 Apr;36(5):411-420. doi: 10.1038/nbt.4096. Epub 2018 Mar 12. PubMed PMID: 29608179; PubMed Central PMCID: PMC5965097.
+
+- [celldex](https://pubmed.ncbi.nlm.nih.gov/30643263/)
+
+  > Aran D, Looney AP, Liu L, Wu E, Fong V, Hsu A, Chak S, Naikawadi RP, Wolters PJ, Abate AR, Butte AJ, Bhattacharya M (2019). “Reference-based analysis of lung single-cell sequencing reveals a transitional profibrotic macrophage.” Nat. Immunol., 20, 163-172. doi:10.1038/s41590-018-0276-y.
+
+- [anndataR](https://anndatar.data-intuitive.com/)
+
+  > Cannoodt R, Zappia L, Morgan M, Deconinck L (2025). anndataR: AnnData interoperability in R. R package version 0.99.0
 
 ## Software packaging/containerisation tools
 

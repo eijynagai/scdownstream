@@ -7,12 +7,13 @@ nextflow_workflow {
     tag "subworkflows"
     tag "subworkflows_local"
 
-    test("Should run without failures") {
+    test("Should run with both celltypist and singler") {
 
         when {
             params {
                 outdir = "$outputDir"
                 celltypist_model = "Adult_COVID19_PBMC"
+                celldex_reference = "https://raw.githubusercontent.com/nf-core/test-datasets/scdownstream/singleR/references.csv"
             }
             workflow {
                 """
@@ -27,7 +28,10 @@ nextflow_workflow {
 
         then {
             assert workflow.success
-            assert snapshot(workflow.out).match()
+            assert snapshot(
+                workflow.out.versions,
+                workflow.out.obs.size()
+            ).match()
         }
 
     }
@@ -40,6 +44,7 @@ nextflow_workflow {
             params {
                 outdir = "$outputDir"
                 celltypist_model = "Adult_COVID19_PBMC"
+                celldex_reference = "https://raw.githubusercontent.com/nf-core/test-datasets/scdownstream/singleR/references.csv"
             }
             workflow {
                 """

@@ -9,7 +9,7 @@
                             "batch_col": "sample",
                             "counts_layer": "X"
                         },
-                        "test_filtered.h5ad:md5,43c35926fd84e0988499efe697f9c80e"
+                        "test_filtered.h5ad:md5,bb91347fbd5e49a6ee1cacd09f143796"
                     ]
                 ],
                 "1": [
@@ -34,7 +34,7 @@
                             "batch_col": "sample",
                             "counts_layer": "X"
                         },
-                        "test_filtered.h5ad:md5,43c35926fd84e0988499efe697f9c80e"
+                        "test_filtered.h5ad:md5,bb91347fbd5e49a6ee1cacd09f143796"
                     ]
                 ],
                 "multiqc_files": [
@@ -56,9 +56,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.2"
+            "nextflow": "25.04.6"
         },
-        "timestamp": "2025-06-05T14:19:52.584710981"
+        "timestamp": "2025-07-13T22:05:26.917540432"
     },
     "Should run with ambient RNA removal and doublet detection - stub": {
         "content": [
@@ -141,7 +141,7 @@
                             "batch_col": "sample",
                             "counts_layer": "X"
                         },
-                        "test.h5ad:md5,e347e935e609edfaa9a20c3e80e7130f"
+                        "test.h5ad:md5,c22d5aca6a360de7dd852cdf2d6ac1be"
                     ]
                 ],
                 "1": [
@@ -170,7 +170,7 @@
                             "batch_col": "sample",
                             "counts_layer": "X"
                         },
-                        "test.h5ad:md5,e347e935e609edfaa9a20c3e80e7130f"
+                        "test.h5ad:md5,c22d5aca6a360de7dd852cdf2d6ac1be"
                     ]
                 ],
                 "multiqc_files": [
@@ -196,8 +196,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.2"
+            "nextflow": "25.04.6"
         },
-        "timestamp": "2025-06-07T13:40:22.291004668"
+        "timestamp": "2025-07-13T22:27:26.85479338"
     }
 }

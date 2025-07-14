@@ -110,7 +110,30 @@ You can also generate such `YAML`/`JSON` files via [nf-core/launch](https://nf-c
 
 ### Cell type annotation
 
-Automated cell type annotation using [Celltypist](https://github.com/Teichlab/celltypist) is supported. You can specify the models to use with the [`celltypist_model` parameter](https://nf-co.re/scdownstream/dev/parameters/#celltypist_model). If no models are specified, no cell type annotation will be performed.
+#### Celltypist
+
+Automated cell type annotation using [Celltypist](https://github.com/Teichlab/celltypist) and [singleR](https://bioconductor.org/packages/release/bioc/html/SingleR.html) are supported. For `Celltypist`, you can specify the models to use with the [`celltypist_model` parameter](https://nf-co.re/scdownstream/dev/parameters/#celltypist_model).
+
+#### singleR
+
+For `singleR`, you can provide a CSV file with information about the celldex references to use for the singleR cell type annotation with the [`celldex_reference` parameter](https://nf-co.re/scdownstream/dev/parameters/#celldex_reference). The exising references are described in the [celldex package description](https://bioconductor.org/packages/devel/data/experiment/manuals/celldex/man/celldex.pdf). You can also provide paths to tar archives of pre-downloaded references (useful if your runtime environment does not have access to the internet).
+
+A CSV file that refers to the celldex references via name can look like this:
+
+```csv title="celldex_references.csv"
+id,label,reference,version
+hpca,label.main,hpca,2024-02-26
+monaco_immune,label.fine,monaco_immune,2024-02-26
+```
+
+A CSV file that refers to the celldex references via path can look like this:
+
+```csv title="celldex_references.csv"
+hpca,label.main,/path/to/hpca.tar
+monaco_immune,label.fine,/path/to/monaco_immune.tar
+```
+
+Example tar archives can be found [here](https://github.com/nf-core/test-datasets/tree/scdownstream/singleR).
 
 ### Reference mapping
 

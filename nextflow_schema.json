@@ -214,6 +214,17 @@
                     "description": "Specify the models to use for the celltypist cell type annotation",
                     "help_text": "If you want to use multiple models, separate them with a comma. Available models can be found [here](https://www.celltypist.org/models).",
                     "pattern": "^([a-zA-Z0-9_]*(,[a-zA-Z0-9_]*)*)?$"
+                },
+                "celldex_reference": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_singler.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "Path to comma-separated file containing information about the celldex references to use for the singleR cell type annotation.",
+                    "help_text": "You will need to create a design file with information about the celldex references to use for the singleR cell type annotation before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 or 4 columns, and a header row. See [usage docs](https://nf-co.re/scdownstream/usage#cell-type-annotation).",
+                    "fa_icon": "fas fa-file-csv"
                 }
             }
         },
@@ -324,7 +335,8 @@
             "properties": {
                 "pseudobulk_groupby_labels": {
                     "type": "string",
-                    "description": "Group by labels for pseudobulking. If you want to use multiple labels, separate them with a comma."
+                    "description": "Group by labels for pseudobulking. If you want to use multiple labels, separate them with a comma.",
+                    "default": "batch"
                 },
                 "pseudobulk_min_num_cells": {
                     "type": "integer",
@@ -493,10 +505,16 @@
             "$ref": "#/$defs/integration_options"
         },
         {
+            "$ref": "#/$defs/extension_options"
+        },
+        {
             "$ref": "#/$defs/clustering_options"
         },
         {
-            "$ref": "#/$defs/extension_options"
+            "$ref": "#/$defs/tool_options"
+        },
+        {
+            "$ref": "#/$defs/resource_options"
         },
         {
             "$ref": "#/$defs/pipeline_options"
@@ -506,12 +524,6 @@
         },
         {
             "$ref": "#/$defs/pseudobulking_options"
-        },
-        {
-            "$ref": "#/$defs/tool_options"
-        },
-        {
-            "$ref": "#/$defs/resource_options"
         },
         {
             "$ref": "#/$defs/institutional_config_options"

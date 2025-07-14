@@ -1,0 +1,220 @@
+{
+    "Should run after celldex reference is fetched": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler_predictions.csv:md5,d90a4649a5d44b49f08568e58388f958"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_singler_test_distribution.pdf:md5,0e7d079fd13f56782d258baf29dc1247",
+                            "test_singler_test_heatmap.pdf:md5,c4baf8d5c9f4908c3de5fc96ec6f0cd1"
+                        ]
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,448f2705ce813b3f6e93bb74b092a60c"
+                ],
+                "obs": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler_predictions.csv:md5,d90a4649a5d44b49f08568e58388f958"
+                    ]
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_singler_test_distribution.pdf:md5,0e7d079fd13f56782d258baf29dc1247",
+                            "test_singler_test_heatmap.pdf:md5,c4baf8d5c9f4908c3de5fc96ec6f0cd1"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,448f2705ce813b3f6e93bb74b092a60c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-07-13T13:14:34.706682491"
+    },
+    "Should run with a single reference": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler_predictions.csv:md5,1c31f07b4bff6980036f444039468fa5"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_singler_hpca_distribution.pdf:md5,c3b875124cfce6220e1b3bde608ddfb8",
+                            "test_singler_hpca_heatmap.pdf:md5,3f6daaa35e19ac669dfd4a9e88bf4df7"
+                        ]
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,448f2705ce813b3f6e93bb74b092a60c"
+                ],
+                "obs": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler_predictions.csv:md5,1c31f07b4bff6980036f444039468fa5"
+                    ]
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_singler_hpca_distribution.pdf:md5,c3b875124cfce6220e1b3bde608ddfb8",
+                            "test_singler_hpca_heatmap.pdf:md5,3f6daaa35e19ac669dfd4a9e88bf4df7"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,448f2705ce813b3f6e93bb74b092a60c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-07-13T13:20:26.421172215"
+    },
+    "Should run with a single reference - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obs": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler.pdf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-07-13T13:26:52.403212268"
+    },
+    "Should run with two references": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler_predictions.csv:md5,67d0aa7d4534ec4d87ea7b28557e0441"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_singler_hpca_distribution.pdf:md5,843d5f4f1f7d2f114152725c26551fb5",
+                            "test_singler_hpca_heatmap.pdf:md5,e74d367e519e4adf70c49b4dc1a8a7ee",
+                            "test_singler_monaco_immune_distribution.pdf:md5,23c8c3db337dba8045c33d4a7d6e3839",
+                            "test_singler_monaco_immune_heatmap.pdf:md5,fd4e363b326020bf9fb28e33b3957c04"
+                        ]
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,448f2705ce813b3f6e93bb74b092a60c"
+                ],
+                "obs": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_singler_predictions.csv:md5,67d0aa7d4534ec4d87ea7b28557e0441"
+                    ]
+                ],
+                "pdf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test_singler_hpca_distribution.pdf:md5,843d5f4f1f7d2f114152725c26551fb5",
+                            "test_singler_hpca_heatmap.pdf:md5,e74d367e519e4adf70c49b4dc1a8a7ee",
+                            "test_singler_monaco_immune_distribution.pdf:md5,23c8c3db337dba8045c33d4a7d6e3839",
+                            "test_singler_monaco_immune_heatmap.pdf:md5,fd4e363b326020bf9fb28e33b3957c04"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,448f2705ce813b3f6e93bb74b092a60c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-07-13T13:26:35.2247942"
+    }
+}

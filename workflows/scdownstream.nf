@@ -65,7 +65,7 @@ workflow SCDOWNSTREAM {
         QUALITY_CONTROL(
             ch_h5ad,
             params.ambient_removal,
-            (!params.doublet_detection || params.doublet_detection == 'none') ? [] : params.doublet_detection.split(',').collect { it -> it.trim().toLowerCase() },
+            !params.doublet_detection || params.doublet_detection == 'none' ? [] : params.doublet_detection.split(',').collect { it -> it.trim().toLowerCase() },
         )
         ch_versions = ch_versions.mix(QUALITY_CONTROL.out.versions)
         ch_multiqc_files = ch_multiqc_files.mix(QUALITY_CONTROL.out.multiqc_files)
@@ -135,7 +135,7 @@ workflow SCDOWNSTREAM {
             params.input ? "label" : params.base_label_col,
             params.clustering_resolutions.split(','),
             "batch",
-            "X_emb"
+            "X_emb",
         )
         ch_versions = ch_versions.mix(CLUSTER.out.versions)
         ch_obs = ch_obs.mix(CLUSTER.out.obs)

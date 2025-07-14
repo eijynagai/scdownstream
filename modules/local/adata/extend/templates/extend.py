@@ -26,7 +26,7 @@ def load_pickle_or_csv(path):
     if path.endswith(".pkl"):
         return pd.read_pickle(path)
     elif path.endswith(".csv"):
-        return pd.read_csv(path)
+        return pd.read_csv(path, index_col = 0)
     else:
         raise ValueError(f"Unsupported file extension: {path}")
 

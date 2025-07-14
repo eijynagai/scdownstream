@@ -37,6 +37,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
       - [Seurat](https://satijalab.org/seurat/articles/integration_introduction)
 3. Cell type annotation
    - [celltypist](https://www.celltypist.org/)
+   - [singleR](https://www.bioconductor.org/packages/release/bioc/html/SingleR.html)
 4. Clustering and dimensionality reduction
    1. [Leiden clustering](https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.leiden.html)
    2. [UMAP](https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.umap.html)
@@ -95,6 +96,12 @@ The `combine` directory contains the results of the sample aggregation step. The
   - `celltypist/`
     - `*.h5ad`: The h5ad file with cell type annotations.
     - `*.pkl`: The cell type annotations in a pickle file.
+  - `singleR`
+    - `*.h5ad`: The h5ad file with cell type annotations.
+    - `*.csv`: The cell type annotations in a CSV file.
+    - `*.pdf`: The cell type annotation plots in PDF format.
+  - `celldexreferenceprocessing`
+    - `dir`: A directory containing `h5` and `rds` files for the reference(s)
 
 </details>
 
