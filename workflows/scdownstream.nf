@@ -74,7 +74,7 @@ workflow SCDOWNSTREAM {
         //
         // Perform automated celltype assignment
         //
-        CELLTYPE_ASSIGNMENT(ch_h5ad)
+        CELLTYPE_ASSIGNMENT(ch_h5ad.map { meta, h5ad -> [meta, h5ad, meta.symbol_col] })
         ch_versions = ch_versions.mix(CELLTYPE_ASSIGNMENT.out.versions)
         ch_obs_per_sample = ch_obs_per_sample.mix(CELLTYPE_ASSIGNMENT.out.obs)
 

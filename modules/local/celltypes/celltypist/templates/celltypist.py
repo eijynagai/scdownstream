@@ -43,6 +43,12 @@ sc.pp.normalize_per_cell(
 )  # normalize to 10,000 counts per cell
 sc.pp.log1p(adata_celltypist)  # log-transform
 
+symbol_col = "${symbol_col}"
+if symbol_col != "index" and symbol_col:
+    if symbol_col not in adata_celltypist.var.columns:
+        raise ValueError(f"Symbol column {symbol_col} not found in adata.var.columns")
+    adata_celltypist.var_names = adata_celltypist.var[symbol_col]
+
 df_list = []
 
 for model in models:

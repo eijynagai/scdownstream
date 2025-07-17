@@ -3,7 +3,7 @@ include { CELLTYPES_SINGLER      } from '../../../modules/local/celltypes/single
 
 workflow SINGLER {
     take:
-    ch_h5ad      // channel: [ meta, h5ad ]
+    ch_h5ad      // channel: [ meta, h5ad, symbol_col ]
     ch_reference // channel: [ meta, reference ]
 
     main:

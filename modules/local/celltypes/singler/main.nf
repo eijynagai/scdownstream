@@ -6,7 +6,7 @@ process CELLTYPES_SINGLER {
 
 
     input:
-    tuple val(meta), path(h5ad)
+    tuple val(meta), path(h5ad), val(symbol_col)
     tuple val(meta2), val(names), val(labels), path(references)
 
     output:

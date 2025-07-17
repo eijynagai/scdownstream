@@ -24,8 +24,16 @@ format_yaml_like <- function(data, indent = 0) {
   return(yaml_str)
 }
 # Read .h5ad file using zellkonverter
+symbol_col <- "${symbol_col}"
 h5ad_file <- "${h5ad}" # Get the filename from environment variable
 sce <- read_h5ad(h5ad_file, as = "SingleCellExperiment") # Converts .h5ad to a SingleCellExperiment object
+
+if (symbol_col != "index") {
+  if (!symbol_col %in% colnames(rowData(sce))) {
+    stop(paste0("Symbol column ", symbol_col, " not found in adata.var.columns"))
+  }
+  rownames(sce) <- rowData(sce)[[symbol_col]]
+}
 
 # Split the references by comma and loop over each
 prefix <- "${prefix}"

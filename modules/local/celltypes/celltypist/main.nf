@@ -8,7 +8,7 @@ process CELLTYPES_CELLTYPIST {
         : 'community.wave.seqera.io/library/celltypist_scanpy:44b604b24dd4cf33'}"
 
     input:
-    tuple val(meta), path(h5ad)
+    tuple val(meta), path(h5ad), val(symbol_col)
     val models
 
     output:
