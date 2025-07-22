@@ -36,11 +36,11 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
 rds_obj = ro.r(f'readRDS("${rds}")')
 
 # Check if it's already a SingleCellExperiment
-is_sce = ro.r(f'inherits(x = {rds_obj.r_repr()}, what = "SingleCellExperiment")')[0]
+is_sce = 'SingleCellExperiment' in rds_obj.extends()
 
 # Convert only if not already a SingleCellExperiment
 if not is_sce:
-    sce = ro.r(f'as.SingleCellExperiment({rds_obj.r_repr()})')
+    sce = seurat.as_SingleCellExperiment(rds_obj)
 else:
     sce = rds_obj
 
