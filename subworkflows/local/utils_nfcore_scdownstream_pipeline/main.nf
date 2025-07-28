@@ -8,14 +8,14 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { UTILS_NFSCHEMA_PLUGIN     } from '../../nf-core/utils_nfschema_plugin'
-include { paramsSummaryMap          } from 'plugin/nf-schema'
-include { samplesheetToList         } from 'plugin/nf-schema'
-include { completionEmail           } from '../../nf-core/utils_nfcore_pipeline'
-include { completionSummary         } from '../../nf-core/utils_nfcore_pipeline'
-include { imNotification            } from '../../nf-core/utils_nfcore_pipeline'
-include { UTILS_NFCORE_PIPELINE     } from '../../nf-core/utils_nfcore_pipeline'
-include { UTILS_NEXTFLOW_PIPELINE   } from '../../nf-core/utils_nextflow_pipeline'
+include { UTILS_NFSCHEMA_PLUGIN   } from '../../nf-core/utils_nfschema_plugin'
+include { paramsSummaryMap        } from 'plugin/nf-schema'
+include { samplesheetToList       } from 'plugin/nf-schema'
+include { completionEmail         } from '../../nf-core/utils_nfcore_pipeline'
+include { completionSummary       } from '../../nf-core/utils_nfcore_pipeline'
+include { imNotification          } from '../../nf-core/utils_nfcore_pipeline'
+include { UTILS_NFCORE_PIPELINE   } from '../../nf-core/utils_nfcore_pipeline'
+include { UTILS_NEXTFLOW_PIPELINE } from '../../nf-core/utils_nextflow_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -24,7 +24,6 @@ include { UTILS_NEXTFLOW_PIPELINE   } from '../../nf-core/utils_nextflow_pipelin
 */
 
 workflow PIPELINE_INITIALISATION {
-
     take:
     version           // boolean: Display version and exit
     validate_params   // boolean: Boolean whether to validate parameters against the schema at runtime
@@ -40,26 +39,26 @@ workflow PIPELINE_INITIALISATION {
     //
     // Print version and exit if required and dump pipeline parameters to JSON file
     //
-    UTILS_NEXTFLOW_PIPELINE (
+    UTILS_NEXTFLOW_PIPELINE(
         version,
         true,
         outdir,
-        workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1
+        workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1,
     )
 
     //
     // Validate parameters and generate parameter summary to stdout
     //
-    UTILS_NFSCHEMA_PLUGIN (
+    UTILS_NFSCHEMA_PLUGIN(
         workflow,
         validate_params,
-        null
+        null,
     )
 
     //
     // Check config provided to the pipeline
     //
-    UTILS_NFCORE_PIPELINE (
+    UTILS_NFCORE_PIPELINE(
         nextflow_cli_args
     )
 
@@ -67,11 +66,9 @@ workflow PIPELINE_INITIALISATION {
     // Create channel from input file provided through params.input
     //
     ch_samplesheet = params.input
-        ? Channel
-            .fromList(samplesheetToList(params.input, "${projectDir}/assets/schema_input.json"))
-            .map {
-                validateInputSamplesheet(it)
-            }
+        ? Channel.fromList(samplesheetToList(params.input, "${projectDir}/assets/schema_input.json")).map {
+            validateInputSamplesheet(it)
+        }
         : Channel.empty()
 
     emit:
@@ -86,7 +83,6 @@ workflow PIPELINE_INITIALISATION {
 */
 
 workflow PIPELINE_COMPLETION {
-
     take:
     email           //  string: email address
     email_on_fail   //  string: email address sent on pipeline failure
@@ -123,7 +119,7 @@ workflow PIPELINE_COMPLETION {
     }
 
     workflow.onError {
-        log.error "Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting"
+        log.error("Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting")
     }
 }
 
@@ -140,29 +136,25 @@ def validateInputParameters() {
         throw new Exception("Either an input samplesheet or (base_adata && base_embeddings && base_label_col) must be provided")
     }
 
-    if (params.preprocess_only && !params.input) {
-        throw new Exception("If preprocess_only is set to true, an input samplesheet must be provided")
+    if (params.qc_only && !params.input) {
+        throw new Exception("If qc_only is set to true, an input samplesheet must be provided")
     }
 
-    if (params.base_adata && params.input && !params.reference_model) {
-        throw new Exception("If a base adata file is provided and a samplesheet is provided, a reference model must also be provided")
+    def integration_methods = params.integration_methods.split(',').collect { it.trim().toLowerCase() }
+    if (params.input && params.base_adata && (integration_methods - ['scvi', 'scanvi', 'scimilarity']).size() > 0) {
+        throw new Exception("Only scvi, scanvi and scimilarity integration methods are supported if base_adata is provided")
     }
 
-    if (params.reference_model && !params.reference_model_type) {
-        throw new Exception("If a reference model is provided, a reference model type must also be provided")
+    if (params.base_adata && 'scvi' in integration_methods && !params.scvi_model) {
+        throw new Exception("If base_adata is provided and scvi is used as integration method, scvi_model must be provided.")
     }
 
-    integration_methods = params.integration_methods.split(',').collect{it.trim().toLowerCase()}
-    if (params.input && params.base_adata && (integration_methods - ['scvi', 'scanvi']).size() > 0) {
-        throw new Exception("Only scvi and scanvi integration methods are supported if base_adata is provided")
+    if (params.base_adata && 'scanvi' in integration_methods && !params.scanvi_model) {
+        throw new Exception("If base_adata is provided and scanvi is used as integration method, scanvi_model must be provided.")
     }
 
-    if (params.base_adata && params.reference_model_type == "scanvi" && (integration_methods - ['scanvi']).size() > 0) {
-        throw new Exception("If the reference model type is scanvi, only the scanvi integration method is supported")
-    }
-
-    if (params.base_adata && params.reference_model_type == "scvi" && (integration_methods - ['scvi', 'scanvi']).size() > 0) {
-        throw new Exception("If the reference model type is scvi, only the scvi and scanvi integration methods are supported")
+    if (params.base_adata && 'scimilarity' in integration_methods && !params.scimilarity_model) {
+        throw new Exception("If base_adata is provided and scimilarity is used as integration method, scimilarity_model must be provided.")
     }
 }
 
@@ -186,10 +178,10 @@ def toolCitationText() {
     // Can use ternary operators to dynamically construct based conditions, e.g. params["run_xyz"] ? "Tool (Foo et al. 2023)" : "",
     // Uncomment function in methodsDescriptionText to render in MultiQC report
     def citation_text = [
-            "Tools used in the workflow included:",
-            "MultiQC (Ewels et al. 2016)",
-            "."
-        ].join(' ').trim()
+        "Tools used in the workflow included:",
+        "MultiQC (Ewels et al. 2016)",
+        ".",
+    ].join(' ').trim()
 
     return citation_text
 }
@@ -199,8 +191,8 @@ def toolBibliographyText() {
     // Can use ternary operators to dynamically construct based conditions, e.g. params["run_xyz"] ? "<li>Author (2023) Pub name, Journal, DOI</li>" : "",
     // Uncomment function in methodsDescriptionText to render in MultiQC report
     def reference_text = [
-            "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
-        ].join(' ').trim()
+        "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
+    ].join(' ').trim()
 
     return reference_text
 }
@@ -222,7 +214,10 @@ def methodsDescriptionText(mqc_methods_yaml) {
             temp_doi_ref += "(doi: <a href=\'https://doi.org/${doi_ref.replace("https://doi.org/", "").replace(" ", "")}\'>${doi_ref.replace("https://doi.org/", "").replace(" ", "")}</a>), "
         }
         meta["doi_text"] = temp_doi_ref.substring(0, temp_doi_ref.length() - 2)
-    } else meta["doi_text"] = ""
+    }
+    else {
+        meta["doi_text"] = ""
+    }
     meta["nodoi_text"] = meta.manifest_map.doi ? "" : "<li>If available, make sure to update the text to include the Zenodo DOI of version of the pipeline used. </li>"
 
     // Tool references
@@ -236,9 +231,8 @@ def methodsDescriptionText(mqc_methods_yaml) {
 
     def methods_text = mqc_methods_yaml.text
 
-    def engine =  new groovy.text.SimpleTemplateEngine()
+    def engine = new groovy.text.SimpleTemplateEngine()
     def description_html = engine.createTemplate(methods_text).make(meta)
 
     return description_html.toString()
 }
-

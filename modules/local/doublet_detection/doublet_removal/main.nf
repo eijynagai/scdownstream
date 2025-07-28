@@ -22,4 +22,12 @@ process DOUBLET_REMOVAL {
     script:
     prefix    = task.ext.prefix    ?: "${meta.id}"
     template 'doublet_removal.py'
+
+    stub:
+    prefix = task.ext.prefix    ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch ${prefix}_mqc.json
+    touch versions.yml
+    """
 }

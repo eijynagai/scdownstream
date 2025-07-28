@@ -9,6 +9,7 @@ process INTEGRATION_BBKNN {
 
     input:
     tuple val(meta), path(h5ad)
+    val(batch_col)
 
     output:
     tuple val(meta), path("*.h5ad") , emit: h5ad
@@ -20,4 +21,11 @@ process INTEGRATION_BBKNN {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'bbknn.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch versions.yml
+    """
 }

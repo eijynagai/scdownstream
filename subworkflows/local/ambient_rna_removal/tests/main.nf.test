@@ -1,0 +1,178 @@
+nextflow_workflow {
+
+    name "Test Workflow AMBIENT_RNA_REMOVAL"
+    script "subworkflows/local/ambient_rna_removal/main.nf"
+    workflow "AMBIENT_RNA_REMOVAL"
+
+    tag "subworkflows"
+    tag "subworkflows_local"
+
+    test("Should run with 'none' ambient removal") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = 'none'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should fail with unknown ambient removal method") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = 'test'
+                """
+            }
+        }
+
+        then {
+            assert !workflow.success
+        }
+
+    }
+
+    test("Should run with 'decontx' ambient removal") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test', batch_col: 'sample', counts_layer: 'X' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = 'decontx'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                // Hashing does not work due to this issue:
+                // https://github.com/scverse/anndataR/issues/272
+                workflow.out.versions,
+                file(workflow.out.h5ad.get(0).get(1)).name
+            ).match()
+        }
+
+    }
+
+    test("Should run with 'soupx' ambient removal") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test', input_layer: 'X' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = 'soupx'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                // Hashing does not work due to this issue:
+                // https://github.com/scverse/anndataR/issues/272
+                workflow.out.versions,
+                file(workflow.out.h5ad.get(0).get(1)).name
+            ).match()
+        }
+
+    }
+
+    test("Should run with 'scar' ambient removal") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = 'scar'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(
+                workflow.out.versions,
+                file(workflow.out.h5ad.get(0).get(1)).name
+            ).match()
+        }
+
+    }
+
+    test("Should run with 'cellbender' ambient removal") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = 'cellbender'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+}

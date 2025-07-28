@@ -4,30 +4,12 @@ import os
 
 os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 
-import scanpy as sc
+import anndata as ad
 import scipy
 import numpy as np
 from scipy.sparse import csr_matrix
 import platform
-
-def format_yaml_like(data: dict, indent: int = 0) -> str:
-    """Formats a dictionary to a YAML-like string.
-
-    Args:
-        data (dict): The dictionary to format.
-        indent (int): The current indentation level.
-
-    Returns:
-        str: A string formatted as YAML.
-    """
-    yaml_str = ""
-    for key, value in data.items():
-        spaces = "  " * indent
-        if isinstance(value, dict):
-            yaml_str += f"{spaces}{key}:\\n{format_yaml_like(value, indent + 1)}"
-        else:
-            yaml_str += f"{spaces}{key}: {value}\\n"
-    return yaml_str
+import yaml
 
 # Function borrowed from https://github.com/icbi-lab/luca/blob/5ffb0a4671e9c288b10e73de18d447ee176bef1d/lib/scanpy_helper_submodule/scanpy_helpers/util.py#L122C1-L135C21
 def aggregate_duplicate_var(adata, aggr_fun=np.mean):
@@ -69,31 +51,48 @@ def to_Florent_case(s: str):
 
     return corrected.capitalize()
 
-adata = sc.read_h5ad("$h5ad")
+adata = ad.read_h5ad("$h5ad")
 
-# This fixes a problem that sometimes occurs in AnnData objects
-# that were converted from R-based objects
-# Reference: https://github.com/theislab/scvelo/issues/255#issuecomment-739995301
-if adata.__dict__["_raw"] and "_index" in adata.__dict__["_raw"].__dict__["_var"]:
-    adata.__dict__["_raw"].__dict__["_var"] = (
-        adata.__dict__["_raw"].__dict__["_var"].rename(columns={"_index": "features"})
-    )
+counts_layer = "${counts_layer}"
+if counts_layer != "X":
+    adata.X = adata.layers[counts_layer]
+
+# Remove all obsm, varm, uns and layers
+adata.obsm = {}
+adata.varm = {}
+adata.uns = {}
+adata.layers = {}
 
 # Convert to float32 CSR matrix
 adata.X = csr_matrix(adata.X.astype(np.float32))
+
+# Unify gene symbols
+symbol_col = "${symbol_col}"
+
+if symbol_col != "index":
+    assert symbol_col in adata.var.columns, f"Symbol column {symbol_col} not found in var table"
+    adata.var["original_index"] = adata.var.index
+    adata.var.index = adata.var[symbol_col]
+
+if "${aggregate_isoforms}" == "true":
+    # Remove all numeric suffixes following a dot, keep non-numeric suffixes
+    adata.var_names = adata.var_names.str.replace(r'\\.\\d+', '', regex=True)
+
+# Deal with duplicate genes
+method = "${duplicate_var_resolution}"
+if method in ["mean", "sum", "max"]:
+    adata = aggregate_duplicate_var(adata, aggr_fun=getattr(np, method))
+elif method == "make_unique":
+    adata.var_names_make_unique()
+else:
+    raise ValueError(f"Invalid aggregation method: {method}")
 
 # Prevent duplicate cells
 adata.obs_names_make_unique()
 adata.obs_names = "${meta.id}_" + adata.obs_names
 
-# Remove all obsm, varm, uns and layers
-adata.obsm = {}
-adata.varm = {}
-adata.layers = {}
-adata.uns = {}
-
 # Unify batches
-batch_col = "${meta.batch_col}"
+batch_col = "${batch_col}"
 if batch_col not in adata.obs:
     adata.obs[batch_col] = "${meta.id}"
 
@@ -105,8 +104,8 @@ if batch_col != "batch":
 adata.obs["batch"] = adata.obs["batch"].astype(str).astype("category")
 
 # Unify labels
-label_col = "${meta.label_col ?: ''}"
-unknown_label = "${meta.unknown_label}"
+label_col = "${label_col}"
+unknown_label = "${unknown_label}"
 
 if label_col:
     if label_col not in adata.obs:
@@ -134,36 +133,15 @@ else:
     adata.obs["label"] = "unknown"
 adata.obs["label"] = adata.obs["label"].astype("category")
 
-# Unify gene symbols
-symbol_col = "${meta.symbol_col ?: 'index'}"
-unify_gene_symbols = "${unify_gene_symbols}" == "true"
-
-if symbol_col not in ["index", "none"]:
-    adata.var.index = adata.var[symbol_col]
-    del adata.var[symbol_col]
-
-if unify_gene_symbols or symbol_col == "none":
-    import mygene
-
-    mg = mygene.MyGeneInfo()
-    df_genes = mg.querymany(adata.var.index,
-        scopes=["symbol", "entrezgene", "ensemblgene"],
-        fields="symbol", species="human", as_dataframe=True)
-    mapping = df_genes["symbol"].dropna().to_dict()
-
-    adata.var.index = adata.var.index.map(lambda x: mapping.get(x, x))
-
-# Aggregate duplicate genes
-method = "${params.var_aggr_method}"
-if not method in ["mean", "sum", "max"]:
-    raise ValueError(f"Invalid aggregation method: {method}")
-
-adata = aggregate_duplicate_var(adata, aggr_fun=getattr(np, method))
-
 # Add "sample" column
 if "sample" in adata.obs and not adata.obs["sample"].equals("${meta.id}"):
     adata.obs["sample_original"] = adata.obs["sample"]
 adata.obs["sample"] = "${meta.id}"
+adata.obs["sample"] = adata.obs["sample"].astype("category")
+
+# Add sample to batch column, to avoid overlap with other samples
+adata.obs["batch"] = adata.obs["batch"].astype(str) + "_" + adata.obs["sample"].astype(str)
+adata.obs["batch"] = adata.obs["batch"].astype("category")
 
 adata.write_h5ad("${prefix}.h5ad")
 
@@ -172,11 +150,11 @@ adata.write_h5ad("${prefix}.h5ad")
 versions = {
     "${task.process}": {
         "python": platform.python_version(),
-        "scanpy": sc.__version__,
+        "anndata": ad.__version__,
         "scipy": scipy.__version__,
         "numpy": np.__version__
     }
 }
 
 with open("versions.yml", "w") as f:
-    f.write(format_yaml_like(versions))
+    yaml.dump(versions, f)

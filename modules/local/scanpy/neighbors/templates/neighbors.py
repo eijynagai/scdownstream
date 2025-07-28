@@ -3,6 +3,7 @@
 import os
 import platform
 
+os.environ["MPLCONFIGDIR"] = "./tmp/mpl"
 os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 
 import scanpy as sc
@@ -30,33 +31,14 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
     return yaml_str
 
 
-adata = sc.read_h5ad("${h5ad}")
+adata = sc.read_h5ad("${h5ad}", backed='r')
 prefix = "${prefix}"
-use_gpu = "${task.ext.use_gpu}" == "true"
 
 kwargs = {
-    "use_rep": "X_EMB" if "X_EMB" in adata.obsm.keys() else "X_emb"
+    "use_rep": "${rep}"
 }
 
-if use_gpu:
-    os.environ["CUPY_CACHE_DIR"] = "./tmp/cupy"
-
-    import rapids_singlecell as rsc
-    import rmm
-    from rmm.allocators.cupy import rmm_cupy_allocator
-    import cupy as cp
-    rmm.reinitialize(
-        managed_memory=True,
-        pool_allocator=False,
-    )
-    cp.cuda.set_allocator(rmm_cupy_allocator)
-
-    rsc.get.anndata_to_GPU(adata)
-    rsc.pp.neighbors(adata, **kwargs)
-
-    rsc.get.anndata_to_CPU(adata)
-else:
-    sc.pp.neighbors(adata, **kwargs)
+sc.pp.neighbors(adata, **kwargs)
 
 adata.write_h5ad(f"{prefix}.h5ad")
 

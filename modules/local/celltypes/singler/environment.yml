@@ -1,0 +1,13 @@
+name: singler
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconductor-singler
+  - bioconductor-celldex=1.16.0
+  - r-seurat
+  - bioconductor-singlecellexperiment
+  - r-yaml
+  - r-devtools
+  - r-ggplot2
+  - r-viridis

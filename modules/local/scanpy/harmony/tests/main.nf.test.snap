@@ -1,0 +1,80 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "X_test.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "obsm": [
+                    "X_test.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T07:49:23.776105374"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,e9eab176d7b97e147d5cb5d25b1d5db2"
+                    ]
+                ],
+                "1": [
+                    "X_test.pkl:md5,22d4553240b14c7b499a7748b2a8c071"
+                ],
+                "2": [
+                    "versions.yml:md5,838ea9fdc933b7f41725b510b0a7bc8c"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,e9eab176d7b97e147d5cb5d25b1d5db2"
+                    ]
+                ],
+                "obsm": [
+                    "X_test.pkl:md5,22d4553240b14c7b499a7748b2a8c071"
+                ],
+                "versions": [
+                    "versions.yml:md5,838ea9fdc933b7f41725b510b0a7bc8c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-03T07:49:12.001069134"
+    }
+}

@@ -3,6 +3,7 @@
 import os
 import platform
 
+os.environ["MPLCONFIGDIR"] = "./tmp/mpl"
 os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 os.environ["CELLTYPIST_FOLDER"] = "./tmp/celltypist"
 
@@ -41,6 +42,12 @@ sc.pp.normalize_per_cell(
     adata_celltypist, counts_per_cell_after=10**4
 )  # normalize to 10,000 counts per cell
 sc.pp.log1p(adata_celltypist)  # log-transform
+
+symbol_col = "${symbol_col}"
+if symbol_col != "index" and symbol_col:
+    if symbol_col not in adata_celltypist.var.columns:
+        raise ValueError(f"Symbol column {symbol_col} not found in adata.var.columns")
+    adata_celltypist.var_names = adata_celltypist.var[symbol_col]
 
 df_list = []
 

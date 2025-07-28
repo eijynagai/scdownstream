@@ -15,7 +15,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { SCDOWNSTREAM  } from './workflows/scdownstream'
+include { SCDOWNSTREAM            } from './workflows/scdownstream'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_scdownstream_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_scdownstream_pipeline'
 /*
@@ -32,7 +32,6 @@ workflow NFCORE_SCDOWNSTREAM {
     take:
     samplesheet // channel: samplesheet read in from --input
     ch_base  // value channel: [ val(meta), path(h5ad) ]
-    ch_reference_model // value channel: [ val(meta), path(model) ]
 
     main:
 
@@ -41,12 +40,12 @@ workflow NFCORE_SCDOWNSTREAM {
     //
     SCDOWNSTREAM (
         samplesheet,
-        ch_base,
-        ch_reference_model
+        ch_base
     )
     emit:
     multiqc_report = SCDOWNSTREAM.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -75,11 +74,9 @@ workflow {
         PIPELINE_INITIALISATION.out.samplesheet,
         params.base_adata
             ? Channel.value([[id: "base"], file(params.base_adata, checkIfExists: true)])
-            : Channel.value([[], []]),
-        params.reference_model
-            ? Channel.value([[id: params.reference_model_type], file(params.reference_model, checkIfExists: true)])
             : Channel.value([[], []])
     )
+
     //
     // SUBWORKFLOW: Run completion tasks
     //

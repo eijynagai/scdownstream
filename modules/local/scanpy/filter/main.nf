@@ -4,25 +4,35 @@ process SCANPY_FILTER {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/scanpy:1.10.4--c2d474f46255931c':
-        'community.wave.seqera.io/library/scanpy:1.10.4--f905699eb17b6536' }"
+        'oras://community.wave.seqera.io/library/pyyaml_scanpy:158b12038812cf13':
+        'community.wave.seqera.io/library/pyyaml_scanpy:61c9ab8e312bbe0a' }"
 
     input:
     tuple val(meta), path(h5ad)
+    val(min_genes)
+    val(min_cells)
+    val(min_counts_gene)
+    val(min_counts_cell)
+    val(max_mito_percentage)
 
     output:
-    tuple val(meta), path("*.h5ad"), emit: h5ad
+    tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
     path "versions.yml"            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    min_genes           = meta.min_genes ?: 1
-    min_cells           = meta.min_cells ?: 1
-    min_counts_gene     = meta.min_counts_gene ?: 1
-    min_counts_cell     = meta.min_counts_cell ?: 1
-    max_mito_percentage = meta.max_mito_percentage ?: 100
     prefix = task.ext.prefix ?: "${meta.id}"
+    if ("${prefix}.h5ad" == "${h5ad}") {
+        error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
+    }
     template 'filter.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch versions.yml
+    """
 }

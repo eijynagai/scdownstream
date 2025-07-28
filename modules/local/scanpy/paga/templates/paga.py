@@ -37,7 +37,7 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
     return yaml_str
 
 
-adata = sc.read_h5ad("${h5ad}")
+adata = sc.read_h5ad("${h5ad}", backed='r')
 prefix = "${prefix}"
 obs_key = "${obs_key}"
 

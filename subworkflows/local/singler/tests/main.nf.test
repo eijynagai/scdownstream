@@ -1,0 +1,75 @@
+nextflow_workflow {
+
+    name "Test Workflow SINGLER"
+    script "subworkflows/local/singler/main.nf"
+    workflow "SINGLER"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        "index"
+                    ]
+                )
+                input[1] = Channel.of([
+                        [ id: 'hpca_direct', label: 'label.main' ],
+                        file(params.pipelines_testdata_base_path + '/singleR/celldex_hpca__2024-02-26_h5_se.tar', checkIfExists: true)
+                    ], [
+                        [ id: 'immune_celldex', label: 'label.fine', version: '2024-02-26' ],
+                        "monaco_immune"
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Should run without failures - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        "index"
+                    ]
+                )
+                input[1] = Channel.of([
+                        [ id: 'hpca_direct', label: 'label.main' ],
+                        file(params.pipelines_testdata_base_path + '/singleR/celldex_hpca__2024-02-26_h5_se.tar', checkIfExists: true)
+                    ], [
+                        [ id: 'immune_celldex', label: 'label.fine', version: '2024-02-26' ],
+                        "monaco_immune"
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+}

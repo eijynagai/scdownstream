@@ -3,6 +3,7 @@
 import os
 import platform
 
+os.environ["MPLCONFIGDIR"] = "./tmp/mpl"
 os.environ["NUMBA_CACHE_DIR"] = "./tmp/numba"
 
 import scanpy as sc
@@ -35,7 +36,7 @@ adata = sc.read_h5ad("${h5ad}")
 sc.tl.pca(adata)
 
 kwargs = {
-    "batch_key": "batch",
+    "batch_key": "${batch_col}",
     "copy": True,
 }
 

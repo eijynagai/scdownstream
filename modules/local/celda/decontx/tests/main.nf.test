@@ -1,0 +1,171 @@
+nextflow_process {
+
+    name "Test Process CELDA_DECONTX"
+    script "modules/local/celda/decontx/main.nf"
+    process "CELDA_DECONTX"
+
+    tag "modules"
+    tag "modules_local"
+
+    test("Should run without failures without raw - single batch") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                input[1] = "sample"
+                input[2] = "X"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(
+                // Hashing does not work due to this issue:
+                // https://github.com/scverse/anndataR/issues/272
+                process.out.versions,
+                file(process.out.h5ad.get(0).get(1)).name
+            ).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures without raw - multi-batch") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/combined_filtered_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                input[1] = "sample"
+                input[2] = "X"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(
+                process.out.versions,
+                file(process.out.h5ad.get(0).get(1)).exists()
+            ).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures without raw - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                input[1] = "sample"
+                input[2] = "X"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures with raw") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = "sample"
+                input[2] = "X"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(
+                process.out.versions,
+                file(process.out.h5ad.get(0).get(1)).exists(),
+                file(process.out.h5ad.get(0).get(1)).size()
+            ).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures with raw - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_raw_matrix.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = "sample"
+                input[2] = "X"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

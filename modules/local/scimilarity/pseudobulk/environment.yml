@@ -1,0 +1,11 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - conda-forge::gcc=14.2.0
+  - conda-forge::gxx=14.2.0
+  - conda-forge::pyyaml=6.0.2
+  - conda-forge::zarr=2.18.4
+  - pip
+  - pip:
+      - scimilarity==0.3.0

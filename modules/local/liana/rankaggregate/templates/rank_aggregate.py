@@ -11,7 +11,9 @@ import scanpy as sc
 import liana as li
 
 from threadpoolctl import threadpool_limits
+
 threadpool_limits(int("${task.cpus}"))
+
 
 def format_yaml_like(data: dict, indent: int = 0) -> str:
     """Formats a dictionary to a YAML-like string.
@@ -32,6 +34,7 @@ def format_yaml_like(data: dict, indent: int = 0) -> str:
             yaml_str += f"{spaces}{key}: {value}\\n"
     return yaml_str
 
+
 adata = sc.read_h5ad("${h5ad}")
 prefix = "${prefix}"
 obs_key = "${obs_key}"
@@ -39,13 +42,24 @@ obs_key = "${obs_key}"
 if adata.obs[obs_key].nunique() > 1:
     if (adata.X < 0).nnz == 0:
         sc.pp.log1p(adata)
-    li.mt.rank_aggregate(adata, obs_key, use_raw=False, verbose=True, n_jobs=int("${task.cpus}"))
-    df: pd.DataFrame = adata.uns["liana_res"]
+    try:
+        li.mt.rank_aggregate(
+            adata, obs_key, use_raw=False, verbose=True, n_jobs=int("${task.cpus}")
+        )
+        df: pd.DataFrame = adata.uns["liana_res"]
 
-    df.to_pickle(f"{prefix}.pkl")
-    adata.write_h5ad(f"{prefix}.h5ad")
+        df.to_pickle(f"{prefix}.pkl")
+        adata.write_h5ad(f"{prefix}.h5ad")
+
+    except ValueError as e:
+        if "cannot set a frame with no defined index and a scalar" in str(e):
+            print(f"Error: {e}")
+        else:
+            raise e
 else:
-    print(f"Skipping rank aggregation because the column {obs_key} has only one unique value.")
+    print(
+        f"Skipping rank aggregation because the column {obs_key} has only one unique value."
+    )
 
 # Versions
 

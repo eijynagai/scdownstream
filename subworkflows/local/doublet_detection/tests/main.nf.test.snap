@@ -1,0 +1,67 @@
+{
+    "Should run with all methods except doubletdetection": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "batch_col": "sample"
+                    },
+                    "test.h5ad:md5,e75fc5ccfbb087f29e444989deb75d2e"
+                ]
+            ],
+            [
+                "versions.yml:md5,06146b2e750e8ff6268b2f2b2d166ca1",
+                "versions.yml:md5,5ac77be24c260cc022a118f35a88aea9"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-05T13:22:20.469983926"
+    },
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "batch_col": "sample"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,fe6de40144b372e316e994db79e31852"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test",
+                            "batch_col": "sample"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e",
+                    "versions.yml:md5,fe6de40144b372e316e994db79e31852"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-05T13:00:58.223644427"
+    }
+}

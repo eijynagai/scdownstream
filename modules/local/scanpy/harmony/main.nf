@@ -1,26 +1,34 @@
 process SCANPY_HARMONY {
-    tag "$meta.id"
+    tag "${meta.id}"
     label 'process_medium'
-    label 'process_gpu'
 
     conda "${moduleDir}/environment.yml"
-    container "${ task.ext.use_gpu ? 'ghcr.io/scverse/rapids_singlecell:v0.11.0' :
-        workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/harmonypy_scanpy:411ceead43b47bef':
-        'community.wave.seqera.io/library/harmonypy_scanpy:f8b4f79ab119d93e' }"
+    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
+            ? 'oras://community.wave.seqera.io/library/harmonypy_pyyaml_scanpy:0313a38a736a3dbb'
+            : 'community.wave.seqera.io/library/harmonypy_pyyaml_scanpy:3da6a375ff8a76ed'}"
 
     input:
     tuple val(meta), path(h5ad)
+    val(batch_col)
+    val(counts_layer)
 
     output:
-    tuple val(meta), path("*.h5ad") , emit: h5ad
-    path "*.pkl"                    , emit: obsm
-    path "versions.yml"             , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
+    tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
+    path "X_${prefix}.pkl", emit: obsm
+    path "versions.yml", emit: versions
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    template 'harmony.py'
+    if ("${prefix}.h5ad" == "${h5ad}") {
+        error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
+    }
+    template('harmony.py')
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.h5ad
+    touch X_${prefix}.pkl
+    touch versions.yml
+    """
 }

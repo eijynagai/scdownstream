@@ -1,0 +1,80 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-05T12:04:06.632822892"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,0f9e04d5af735ca3341620f71888f728"
+                    ]
+                ],
+                "1": [
+                    "test_mqc.json:md5,fce5b12f14e886ac4611d80e135452ae"
+                ],
+                "2": [
+                    "versions.yml:md5,996bec8ae70529e27798f97c4e95ffc7"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.h5ad:md5,0f9e04d5af735ca3341620f71888f728"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_mqc.json:md5,fce5b12f14e886ac4611d80e135452ae"
+                ],
+                "versions": [
+                    "versions.yml:md5,996bec8ae70529e27798f97c4e95ffc7"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.2"
+        },
+        "timestamp": "2025-06-05T12:03:55.676451971"
+    }
+}

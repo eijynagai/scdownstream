@@ -1,6 +1,0 @@
-name: adata_barcodes
-channels:
-  - conda-forge
-  - bioconda
-dependencies:
-  - conda-forge::anndata=0.11.1

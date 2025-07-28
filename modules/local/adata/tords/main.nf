@@ -21,4 +21,11 @@ process ADATA_TORDS {
     counts_layer = task.ext.counts_layer ?: 'X'
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'tords.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.rds
+    touch versions.yml
+    """
 }

@@ -12,27 +12,9 @@ import scipy
 from scipy.sparse import csr_matrix
 import anndata as ad
 import scanpy as sc
+import yaml
 
-def format_yaml_like(data: dict, indent: int = 0) -> str:
-    """Formats a dictionary to a YAML-like string.
-
-    Args:
-        data (dict): The dictionary to format.
-        indent (int): The current indentation level.
-
-    Returns:
-        str: A string formatted as YAML.
-    """
-    yaml_str = ""
-    for key, value in data.items():
-        spaces = "  " * indent
-        if isinstance(value, dict):
-            yaml_str += f"{spaces}{key}:\\n{format_yaml_like(value, indent + 1)}"
-        else:
-            yaml_str += f"{spaces}{key}: {value}\\n"
-    return yaml_str
-
-adatas = [sc.read_h5ad(f) for f in "${h5ads}".split()]
+adatas = [sc.read_h5ad(f) for f in sorted("${h5ads}".split())]
 
 base_path = "${base}"
 if base_path:
@@ -64,7 +46,7 @@ for column, dtypes in column_dtypes.items():
                 adata.obs[column] = adata.obs[column].astype("object")
         column_defaults[column] = "unknown"
     else:
-        column_defaults[column] = np.nan if dtypes.pop() == "number" else "unknown"
+        column_defaults[column] = np.nan if dtypes.copy().pop() == "number" else "unknown"
 
 for adata in adatas:
     for col in set(obs_col_intersection).difference(adata.obs.columns):
@@ -78,6 +60,9 @@ for adata in adatas:
 
 adata_outer = ad.concat(adatas, join="outer")
 adata_outer.X = csr_matrix(adata_outer.X)
+
+# Sort obs columns alphabetically to make reproducible
+adata_outer.obs = adata_outer.obs.reindex(sorted(adata_outer.obs.columns), axis=1)
 
 gene_intersection = set(genes[0]).intersection(*genes[1:])
 intersection_mask = adata_outer.var_names.to_series(name='intersection').map(lambda x: x in gene_intersection)
@@ -100,7 +85,6 @@ else:
     # Create symlink to the inner dataset
     os.symlink("${prefix}_inner.h5ad", "${prefix}_integrate.h5ad")
 
-
 # Versions
 
 versions = {
@@ -113,4 +97,4 @@ versions = {
 }
 
 with open("versions.yml", "w") as f:
-    f.write(format_yaml_like(versions))
+    yaml.dump(versions, f)

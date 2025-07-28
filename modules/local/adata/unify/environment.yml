@@ -1,7 +1,6 @@
-name: adata_unify
 channels:
   - conda-forge
   - bioconda
 dependencies:
-  - bioconda::mygene=3.2.2
-  - conda-forge::scanpy=1.10.4
+  - conda-forge::anndata=0.11.4
+  - conda-forge::pyyaml=6.0.2
